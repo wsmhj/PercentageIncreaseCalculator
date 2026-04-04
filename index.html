@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Increase Calculator — Free Instant Tool</title>
+<meta name="keywords" content="">
+<meta name="description" content="Calculate percentage increase instantly. Enter any two values, get the third. Shows formula steps, visual chart, and natural language result. Free, no signup.">
+<link rel="canonical" href="https://percentageincreasecalculator.app/">
+<meta property="og:site_name" content="Percentage Increase Calculator">
+<meta property="og:title" content="Percentage Increase Calculator — Free Instant Tool">
+<meta property="og:description" content="Calculate percentage increase instantly with visual chart, step-by-step formula, and natural language results.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://percentageincreasecalculator.app/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Percentage Increase Calculator">
+<meta name="twitter:description" content="Free instant percentage increase calculator with formula steps and visual chart.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' ry='20' fill='%237dffc4'/><text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-family='Arial,sans-serif' font-weight='800' font-size='64' fill='%231a3a35'>%25</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Percentage Increase Calculator","alternateName":"percentageincreasecalculator.app","url":"https://percentageincreasecalculator.app/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Percentage Increase Calculator","description":"Calculate percentage increase instantly between two values. Shows formula steps, visual comparison chart, and natural language result.","url":"https://percentageincreasecalculator.app/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Subtract the original value from the new value, divide the result by the original value, then multiply by 100. Formula: ((New - Original) / Original) × 100%."}},{"@type":"Question","name":"What is the formula for percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Percentage Increase = ((New Value - Original Value) / Original Value) × 100%. For example, going from 80 to 100 is a 25% increase."}},{"@type":"Question","name":"What if my percentage result is negative?","acceptedAnswer":{"@type":"Answer","text":"A negative result means the value decreased rather than increased. For example, going from 100 to 80 gives -20%, indicating a 20% decrease."}},{"@type":"Question","name":"How do I calculate the new value after a percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Multiply the original value by (1 + percentage/100). For example, 200 increased by 15% = 200 × 1.15 = 230."}}]}
+</script>
+<meta name="theme-color" content="#1a3a35">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Sriracha&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* === CHALKBOARD BASE === */
+body{
+  font-family:'Nunito',sans-serif;
+  background:#1a3a35;
+  /* chalk dust texture */
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.02) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  color:#e8e0d4;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* === TOPNAV: chalk shelf === */
+.topnav{
+  background:rgba(0,0,0,0.2);
+  border-bottom:3px solid #2a5a50;
+  padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(8px);
+}
+.topnav .logo{
+  font-family:'Sriracha',cursive;
+  font-size:16px;color:#7dffc4;
+  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  white-space:nowrap;
+}
+.topnav .logo .pct{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;
+  background:#7dffc4;color:#1a3a35;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;
+  border-radius:8px;transform:rotate(-3deg);
+}
+.topnav .links{display:flex;gap:18px;}
+.topnav .links a{color:#7ab8a6;text-decoration:none;font-size:13px;font-weight:600;transition:color .15s;}
+.topnav .links a:hover{color:#7dffc4;}
+@media(max-width:600px){.topnav .links{display:none;}}
+
+/* === STICKY RESULT === */
+.sticky-r{
+  position:sticky;top:52px;z-index:40;
+  background:rgba(26,58,53,0.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid #2a5a50;
+  padding:6px 24px;text-align:right;
+  transform:translateY(-100%);opacity:0;transition:transform .25s,opacity .25s;
+}
+.sticky-r.show{transform:translateY(0);opacity:1;}
+.sticky-r .sv{font-family:'Sriracha',cursive;font-size:22px;color:#7dffc4;}
+.sticky-r .sl{font-size:10px;color:#7ab8a6;text-transform:uppercase;letter-spacing:1px;margin-right:8px;}
+
+/* === HERO === */
+.hero{
+  text-align:center;
+  padding:48px 24px 36px;
+}
+.hero h1{
+  font-family:'Sriracha',cursive;
+  font-size:clamp(28px,5vw,46px);
+  color:#fff;
+  margin-bottom:10px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.3);
+}
+.hero h1 span{color:#7dffc4;}
+.hero p{font-size:15px;color:#9bbfb3;max-width:440px;margin:0 auto;}
+
+/* === CHALK SCRIBBLES on the board === */
+.hero-deco{
+  font-family:'Sriracha',cursive;
+  color:rgba(255,255,255,0.06);
+  position:absolute;pointer-events:none;
+  font-size:48px;
+}
+
+/* === MAIN GRID === */
+.main{
+  max-width:960px;margin:0 auto;padding:0 20px 40px;
+  display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;
+}
+@media(max-width:800px){.main{grid-template-columns:1fr;max-width:560px;}}
+
+/* === NOTEBOOK CARD: white paper with red margin line === */
+.nb{
+  background:#fffef9;
+  border:1px solid #d4cfc6;
+  border-radius:6px;
+  padding:20px 20px 20px 36px;
+  color:#333;
+  position:relative;
+  box-shadow:2px 3px 12px rgba(0,0,0,0.2);
+  margin-bottom:16px;
+  overflow:hidden;
+}
+/* Red margin line */
+.nb::before{
+  content:'';position:absolute;
+  left:28px;top:0;bottom:0;width:2px;
+  background:#e8a0a0;
+  z-index:2;
+}
+/* Blue lines (faint) */
+.nb::after{
+  content:'';position:absolute;
+  left:0;top:0;right:0;bottom:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 27px,
+    #d4dce8 27px,
+    #d4dce8 28px
+  );
+  opacity:0.3;border-radius:6px;
+  pointer-events:none;
+}
+.nb>*{position:relative;z-index:1;}
+
+.nb-title{
+  font-family:'Sriracha',cursive;
+  font-size:17px;color:#1a3a35;
+  margin-bottom:14px;
+  padding-bottom:8px;
+  border-bottom:2px solid #1a3a35;
+}
+
+/* === FORM FIELDS === */
+.field{margin-bottom:14px;}
+.field:last-child{margin-bottom:0;}
+.field label{
+  font-size:12px;font-weight:700;color:#555;
+  margin-bottom:4px;display:block;
+}
+.field input{
+  width:100%;padding:9px 10px;
+  border:2px solid #d4cfc6;border-radius:5px;
+  font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#1a3a35;
+  background:#fff;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+.field input:focus{border-color:#1a3a35;box-shadow:0 0 0 3px rgba(26,58,53,0.12);}
+.field input.has-suf{padding-right:28px;}
+.field .iw{position:relative;}
+.field .suf{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:15px;color:#999;font-weight:700;pointer-events:none;}
+.field input::placeholder{color:#c4c0b8;}
+.field-sub{font-size:10px;color:#aaa;margin-top:3px;}
+.field-warn{font-size:12px;color:#c0392b;margin-top:3px;display:none;font-weight:700;}
+
+/* === EXAMPLE TAGS === */
+.examples{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.examples button{
+  padding:4px 10px;
+  background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;color:#666;
+  cursor:pointer;transition:all .12s;
+}
+.examples button:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
+
+/* === RESULT === */
+.result-panel{position:sticky;top:96px;}
+.rbox{
+  padding:24px;border-radius:6px;text-align:center;margin-bottom:14px;
+  border:2px solid;position:relative;
+}
+.rbox.increase{background:#e6f9f0;border-color:#a3e4c4;}
+.rbox.decrease{background:#fde8e8;border-color:#f5b4b4;}
+.rbox .rl{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:4px;}
+.rbox.increase .rl{color:#15804d;}
+.rbox.decrease .rl{color:#b91c1c;}
+.rbox .rv{font-family:'Sriracha',cursive;font-size:40px;line-height:1;word-break:break-all;}
+.rbox.increase .rv{color:#0d6b3e;}
+.rbox.decrease .rv{color:#b91c1c;}
+.rbox .rd{font-size:13px;color:#666;margin-top:6px;}
+.rbox .arrow-icon{position:absolute;top:10px;right:14px;opacity:.12;font-size:22px;}
+
+/* NL */
+.nl{background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:10px 12px;margin-bottom:12px;font-size:13px;color:#555;line-height:1.5;word-break:break-word;}
+.nl strong{color:#1a3a35;}
+.cbtn{
+  display:inline-flex;align-items:center;gap:3px;
+  margin-top:6px;
+  background:#1a3a35;border:none;border-radius:4px;
+  padding:4px 10px;font-size:10px;font-weight:700;color:#7dffc4;
+  cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .12s;
+}
+.cbtn:hover{opacity:.8;}
+.cbtn.copied{background:#0d6b3e;}
+
+/* Chart */
+.chart-area{margin-bottom:12px;}
+.chart-area .ch-title{font-size:11px;font-weight:700;color:#999;margin-bottom:6px;}
+.bar-row{display:flex;align-items:center;gap:5px;margin-bottom:4px;}
+.bar-label{width:40px;font-size:10px;font-weight:700;color:#888;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;height:18px;background:#eae7e0;border-radius:3px;overflow:hidden;min-width:0;}
+.bar-fill{height:100%;border-radius:3px;transition:width .35s;}
+.bar-fill.orig{background:#bbb;}
+.bar-fill.newv{background:#1a3a35;}
+.bar-fill.decr{background:#c0392b;}
+.bar-val{font-size:11px;font-weight:700;color:#333;min-width:36px;flex-shrink:0;text-align:right;}
+
+/* Steps */
+.steps-box{background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:12px 14px;margin-bottom:12px;}
+.steps-box .st{font-size:11px;font-weight:800;color:#1a3a35;margin-bottom:6px;}
+.steps-box pre{font-family:'Courier New',monospace;font-size:12px;color:#555;line-height:1.8;white-space:pre-wrap;word-break:break-word;}
+.steps-box pre .hl{color:#0d6b3e;font-weight:700;}
+
+/* Reverse calc */
+.rev-row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;}
+.rev-row .field{flex:1;margin-bottom:0;min-width:100px;}
+.rev-result{font-family:'Sriracha',cursive;font-size:22px;color:#0d6b3e;padding:9px 0;text-align:center;min-width:70px;}
+
+/* Accordion */
+.acc-h{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;user-select:none;}
+.acc-h .nb-title{margin:0;border:0;padding:0;flex:1;}
+.acc-h .chevron{font-size:18px;color:#999;transition:transform .25s;display:inline-block;}
+.acc-h.open .chevron{transform:rotate(180deg);}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.acc-b.open{max-height:4000px;}
+
+/* Disclaimer */
+.disc{font-size:10px;color:#aaa;padding:8px;background:#f5f3ee;border-radius:4px;line-height:1.5;}
+
+/* === SEO (on the chalkboard, chalk-colored text) === */
+.seo{max-width:680px;margin:0 auto;padding:40px 20px 16px;color:#c5d8d0;}
+.seo .s-main{font-family:'Sriracha',cursive;font-size:22px;color:#fff;margin-bottom:12px;}
+.seo h2{font-family:'Sriracha',cursive;font-size:18px;color:#e8e0d4;margin-top:28px;margin-bottom:8px;}
+.seo h3{font-size:15px;font-weight:700;color:#b8cfc6;margin-top:18px;margin-bottom:6px;}
+.seo h4{font-size:14px;font-weight:700;color:#9bbfb3;margin-top:14px;margin-bottom:5px;}
+.seo p{font-size:14px;color:#9bbfb3;line-height:1.7;margin-bottom:10px;}
+.seo strong{color:#e8e0d4;}
+.seo code{font-family:'Courier New',monospace;background:rgba(125,255,196,0.1);padding:1px 5px;border-radius:3px;font-size:12px;color:#7dffc4;}
+
+/* === FOOTER === */
+.site-footer{
+  background:#122a26;
+  border-top:3px solid #2a5a50;
+  color:#7ab8a6;padding:24px;text-align:center;font-size:11px;
+}
+.site-footer .fb{
+  font-family:'Sriracha',cursive;font-size:16px;color:#7dffc4;margin-bottom:6px;
+}
+.site-footer a{color:#7ab8a6;text-decoration:none;}
+.site-footer a:hover{color:#7dffc4;}
+.site-footer .f-links{margin-top:8px;display:flex;gap:16px;justify-content:center;font-size:11px;}
+
+/* Anim */
+@keyframes fU{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fi{animation:fU .3s ease forwards;}.fi1{animation-delay:.05s;opacity:0;}.fi2{animation-delay:.1s;opacity:0;}.fi3{animation-delay:.15s;opacity:0;}
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <a class="logo" href="/"><span class="pct">%</span> Percentage Increase Calculator</a>
+  <div class="links">
+    <a href="#calculator">Calculator</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- STICKY -->
+<div class="sticky-r" id="sticky">
+  <span class="sl" id="stL">Result</span>
+  <span class="sv" id="stV">—</span>
+</div>
+
+<!-- HERO -->
+<div class="hero fi" id="calculator" style="position:relative;overflow:hidden;">
+  <span class="hero-deco" style="top:10%;left:5%;transform:rotate(-12deg);">Δ</span>
+  <span class="hero-deco" style="top:20%;right:8%;transform:rotate(8deg);font-size:36px;">%</span>
+  <span class="hero-deco" style="bottom:15%;left:12%;transform:rotate(5deg);font-size:32px;">÷</span>
+  <span class="hero-deco" style="bottom:20%;right:15%;transform:rotate(-5deg);font-size:28px;">×</span>
+  <h1>Percentage Increase <span>Calculator</span></h1>
+  <p>Enter any two values and the third calculates itself.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+<div class="left-col">
+
+<!-- CALCULATOR CARD -->
+<div class="nb fi fi1">
+  <div class="nb-title">Calculate</div>
+
+  <div class="examples" id="scenes">
+    <button data-o="50" data-n="75">Price Increase</button>
+    <button data-o="55000" data-n="62000">Salary Raise</button>
+    <button data-o="142" data-n="185">Stock Growth</button>
+    <button data-o="330000" data-n="340000">Population</button>
+  </div>
+
+  <div class="field">
+    <label>Original Value</label>
+    <div class="iw"><input type="text" id="origVal" placeholder="e.g. 100" data-role="orig"></div>
+    <div class="field-warn" id="warnOrig"></div>
+  </div>
+  <div class="field">
+    <label>New Value</label>
+    <div class="iw"><input type="text" id="newVal" placeholder="e.g. 150" data-role="new"></div>
+    <div class="field-warn" id="warnNew"></div>
+  </div>
+  <div class="field">
+    <label>Percentage Change</label>
+    <div class="iw"><input type="text" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span></div>
+    <div class="field-sub">Fill any two — the third auto-calculates</div>
+    <div class="field-warn" id="warnPct"></div>
+  </div>
+</div>
+
+<!-- QUICK CALC -->
+<div class="nb fi fi2">
+  <div class="nb-title">Quick: Value + Percent</div>
+  <p style="font-size:12px;color:#888;margin-bottom:10px;">What is <strong>X</strong> increased by <strong>Y%</strong>?</p>
+  <div class="rev-row">
+    <div class="field"><label>Value</label><div class="iw"><input type="text" id="revBase" placeholder="e.g. 200"></div></div>
+    <div class="field"><label>Increase by</label><div class="iw"><input type="text" id="revPct" placeholder="15" class="has-suf"><span class="suf">%</span></div></div>
+    <div class="rev-result" id="revResult">—</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="nb fi fi3" id="how-it-works">
+  <div class="acc-h" id="stepsH">
+    <div class="nb-title">Calculation Steps</div>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="acc-b open" id="stepsB">
+    <div class="steps-box">
+      <div class="st">Formula & Steps</div>
+      <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- RIGHT: RESULT -->
+<div class="right-col">
+<div class="nb result-panel fi fi2">
+  <div class="rbox increase" id="resultBox">
+    <div class="rl" id="resultLabel">Percentage Change</div>
+    <div class="rv" id="resultValue">—</div>
+    <div class="rd" id="resultDiff"></div>
+    <div class="arrow-icon" id="resultArrow">↑</div>
+  </div>
+
+  <div class="nl" id="nlBox">
+    <span id="nlText">Fill in two values to see your result in plain English.</span>
+    <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+  </div>
+
+  <div class="chart-area" id="chartArea" style="display:none;">
+    <div class="ch-title">Comparison</div>
+    <div class="bar-row">
+      <span class="bar-label">Original</span>
+      <div class="bar-track"><div class="bar-fill orig" id="barOrig"></div></div>
+      <span class="bar-val" id="barOrigV">—</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">New</span>
+      <div class="bar-track"><div class="bar-fill newv" id="barNew"></div></div>
+      <span class="bar-val" id="barNewV">—</span>
+    </div>
+    <div id="chartNote" style="display:none;font-size:10px;color:#aaa;margin-top:4px;font-style:italic;"></div>
+  </div>
+
+  <div class="disc">Results update as you type. This tool provides estimates only.</div>
+  <div class="disc" style="margin-top:6px;" data-nosnippet>Enjoy this tool? Send it to a friend — they'll thank you later.</div>
+</div>
+</div>
+</div>
+
+<!-- SEO -->
+<div class="seo" id="faq">
+<h2 class="s-main">Percentage Increase Calculator</h2>
+
+<p>You've got two numbers and you need to know how much one went up compared to the other. Maybe it's a raise your boss just offered, or a price tag that looks higher than you remember. This <strong>percentage increase calculator</strong> gives you the answer the moment you type — no buttons, no waiting. Just plug in the original value and the new value, and the percentage fills itself in.</p>
+
+<h2>How to Calculate Percentage Increase</h2>
+
+<p>The math isn't complicated once you see it laid out. Take the new number, subtract the old number, divide that difference by the old number, and multiply by 100. That's it. The formula looks like this: <code>((New − Old) / Old) × 100%</code>. The <strong>percentage increase calculator</strong> above runs this formula every time you change a digit, and it shows you each step so you can follow along or drop it straight into a report.</p>
+
+<h3>A Quick Example</h3>
+
+<p>Your monthly rent was $1,200 and just went up to $1,380. The increase is $180, and $180 divided by $1,200 is 0.15, which means a 15% increase. You can type those numbers into the <strong>percentage increase calculator</strong> to double-check, or try it with your own figures — the result updates before you even finish typing.</p>
+
+<h2>Salary and Pay Raise Calculations</h2>
+
+<p>One of the most common reasons people look for a <strong>percentage increase calculator</strong> is to make sense of a job offer. If you're earning $55,000 and the new offer is $62,000, that's a 12.7% raise — but is it enough to offset a longer commute? Enter the numbers above to see for yourself. This also works as a <strong>salary increase percentage calculator</strong> for annual reviews, where HR gives you a percentage and you need the dollar figure.</p>
+
+<h3>Hourly Wage Increases</h3>
+
+<p>Same idea applies to hourly pay. If your rate goes from $18 to $21, that's a 16.7% bump. Anyone working part-time or gig jobs can use this <strong>percentage increase calculator</strong> to compare offers across different platforms, especially when the numbers aren't round.</p>
+
+<h2>Price and Cost Increases</h2>
+
+<p>Groceries, rent, subscriptions, raw materials — prices go up all the time. A <strong>percentage increase calculator</strong> puts the number in context. Milk going from $3.49 to $4.19 doesn't sound dramatic until you realize that's a 20% jump. Business owners tracking supplier <strong>cost increases</strong> use the same formula to decide whether to absorb the hit or adjust their own prices.</p>
+
+<h3>Monthly and Recurring Cost Tracking</h3>
+
+<p>If you're watching a subscription creep up quarter after quarter, you can use this as a <strong>monthly percentage increase calculator</strong> to track the trend over time. Comparing January's bill to March's bill, or this year's total to last year's, becomes a lot clearer in percentage terms than in raw dollars.</p>
+
+<h2>Investment and Property Value Growth</h2>
+
+<p>Investors compare portfolio returns in percentages because raw dollar amounts don't tell the whole story. A $5,000 gain on a $50,000 portfolio is 10% — solid. The same $5,000 on a $500,000 portfolio is only 1%. This <strong>percentage increase calculator</strong> works for stock prices, fund performance, and real estate too. If you bought a house for $320,000 and it's now appraised at $385,000, that's a 20.3% increase in <strong>property value</strong> — useful to know for refinancing or tax planning.</p>
+
+<h2>Percentage Increase and Decrease in One Tool</h2>
+
+<p>Not every change goes up. If the new value is smaller than the original, the result comes back negative and the display switches to red. Going from 500 to 400 gives you −20%, meaning a 20% decrease. You don't need a separate <strong>percentage increase/decrease calculator</strong> — this one handles both directions automatically. It also works as a <strong>percentage change calculator</strong> for any scenario where you just need to know the difference between two figures.</p>
+
+<h3>How the Three-Field Calculator Works</h3>
+
+<p>Most tools only go one direction: you give two values, you get the percentage. This <strong>percentage increase calculator</strong> lets you fill in any two of the three fields and solves for the missing one. Know the original and the percentage but not the new value? Enter those two and the calculator fills in the rest. Need to work backward from a result to find the starting number? That works too.</p>
+
+<h2>Common Mistakes with Percentages</h2>
+
+<h3>Percentage Points vs. Percent Change</h3>
+
+<p>When an interest rate moves from 3% to 5%, that's a 2 percentage point increase but a 66.7% increase in the rate itself. News headlines mix these up constantly. If a number sounds surprisingly large or small, run it through a <strong>percentage increase calculator</strong> to see what it actually means.</p>
+
+<h3>The Base Value Trap</h3>
+
+<p>A 50% increase followed by a 50% decrease doesn't bring you back to where you started. Going from 100 to 150 is +50%, but 150 down to 75 is also −50% — yet you end up at 75, not 100. The base shifts each time, which is why the <strong>percentage increase calculator</strong> shows the absolute difference alongside the percentage.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h4>How do I calculate percentage increase from one number to another?</h4>
+<p>Subtract the original from the new value, divide by the original, multiply by 100. Or type both numbers into the <strong>percentage increase calculator</strong> above and skip the math entirely.</p>
+
+<h4>What's the difference between percentage increase and percentage change?</h4>
+<p>"Increase" implies the value went up. "Change" is neutral — it covers both up and down. This tool works either way: green for increases, red for decreases.</p>
+
+<h4>Can I use this to calculate a percentage decrease?</h4>
+<p>Yes. If the new value is lower, the <strong>percentage increase calculator</strong> returns a negative result and labels it as a decrease automatically.</p>
+
+<h4>How do I find the new value after a known percentage increase?</h4>
+<p>Multiply the original by (1 + percent / 100). A $200 item with a 15% increase becomes $200 × 1.15 = $230. The "Quick: Value + Percent" section above does this for you.</p>
+
+<h4>Does this work for large numbers like property values or revenue?</h4>
+<p>It handles any size — from a $0.46 per-item <strong>price increase</strong> to comparing figures in the lakhs or millions. The formula is the same regardless of scale.</p>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="fb">Percentage Increase Calculator</div>
+  Free tool — not financial advice. Results are for informational purposes only.
+  <div class="f-links">
+    <a href="#calculator">Calculator</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div style="margin-top:8px;font-size:11px;">Open source on <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">Percentage Increase Calculator</a></div>
+</footer>
+
+<script>
+// ===== STATE =====
+let lastEdited = ['orig','new'];
+let lastSolved = null;
+
+const $=id=>document.getElementById(id);
+function pn(s){
+  let c=String(s).replace(/,/g,'').replace(/\s/g,'');
+  if(c===''||c==='-'||c==='.')return NaN;
+  if(!/^-?\d+(\.\d+)?$/.test(c)&&!/^-?\.\d+$/.test(c))return NaN;
+  return parseFloat(c);
+}
+function isNum(s){const v=s.trim().replace(/,/g,'').replace(/\s/g,'');return v!==''&&!isNaN(pn(s));}
+function fm(n){
+  if(n===0)return '0';
+  const a=Math.abs(n);
+  if(a>=1e6) return n.toLocaleString('en-US',{maximumFractionDigits:0});
+  if(a<0.0001&&a>0) return n.toPrecision(4);
+  if(Number.isInteger(n)) return n.toLocaleString('en-US');
+  if(a<1) return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:6});
+  return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+function clearWarnings(){['warnOrig','warnNew','warnPct'].forEach(id=>{const el=$(id);el.style.display='none';el.textContent='';el.removeAttribute('data-active');});}
+function showWarn(id,msg){const el=$(id);el.textContent='⚠ '+msg;el.style.display='block';el.setAttribute('data-active','1');}
+
+function calc(){
+  clearWarnings();
+  const oRaw=$('origVal').value.trim();
+  const nRaw=$('newVal').value.trim();
+  const pRaw=$('pctVal').value.trim();
+
+  let hasError=false;
+  if(oRaw!==''&&!isNum(oRaw)){showWarn('warnOrig','Please enter a valid number');hasError=true;}
+  if(nRaw!==''&&!isNum(nRaw)){showWarn('warnNew','Please enter a valid number');hasError=true;}
+  if(pRaw!==''&&!isNum(pRaw)){showWarn('warnPct','Please enter a valid number');hasError=true;}
+  if(hasError){clearResult();updateReverse();return;}
+
+  const hasO=oRaw!==''&&isNum(oRaw);
+  const hasN=nRaw!==''&&isNum(nRaw);
+  const hasP=pRaw!==''&&isNum(pRaw);
+  const filled=[hasO?'orig':null,hasN?'new':null,hasP?'pct':null].filter(Boolean);
+
+  let orig,newv,pct,mode='none';
+  if(filled.length>=2){
+    const solve=filled.length===3?
+      (['orig','new','pct'].find(x=>!lastEdited.includes(x))||'pct'):
+      ['orig','new','pct'].find(x=>!filled.includes(x));
+
+    if(solve==='pct'){
+      orig=pn(oRaw);newv=pn(nRaw);
+      if(orig===0){showWarn('warnOrig','Cannot calculate: original value is 0 (division by zero)');clearResult();updateReverse();return;}
+      pct=((newv-orig)/Math.abs(orig))*100;mode='pct';
+    }
+    else if(solve==='new'){orig=pn(oRaw);pct=pn(pRaw);newv=orig*(1+pct/100);mode='new';}
+    else{newv=pn(nRaw);pct=pn(pRaw);
+      if(pct===-100){showWarn('warnPct','Cannot calculate: -100% means original would be infinite');clearResult();updateReverse();return;}
+      orig=newv/(1+pct/100);mode='orig';
+    }
+
+    lastSolved=mode;
+    if(mode==='pct')$('pctVal').value=pct%1===0?pct:pct.toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
+    if(mode==='new')$('newVal').value=fm(Math.round(newv*100)/100);
+    if(mode==='orig')$('origVal').value=fm(Math.round(orig*100)/100);
+
+    updateResult(orig,newv,pct);
+  }else{
+    clearResult();
+  }
+  updateReverse();
+}
+
+function updateResult(orig,newv,pct){
+  const isInc=pct>=0;
+  const diff=newv-orig;
+  const box=$('resultBox');
+  box.className='rbox '+(isInc?'increase':'decrease');
+  $('resultLabel').textContent=isInc?'Percentage Increase':'Percentage Decrease';
+  $('resultValue').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
+  $('resultDiff').textContent='Difference: '+(diff>=0?'+':'')+fm(Math.round(diff*100)/100);
+  $('resultArrow').textContent=isInc?'↑':'↓';
+  $('stV').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
+
+  const nlStr=`${fm(Math.round(newv*100)/100)} is a ${fm(Math.abs(Math.round(pct*100)/100))}% ${isInc?'increase':'decrease'} from ${fm(Math.round(orig*100)/100)}.`;
+  $('nlText').innerHTML='<strong>'+nlStr+'</strong>';
+  $('copyBtn').style.display='';
+  $('copyBtn').dataset.text=nlStr;
+
+  $('chartArea').style.display='';
+  const mx=Math.max(Math.abs(orig),Math.abs(newv),1);
+  $('barOrig').style.width=(Math.abs(orig)/mx*100).toFixed(1)+'%';
+  $('barNew').style.width=(Math.abs(newv)/mx*100).toFixed(1)+'%';
+  $('barNew').className='bar-fill '+(isInc?'newv':'decr');
+  $('barOrigV').textContent=fm(Math.round(orig*100)/100);
+  $('barNewV').textContent=fm(Math.round(newv*100)/100);
+
+  const cn=$('chartNote');
+  if(orig<0||newv<0){cn.textContent='Note: bars show absolute values. With negative numbers, a shorter bar may represent a larger value on the number line.';cn.style.display='block';}
+  else{cn.style.display='none';}
+
+  $('stepsText').innerHTML=
+    `<span class="hl">Formula:</span> ((New − Original) / |Original|) × 100%\n\n`+
+    `<span class="hl">Step 1:</span> Difference = ${fm(Math.round(newv*100)/100)} − ${fm(Math.round(orig*100)/100)} = ${fm(Math.round(diff*100)/100)}\n\n`+
+    `<span class="hl">Step 2:</span> Divide by original = ${fm(Math.round(diff*100)/100)} / ${fm(Math.round(Math.abs(orig)*100)/100)} = ${(diff/Math.abs(orig||1)).toFixed(6).replace(/0+$/,'').replace(/\.$/,'')}\n\n`+
+    `<span class="hl">Step 3:</span> Multiply by 100 = ${fm(Math.round(pct*100)/100)}%\n\n`+
+    `<span class="hl">Result:</span> ${Math.abs(Math.round(pct*100)/100)}% ${isInc?'increase':'decrease'}`;
+}
+
+function clearResult(){
+  $('resultBox').className='rbox increase';
+  $('resultLabel').textContent='Percentage Change';
+  $('resultValue').textContent='—';
+  $('resultDiff').textContent='';
+  $('resultArrow').textContent='↑';
+  $('stV').textContent='—';
+  $('nlText').textContent='Fill in two values to see your result in plain English.';
+  $('copyBtn').style.display='none';
+  $('chartArea').style.display='none';
+  $('chartNote').style.display='none';
+  $('stepsText').textContent='Enter two values above to see the step-by-step calculation.';
+}
+
+function updateReverse(){
+  const bRaw=$('revBase').value.trim();const pRaw=$('revPct').value.trim();
+  if(bRaw&&pRaw&&isNum(bRaw)&&isNum(pRaw)){
+    const b=pn(bRaw);const p=pn(pRaw);
+    const r=b*(1+p/100);
+    $('revResult').textContent=fm(Math.round(r*100)/100);
+    $('revResult').style.color=p>=0?'#0d6b3e':'#c0392b';
+  }else{$('revResult').textContent='—';$('revResult').style.color='#0d6b3e';}
+}
+
+// Debounce
+let _dt=null;
+function calcD(){clearTimeout(_dt);_dt=setTimeout(calc,50);}
+
+// Wire inputs
+const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
+['origVal','newVal','pctVal'].forEach(id=>{
+  $(id).addEventListener('input',()=>{
+    const role=$(id).dataset.role;
+    if($(id).value.trim()===''&&lastSolved&&lastSolved!==role){
+      const solvedId=roleToId[lastSolved];
+      if(solvedId)$(solvedId).value='';
+      lastSolved=null;
+    }
+    if(!lastEdited.includes(role)){lastEdited=[lastEdited[1],role];}
+    else if(lastEdited[1]!==role){lastEdited=[lastEdited[1],role];}
+    calcD();
+  });
+});
+$('revBase').addEventListener('input',()=>{clearTimeout(_dt);_dt=setTimeout(updateReverse,50);});
+$('revPct').addEventListener('input',()=>{clearTimeout(_dt);_dt=setTimeout(updateReverse,50);});
+
+// Scenarios
+document.querySelectorAll('#scenes button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    $('origVal').value=btn.dataset.o;
+    $('newVal').value=btn.dataset.n;
+    $('pctVal').value='';
+    lastEdited=['orig','new'];
+    lastSolved=null;
+    calc();
+  });
+});
+
+// Copy
+$('copyBtn').addEventListener('click',()=>{
+  const text=$('copyBtn').dataset.text;
+  const btn=$('copyBtn');
+  const ok=()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},1500);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok).catch(()=>{fbCopy(text);ok();});
+  }else{fbCopy(text);ok();}
+});
+function fbCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+// Accordion
+$('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$('stepsB').classList.toggle('open');});
+
+// Sticky
+new IntersectionObserver(([e])=>{$('sticky').classList.toggle('show',!e.isIntersecting);},{threshold:0}).observe(document.querySelector('.hero'));
+
+calc();
+</script>
+</body>
+</html>
