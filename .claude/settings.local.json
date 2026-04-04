@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Read(//c/Users/19525/**)",
+      "Read(//c/Users/19525/Downloads/**)",
+      "Read(//c/Users/19525/Pictures/**)"
     ]
   }
 }
