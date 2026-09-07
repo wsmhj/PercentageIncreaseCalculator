@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{URL}}">
+<meta property="og:site_name" content="Percentage Increase Calculator">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://percentageincreasecalculator.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://percentageincreasecalculator.app/og-image.jpg">
+<meta name="twitter:title" content="{{NAME}}">
+<meta name="twitter:description" content="{{DESCRIPTION}}">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+{{JSONLD}}
+<meta name="theme-color" content="#1a3a35">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Sriracha&display=swap" rel="stylesheet">
+<style>{{CSS}}</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <a class="logo" href="/"><span class="pct">%</span> Percentage Increase Calculator</a>
+  <div class="links">
+    <a href="#calculator">Calculator</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- STICKY -->
+<div class="sticky-r" id="sticky">
+  <span class="sl" id="stL">{{STICKY_LABEL}}</span>
+  <span class="sv" id="stV">—</span>
+</div>
+
+<!-- HERO -->
+<div class="hero fi" id="calculator" style="position:relative;overflow:hidden;">
+  <span class="hero-deco" style="top:10%;left:5%;transform:rotate(-12deg);">Δ</span>
+  <span class="hero-deco" style="top:20%;right:8%;transform:rotate(8deg);font-size:36px;">%</span>
+  <span class="hero-deco" style="bottom:15%;left:12%;transform:rotate(5deg);font-size:32px;">÷</span>
+  <span class="hero-deco" style="bottom:20%;right:15%;transform:rotate(-5deg);font-size:28px;">×</span>
+  <div class="crumb"><a href="/">Home</a> › {{NAME}}</div>
+  <h1>{{H1}}</h1>
+  <p>{{HERO_P}}</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+<div class="left-col">
+
+<!-- CALCULATOR CARD -->
+<div class="nb fi fi1">
+  <div class="nb-title">{{CALC_TITLE}}</div>
+
+  <div class="examples" id="scenes">
+    {{PRESETS}}
+  </div>
+
+  <div class="field">
+    <label for="origVal">{{LABEL_ORIG}}</label>
+    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="{{PH_ORIG}}" data-role="orig"></div>
+    <div class="field-warn" id="warnOrig"></div>
+  </div>
+  <div class="field">
+    <label for="newVal">{{LABEL_NEW}}</label>
+    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="{{PH_NEW}}" data-role="new"></div>
+    <div class="field-warn" id="warnNew"></div>
+  </div>
+  <div class="field">
+    <label for="pctVal">{{LABEL_PCT}}</label>
+    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span></div>
+    <div class="field-sub">Fill any two — the third auto-calculates</div>
+    <div class="field-warn" id="warnPct"></div>
+  </div>
+</div>
+
+<!-- QUICK CALC -->
+<div class="nb fi fi2">
+  <div class="nb-title">{{QUICK_TITLE}}</div>
+  <p style="font-size:12px;color:#888;margin-bottom:10px;">{{QUICK_DESC}}</p>
+  <div class="rev-row">
+    <div class="field"><label for="revBase">{{QUICK_LABEL_BASE}}</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="{{QUICK_PH_BASE}}"></div></div>
+    <div class="field"><label for="revPct">{{QUICK_LABEL_PCT}}</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="{{QUICK_PH_PCT}}" class="has-suf"><span class="suf">%</span></div></div>
+    <div class="rev-result" id="revResult">—</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="nb fi fi3" id="how-it-works">
+  <div class="acc-h" id="stepsH">
+    <div class="nb-title">Calculation Steps</div>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="acc-b open" id="stepsB">
+    <div class="steps-box">
+      <div class="st">Formula & Steps</div>
+      <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="nb fi fi3">
+  <div class="nb-title">Related Calculators</div>
+  <div class="rel">
+    {{RELATED}}
+  </div>
+</div>
+
+</div>
+
+<!-- RIGHT: RESULT -->
+<div class="right-col">
+<div class="nb result-panel fi fi2">
+  <div class="rbox increase" id="resultBox">
+    <div class="rl" id="resultLabel">Percentage Change</div>
+    <div class="rv" id="resultValue">—</div>
+    <div class="rd" id="resultDiff"></div>
+    <div class="arrow-icon" id="resultArrow">↑</div>
+  </div>
+
+  <div class="nl" id="nlBox">
+    <span id="nlText">Fill in two values to see your result in plain English.</span>
+    <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+  </div>
+
+  <div class="chart-area" id="chartArea" style="display:none;">
+    <div class="ch-title">Comparison</div>
+    <div class="bar-row">
+      <span class="bar-label">Original</span>
+      <div class="bar-track"><div class="bar-fill orig" id="barOrig"></div></div>
+      <span class="bar-val" id="barOrigV">—</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">New</span>
+      <div class="bar-track"><div class="bar-fill newv" id="barNew"></div></div>
+      <span class="bar-val" id="barNewV">—</span>
+    </div>
+    <div id="chartNote" style="display:none;font-size:10px;color:#aaa;margin-top:4px;font-style:italic;"></div>
+  </div>
+
+  <div class="disc">Results update as you type. This tool provides estimates only.</div>
+  <div class="disc" style="margin-top:6px;" data-nosnippet>Enjoy this tool? Send it to a friend — they'll thank you later.</div>
+</div>
+</div>
+</div>
+
+<!-- SEO -->
+<div class="seo" id="faq">
+{{SEO}}
+
+<h2>Frequently Asked Questions</h2>
+{{FAQ}}
+
+<h2>More Percentage Calculators</h2>
+<div class="rel">
+{{RELATED}}
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="fb">Percentage Increase Calculator</div>
+  Free tool — not financial advice. Results are for informational purposes only.
+  <div class="f-links">
+    <a href="/">Home</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="f-links" style="margin-top:6px;">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/cookie-policy.html">Cookie Policy</a>
+  </div>
+  <div style="margin-top:8px;font-size:11px;">Open source on <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">Percentage Increase Calculator</a></div>
+</footer>
+
+<script>{{JS}}</script>
+</body>
+</html>

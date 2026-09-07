@@ -25,6 +25,16 @@ A free, instant percentage change calculator. No signup, no backend — just pur
 
 Open `index.html` in a browser. That's it.
 
+## Inner pages (build step)
+
+Inner calculator pages (e.g. `/price-increase-calculator/`) are generated from `build/pages/*.js` with:
+
+```
+node build/build.js
+```
+
+The script pulls the CSS and JS from `index.html` (single source of truth), renders each page into `/<slug>/index.html`, refreshes the related-links block in `index.html`, and rewrites `sitemap.xml`. Generated output is committed, so hosting needs no build command. To add a page, copy an existing file in `build/pages/`, edit it, and rerun the script.
+
 ## License
 
 [Apache License 2.0](LICENSE)
