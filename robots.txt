@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /privacy.html
-Disallow: /terms.html
-Disallow: /cookie-policy.html
 
 Sitemap: https://percentageincreasecalculator.app/sitemap.xml
