@@ -66,6 +66,7 @@ function render(p) {
     SEO: p.seo.trim(),
     FAQ: p.faq.map(q => `<h3>${esc(q.q)}</h3>\n<p>${q.a}</p>`).join('\n\n'),
     RELATED: relatedLinks(p.slug),
+    TERMS: JSON.stringify(p.terms || {}),
   };
   return tpl.replace(/\{\{(\w+)\}\}/g, (m, k) => {
     if (!(k in vars)) throw new Error(`Template placeholder {{${k}}} not provided by page ${p.slug}`);

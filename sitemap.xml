@@ -7,7 +7,25 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://percentageincreasecalculator.app/percentage-gain-calculator/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://percentageincreasecalculator.app/percentage-growth-calculator/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://percentageincreasecalculator.app/price-increase-calculator/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://percentageincreasecalculator.app/rate-increase-calculator/</loc>
     <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

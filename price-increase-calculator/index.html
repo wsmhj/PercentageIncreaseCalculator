@@ -391,6 +391,9 @@ body{
   <div class="nb-title">Related Calculators</div>
   <div class="rel">
     <a href="/">Percentage Increase Calculator</a>
+<a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
+<a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
+<a href="/rate-increase-calculator/">Rate Increase Calculator</a>
   </div>
 </div>
 
@@ -519,6 +522,9 @@ body{
 <h2>More Percentage Calculators</h2>
 <div class="rel">
 <a href="/">Percentage Increase Calculator</a>
+<a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
+<a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
+<a href="/rate-increase-calculator/">Rate Increase Calculator</a>
 </div>
 </div>
 
@@ -540,12 +546,14 @@ body{
   <div style="margin-top:8px;font-size:11px;">Open source on <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">Percentage Increase Calculator</a></div>
 </footer>
 
+<script>window.PAGE_TERMS={};</script>
 <script>
 // ===== STATE =====
 let lastEdited = ['orig','new'];
 let lastSolved = null;
 
 const $=id=>document.getElementById(id);
+const T=Object.assign({inc:'increase',dec:'decrease',incLabel:'Percentage Increase',decLabel:'Percentage Decrease'},window.PAGE_TERMS||{});
 function pn(s){
   let c=String(s).replace(/,/g,'').replace(/\s/g,'');
   if(c===''||c==='-'||c==='.')return NaN;
@@ -617,13 +625,13 @@ function updateResult(orig,newv,pct){
   const diff=newv-orig;
   const box=$('resultBox');
   box.className='rbox '+(isInc?'increase':'decrease');
-  $('resultLabel').textContent=isInc?'Percentage Increase':'Percentage Decrease';
+  $('resultLabel').textContent=isInc?T.incLabel:T.decLabel;
   $('resultValue').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
   $('resultDiff').textContent='Difference: '+(diff>=0?'+':'')+fm(Math.round(diff*100)/100);
   $('resultArrow').textContent=isInc?'↑':'↓';
   $('stV').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
 
-  const nlStr=`${fm(Math.round(newv*100)/100)} is a ${fm(Math.abs(Math.round(pct*100)/100))}% ${isInc?'increase':'decrease'} from ${fm(Math.round(orig*100)/100)}.`;
+  const nlStr=`${fm(Math.round(newv*100)/100)} is a ${fm(Math.abs(Math.round(pct*100)/100))}% ${isInc?T.inc:T.dec} from ${fm(Math.round(orig*100)/100)}.`;
   $('nlText').textContent=nlStr;$('nlText').style.fontWeight='700';
   $('copyBtn').style.display='';
   $('copyBtn').dataset.text=nlStr;
@@ -645,7 +653,7 @@ function updateResult(orig,newv,pct){
     `<span class="hl">Step 1:</span> Difference = ${fm(Math.round(newv*100)/100)} − ${fm(Math.round(orig*100)/100)} = ${fm(Math.round(diff*100)/100)}\n\n`+
     `<span class="hl">Step 2:</span> Divide by original = ${fm(Math.round(diff*100)/100)} / ${fm(Math.round(Math.abs(orig)*100)/100)} = ${(diff/Math.abs(orig||1)).toFixed(6).replace(/0+$/,'').replace(/\.$/,'')}\n\n`+
     `<span class="hl">Step 3:</span> Multiply by 100 = ${fm(Math.round(pct*100)/100)}%\n\n`+
-    `<span class="hl">Result:</span> ${Math.abs(Math.round(pct*100)/100)}% ${isInc?'increase':'decrease'}`;
+    `<span class="hl">Result:</span> ${Math.abs(Math.round(pct*100)/100)}% ${isInc?T.inc:T.dec}`;
 }
 
 function clearResult(){

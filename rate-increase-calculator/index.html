@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Increase Calculator — Premiums, Rent &amp; Interest Rates</title>
+<meta name="description" content="Free rate increase calculator. Enter the old and new rate to get the increase in percent and dollars. Insurance premiums, rent, hourly rates, interest rates.">
+<link rel="canonical" href="https://percentageincreasecalculator.app/rate-increase-calculator/">
+<meta property="og:site_name" content="Percentage Increase Calculator">
+<meta property="og:title" content="Rate Increase Calculator — Premiums, Rent &amp; Interest Rates">
+<meta property="og:description" content="Free rate increase calculator. Enter the old and new rate to get the increase in percent and dollars. Insurance premiums, rent, hourly rates, interest rates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://percentageincreasecalculator.app/rate-increase-calculator/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://percentageincreasecalculator.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://percentageincreasecalculator.app/og-image.jpg">
+<meta name="twitter:title" content="Rate Increase Calculator">
+<meta name="twitter:description" content="Free rate increase calculator. Enter the old and new rate to get the increase in percent and dollars. Insurance premiums, rent, hourly rates, interest rates.">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Rate Increase Calculator","description":"Free rate increase calculator. Enter the old and new rate to get the increase in percent and dollars. Insurance premiums, rent, hourly rates, interest rates.","url":"https://percentageincreasecalculator.app/rate-increase-calculator/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://percentageincreasecalculator.app/"},{"@type":"ListItem","position":2,"name":"Rate Increase Calculator","item":"https://percentageincreasecalculator.app/rate-increase-calculator/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate a premium increase percentage?","acceptedAnswer":{"@type":"Answer","text":"New premium minus old premium, divided by the old premium, times 100. $1,240 going to $1,395 is $155 more, and $155 divided by $1,240 is a 12.5% increase. Make sure both figures cover the same period, monthly or annual."}},{"@type":"Question","name":"How do I calculate a rent increase percentage?","acceptedAnswer":{"@type":"Answer","text":"Same formula. Rent from $1,850 to $1,980 is $130 more, which is 7.03%. If you want the other direction, a 7% increase on $1,850 is $129.50, making the new rent $1,979.50. Use the \"Apply a Rate Increase\" box for that."}},{"@type":"Question","name":"What is the difference between a rate increase in percent and in percentage points?","acceptedAnswer":{"@type":"Answer","text":"An interest rate going from 5.25% to 6.00% rose 0.75 percentage points. As a percentage of the original rate, it rose 14.29%. This calculator reports the second figure. Percentage points are simply the subtraction."}},{"@type":"Question","name":"How do I calculate an hourly rate increase?","acceptedAnswer":{"@type":"Answer","text":"New rate minus old rate, divided by old rate, times 100. $45 to $52 an hour is $7 more, and $7 divided by $45 is a 15.56% increase."}},{"@type":"Question","name":"Does a 14% interest rate increase mean my payment goes up 14%?","acceptedAnswer":{"@type":"Answer","text":"No. On a $300,000 30-year mortgage, moving from 5.25% to 6.00% is a 14.29% rate increase, but the monthly payment goes from $1,656.61 to $1,798.65, an 8.57% increase. Principal repayment does not change with the rate, so the payment rises less than the rate does."}}]}
+</script>
+<meta name="theme-color" content="#1a3a35">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Sriracha&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* === CHALKBOARD BASE === */
+body{
+  font-family:'Nunito',sans-serif;
+  background:#1a3a35;
+  /* chalk dust texture */
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.02) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  color:#e8e0d4;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* === TOPNAV: chalk shelf === */
+.topnav{
+  background:rgba(0,0,0,0.2);
+  border-bottom:3px solid #2a5a50;
+  padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(8px);
+}
+.topnav .logo{
+  font-family:'Sriracha',cursive;
+  font-size:16px;color:#7dffc4;
+  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  white-space:nowrap;
+}
+.topnav .logo .pct{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;
+  background:#7dffc4;color:#1a3a35;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;
+  border-radius:8px;transform:rotate(-3deg);
+}
+.topnav .links{display:flex;gap:18px;}
+.topnav .links a{color:#7ab8a6;text-decoration:none;font-size:13px;font-weight:600;transition:color .15s;}
+.topnav .links a:hover{color:#7dffc4;}
+@media(max-width:600px){.topnav .links{display:none;}}
+
+/* === STICKY RESULT === */
+.sticky-r{
+  position:sticky;top:52px;z-index:40;
+  background:rgba(26,58,53,0.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid #2a5a50;
+  padding:6px 24px;text-align:right;
+  transform:translateY(-100%);opacity:0;transition:transform .25s,opacity .25s;
+}
+.sticky-r.show{transform:translateY(0);opacity:1;}
+.sticky-r .sv{font-family:'Sriracha',cursive;font-size:22px;color:#7dffc4;}
+.sticky-r .sl{font-size:10px;color:#7ab8a6;text-transform:uppercase;letter-spacing:1px;margin-right:8px;}
+
+/* === HERO === */
+.hero{
+  text-align:center;
+  padding:48px 24px 36px;
+}
+.hero h1{
+  font-family:'Sriracha',cursive;
+  font-size:clamp(28px,5vw,46px);
+  color:#fff;
+  margin-bottom:10px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.3);
+}
+.hero h1 span{color:#7dffc4;}
+.hero p{font-size:15px;color:#9bbfb3;max-width:440px;margin:0 auto;}
+
+/* === CHALK SCRIBBLES on the board === */
+.hero-deco{
+  font-family:'Sriracha',cursive;
+  color:rgba(255,255,255,0.06);
+  position:absolute;pointer-events:none;
+  font-size:48px;
+}
+
+/* === MAIN GRID === */
+.main{
+  max-width:960px;margin:0 auto;padding:0 20px 40px;
+  display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;
+}
+@media(max-width:800px){.main{grid-template-columns:1fr;max-width:560px;}}
+
+/* === NOTEBOOK CARD: white paper with red margin line === */
+.nb{
+  background:#fffef9;
+  border:1px solid #d4cfc6;
+  border-radius:6px;
+  padding:20px 20px 20px 36px;
+  color:#333;
+  position:relative;
+  box-shadow:2px 3px 12px rgba(0,0,0,0.2);
+  margin-bottom:16px;
+  overflow:hidden;
+}
+/* Red margin line */
+.nb::before{
+  content:'';position:absolute;
+  left:28px;top:0;bottom:0;width:2px;
+  background:#e8a0a0;
+  z-index:2;
+}
+/* Blue lines (faint) */
+.nb::after{
+  content:'';position:absolute;
+  left:0;top:0;right:0;bottom:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 27px,
+    #d4dce8 27px,
+    #d4dce8 28px
+  );
+  opacity:0.3;border-radius:6px;
+  pointer-events:none;
+}
+.nb>*{position:relative;z-index:1;}
+
+.nb-title{
+  font-family:'Sriracha',cursive;
+  font-size:17px;color:#1a3a35;
+  margin-bottom:14px;
+  padding-bottom:8px;
+  border-bottom:2px solid #1a3a35;
+}
+
+/* === FORM FIELDS === */
+.field{margin-bottom:14px;}
+.field:last-child{margin-bottom:0;}
+.field label{
+  font-size:12px;font-weight:700;color:#555;
+  margin-bottom:4px;display:block;
+}
+.field input{
+  width:100%;padding:9px 10px;
+  border:2px solid #d4cfc6;border-radius:5px;
+  font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#1a3a35;
+  background:#fff;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+.field input:focus{border-color:#1a3a35;box-shadow:0 0 0 3px rgba(26,58,53,0.12);}
+.field input.has-suf{padding-right:28px;}
+.field .iw{position:relative;}
+.field .suf{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:15px;color:#999;font-weight:700;pointer-events:none;}
+.field input::placeholder{color:#c4c0b8;}
+.field-sub{font-size:10px;color:#aaa;margin-top:3px;}
+.field-warn{font-size:12px;color:#c0392b;margin-top:3px;display:none;font-weight:700;}
+
+/* === EXAMPLE TAGS === */
+.examples{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.examples button{
+  padding:4px 10px;
+  background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;color:#666;
+  cursor:pointer;transition:all .12s;
+}
+.examples button:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
+
+/* === RESULT === */
+.result-panel{position:sticky;top:96px;}
+.rbox{
+  padding:24px;border-radius:6px;text-align:center;margin-bottom:14px;
+  border:2px solid;position:relative;
+}
+.rbox.increase{background:#e6f9f0;border-color:#a3e4c4;}
+.rbox.decrease{background:#fde8e8;border-color:#f5b4b4;}
+.rbox .rl{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:4px;}
+.rbox.increase .rl{color:#15804d;}
+.rbox.decrease .rl{color:#b91c1c;}
+.rbox .rv{font-family:'Sriracha',cursive;font-size:40px;line-height:1;word-break:break-all;}
+.rbox.increase .rv{color:#0d6b3e;}
+.rbox.decrease .rv{color:#b91c1c;}
+.rbox .rd{font-size:13px;color:#666;margin-top:6px;}
+.rbox .arrow-icon{position:absolute;top:10px;right:14px;opacity:.12;font-size:22px;}
+
+/* NL */
+.nl{background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:10px 12px;margin-bottom:12px;font-size:13px;color:#555;line-height:1.5;word-break:break-word;}
+.nl strong{color:#1a3a35;}
+.cbtn{
+  display:inline-flex;align-items:center;gap:3px;
+  margin-top:6px;
+  background:#1a3a35;border:none;border-radius:4px;
+  padding:4px 10px;font-size:10px;font-weight:700;color:#7dffc4;
+  cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .12s;
+}
+.cbtn:hover{opacity:.8;}
+.cbtn.copied{background:#0d6b3e;}
+
+/* Chart */
+.chart-area{margin-bottom:12px;}
+.chart-area .ch-title{font-size:11px;font-weight:700;color:#999;margin-bottom:6px;}
+.bar-row{display:flex;align-items:center;gap:5px;margin-bottom:4px;}
+.bar-label{width:40px;font-size:10px;font-weight:700;color:#888;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;height:18px;background:#eae7e0;border-radius:3px;overflow:hidden;min-width:0;}
+.bar-fill{height:100%;border-radius:3px;transition:width .35s;}
+.bar-fill.orig{background:#bbb;}
+.bar-fill.newv{background:#1a3a35;}
+.bar-fill.decr{background:#c0392b;}
+.bar-val{font-size:11px;font-weight:700;color:#333;min-width:36px;flex-shrink:0;text-align:right;}
+
+/* Steps */
+.steps-box{background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:12px 14px;margin-bottom:12px;}
+.steps-box .st{font-size:11px;font-weight:800;color:#1a3a35;margin-bottom:6px;}
+.steps-box pre{font-family:'Courier New',monospace;font-size:12px;color:#555;line-height:1.8;white-space:pre-wrap;word-break:break-word;}
+.steps-box pre .hl{color:#0d6b3e;font-weight:700;}
+
+/* Reverse calc */
+.rev-row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;}
+.rev-row .field{flex:1;margin-bottom:0;min-width:100px;}
+.rev-result{font-family:'Sriracha',cursive;font-size:22px;color:#0d6b3e;padding:9px 0;text-align:center;min-width:70px;}
+
+/* Accordion */
+.acc-h{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;user-select:none;}
+.acc-h .nb-title{margin:0;border:0;padding:0;flex:1;}
+.acc-h .chevron{font-size:18px;color:#999;transition:transform .25s;display:inline-block;}
+.acc-h.open .chevron{transform:rotate(180deg);}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.acc-b.open{max-height:4000px;}
+
+/* Disclaimer */
+.disc{font-size:10px;color:#aaa;padding:8px;background:#f5f3ee;border-radius:4px;line-height:1.5;}
+
+/* === SEO (on the chalkboard, chalk-colored text) === */
+.seo{max-width:680px;margin:0 auto;padding:40px 20px 16px;color:#c5d8d0;}
+.seo .s-main{font-family:'Sriracha',cursive;font-size:22px;color:#fff;margin-bottom:12px;}
+.seo h2{font-family:'Sriracha',cursive;font-size:18px;color:#e8e0d4;margin-top:28px;margin-bottom:8px;}
+.seo h3{font-size:15px;font-weight:700;color:#b8cfc6;margin-top:18px;margin-bottom:6px;}
+.seo h4{font-size:14px;font-weight:700;color:#9bbfb3;margin-top:14px;margin-bottom:5px;}
+.seo p{font-size:14px;color:#9bbfb3;line-height:1.7;margin-bottom:10px;}
+.seo strong{color:#e8e0d4;}
+.seo code{font-family:'Courier New',monospace;background:rgba(125,255,196,0.1);padding:1px 5px;border-radius:3px;font-size:12px;color:#7dffc4;}
+
+/* === FOOTER === */
+.site-footer{
+  background:#122a26;
+  border-top:3px solid #2a5a50;
+  color:#7ab8a6;padding:24px;text-align:center;font-size:11px;
+}
+.site-footer .fb{
+  font-family:'Sriracha',cursive;font-size:16px;color:#7dffc4;margin-bottom:6px;
+}
+.site-footer a{color:#7ab8a6;text-decoration:none;}
+.site-footer a:hover{color:#7dffc4;}
+.site-footer .f-links{margin-top:8px;display:flex;gap:16px;justify-content:center;font-size:11px;}
+
+/* Anim */
+@keyframes fU{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fi{animation:fU .3s ease forwards;}.fi1{animation-delay:.05s;opacity:0;}.fi2{animation-delay:.1s;opacity:0;}.fi3{animation-delay:.15s;opacity:0;}
+.hidden{display:none!important;}
+
+/* Breadcrumb + related-links chips (used on inner pages and homepage) */
+.crumb{font-size:12px;color:#7ab8a6;margin-bottom:10px;}
+.crumb a{color:#7dffc4;text-decoration:none;}
+.rel{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.rel a{padding:5px 10px;border-radius:4px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid;transition:all .12s;}
+.seo .rel a{color:#7dffc4;border-color:#2a5a50;background:rgba(125,255,196,0.06);}
+.seo .rel a:hover{background:#7dffc4;color:#1a3a35;}
+.nb .rel a{color:#1a3a35;border-color:#d4cfc6;background:#f0ede6;}
+.nb .rel a:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <a class="logo" href="/"><span class="pct">%</span> Percentage Increase Calculator</a>
+  <div class="links">
+    <a href="#calculator">Calculator</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- STICKY -->
+<div class="sticky-r" id="sticky">
+  <span class="sl" id="stL">Rate change</span>
+  <span class="sv" id="stV">—</span>
+</div>
+
+<!-- HERO -->
+<div class="hero fi" id="calculator" style="position:relative;overflow:hidden;">
+  <span class="hero-deco" style="top:10%;left:5%;transform:rotate(-12deg);">Δ</span>
+  <span class="hero-deco" style="top:20%;right:8%;transform:rotate(8deg);font-size:36px;">%</span>
+  <span class="hero-deco" style="bottom:15%;left:12%;transform:rotate(5deg);font-size:32px;">÷</span>
+  <span class="hero-deco" style="bottom:20%;right:15%;transform:rotate(-5deg);font-size:28px;">×</span>
+  <div class="crumb"><a href="/">Home</a> › Rate Increase Calculator</div>
+  <h1>Rate Increase <span>Calculator</span></h1>
+  <p>Enter the old rate and the new rate. You get the increase as a percentage and as an amount.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+<div class="left-col">
+
+<!-- CALCULATOR CARD -->
+<div class="nb fi fi1">
+  <div class="nb-title">Rate Change</div>
+
+  <div class="examples" id="scenes">
+    <button data-o="1240" data-n="1395">Premium $1,240 → $1,395</button>
+    <button data-o="1850" data-n="1980">Rent $1,850 → $1,980</button>
+    <button data-o="45" data-n="52">Hourly rate $45 → $52</button>
+    <button data-o="5.25" data-n="6">Interest 5.25% → 6.00%</button>
+  </div>
+
+  <div class="field">
+    <label for="origVal">Current Rate or Premium</label>
+    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="e.g. 1240" data-role="orig"></div>
+    <div class="field-warn" id="warnOrig"></div>
+  </div>
+  <div class="field">
+    <label for="newVal">New Rate or Premium</label>
+    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="e.g. 1395" data-role="new"></div>
+    <div class="field-warn" id="warnNew"></div>
+  </div>
+  <div class="field">
+    <label for="pctVal">Increase</label>
+    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span></div>
+    <div class="field-sub">Fill any two — the third auto-calculates</div>
+    <div class="field-warn" id="warnPct"></div>
+  </div>
+</div>
+
+<!-- QUICK CALC -->
+<div class="nb fi fi2">
+  <div class="nb-title">Apply a Rate Increase</div>
+  <p style="font-size:12px;color:#888;margin-bottom:10px;">What does the rate become after a <strong>Y%</strong> increase?</p>
+  <div class="rev-row">
+    <div class="field"><label for="revBase">Current rate</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="e.g. 1240"></div></div>
+    <div class="field"><label for="revPct">Increase by</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="8" class="has-suf"><span class="suf">%</span></div></div>
+    <div class="rev-result" id="revResult">—</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="nb fi fi3" id="how-it-works">
+  <div class="acc-h" id="stepsH">
+    <div class="nb-title">Calculation Steps</div>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="acc-b open" id="stepsB">
+    <div class="steps-box">
+      <div class="st">Formula & Steps</div>
+      <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="nb fi fi3">
+  <div class="nb-title">Related Calculators</div>
+  <div class="rel">
+    <a href="/">Percentage Increase Calculator</a>
+<a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
+<a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
+<a href="/price-increase-calculator/">Price Increase Calculator</a>
+  </div>
+</div>
+
+</div>
+
+<!-- RIGHT: RESULT -->
+<div class="right-col">
+<div class="nb result-panel fi fi2">
+  <div class="rbox increase" id="resultBox">
+    <div class="rl" id="resultLabel">Percentage Change</div>
+    <div class="rv" id="resultValue">—</div>
+    <div class="rd" id="resultDiff"></div>
+    <div class="arrow-icon" id="resultArrow">↑</div>
+  </div>
+
+  <div class="nl" id="nlBox">
+    <span id="nlText">Fill in two values to see your result in plain English.</span>
+    <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+  </div>
+
+  <div class="chart-area" id="chartArea" style="display:none;">
+    <div class="ch-title">Comparison</div>
+    <div class="bar-row">
+      <span class="bar-label">Original</span>
+      <div class="bar-track"><div class="bar-fill orig" id="barOrig"></div></div>
+      <span class="bar-val" id="barOrigV">—</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">New</span>
+      <div class="bar-track"><div class="bar-fill newv" id="barNew"></div></div>
+      <span class="bar-val" id="barNewV">—</span>
+    </div>
+    <div id="chartNote" style="display:none;font-size:10px;color:#aaa;margin-top:4px;font-style:italic;"></div>
+  </div>
+
+  <div class="disc">Results update as you type. This tool provides estimates only.</div>
+  <div class="disc" style="margin-top:6px;" data-nosnippet>Enjoy this tool? Send it to a friend — they'll thank you later.</div>
+</div>
+</div>
+</div>
+
+<!-- SEO -->
+<div class="seo" id="faq">
+<h2 class="s-main">What This Rate Increase Calculator Does</h2>
+
+<p>A rate is any number you pay or charge on a recurring basis: an insurance premium, rent, an hourly rate, a utility tariff, a subscription, an interest rate. When it changes, this tool turns the old and new figures into a percentage and a difference. If you are the one setting the rate, the "Apply a Rate Increase" box goes the other way: current rate plus a percentage gives you the new rate.</p>
+
+<h2>The Formula</h2>
+
+<p>New rate minus old rate, divided by the old rate, times 100.</p>
+
+<p><code>((New − Old) / Old) × 100</code></p>
+
+<p>An annual premium going from $1,240 to $1,395 is $155 more, and $155 divided by $1,240 is 12.5%. Rent from $1,850 to $1,980 is $130 more, which is 7.03%. An hourly rate from $45 to $52 is 15.56%.</p>
+
+<h2>Insurance Premium Increases</h2>
+
+<p>Renewal letters usually give you the new amount and sometimes the dollar difference, rarely the percentage. $155 more on $1,240 is 12.5%. $155 more on $3,100 is 5%. The dollar figure alone does not tell you whether the increase is large.</p>
+
+<p>Watch the billing period. $1,240 a year is $103.33 a month. If the renewal quotes $116.25 a month, that is the same 12.5% increase, but comparing $116.25 to $1,240 would tell you nothing. Put both numbers in the same units before you run them.</p>
+
+<h2>Rent Increases</h2>
+
+<p>$1,850 to $1,980 is 7.03%, or $130 a month, or $1,560 over a one-year lease. A number of US states and cities cap annual rent increases, and the cap is usually written as a percentage or as inflation plus a few points. The percentage from this calculator is the figure you compare against that cap. If your lease renews every year, remember the increases stack: three years of 7% is 22.5% on the original rent, not 21%.</p>
+
+<h2>Raising Your Own Hourly Rate</h2>
+
+<p>Freelancers and contractors put off rate increases because they expect to lose clients. Run the numbers first. Eight clients at $45 an hour is $360 for one hour each. Raise the rate to $52, lose one client, and seven clients bring in $364. You lost a client and made more money. The break-even is the point where clients lost equals the percentage increase; a 15.56% raise can absorb the loss of one client in eight and still come out ahead.</p>
+
+<h2>Interest Rates: Points vs. Percent</h2>
+
+<p>A mortgage rate going from 5.25% to 6.00% went up 0.75 percentage points and 14.29%. Both are true. The calculator gives you the 14.29%, because it treats 5.25 and 6.00 as two numbers like any other.</p>
+
+<p>The percentage increase in the rate is not the percentage increase in your payment. On a $300,000 30-year mortgage, the monthly payment goes from $1,656.61 at 5.25% to $1,798.65 at 6.00%. That is 8.57% more per month, even though the rate rose 14.29%. If a headline says rates are up 14%, your payment is not up 14%.</p>
+
+<h2>Three Mistakes</h2>
+
+<h3>Comparing monthly to annual</h3>
+
+<p>A $1,240 annual premium and a $116.25 monthly one look unrelated until both are annual: $1,395, a 12.5% increase. Match the period first.</p>
+
+<h3>Adding up yearly increases</h3>
+
+<p>7% a year for three years is 1.07 × 1.07 × 1.07, which is 22.5%, not 21%. On $1,850 rent that is $2,266.33 by the third year, not $2,238.50.</p>
+
+<h3>Reading points as percent</h3>
+
+<p>"Rates rose 1%" can mean from 5% to 6% (one point, a 20% increase) or from 5% to 5.05% (a 1% increase). Whoever wrote the sentence probably meant the first. Ask.</p>
+
+<h2>Frequently Asked Questions</h2>
+<h3>How do I calculate a premium increase percentage?</h3>
+<p>New premium minus old premium, divided by the old premium, times 100. $1,240 going to $1,395 is $155 more, and $155 divided by $1,240 is a 12.5% increase. Make sure both figures cover the same period, monthly or annual.</p>
+
+<h3>How do I calculate a rent increase percentage?</h3>
+<p>Same formula. Rent from $1,850 to $1,980 is $130 more, which is 7.03%. If you want the other direction, a 7% increase on $1,850 is $129.50, making the new rent $1,979.50. Use the "Apply a Rate Increase" box for that.</p>
+
+<h3>What is the difference between a rate increase in percent and in percentage points?</h3>
+<p>An interest rate going from 5.25% to 6.00% rose 0.75 percentage points. As a percentage of the original rate, it rose 14.29%. This calculator reports the second figure. Percentage points are simply the subtraction.</p>
+
+<h3>How do I calculate an hourly rate increase?</h3>
+<p>New rate minus old rate, divided by old rate, times 100. $45 to $52 an hour is $7 more, and $7 divided by $45 is a 15.56% increase.</p>
+
+<h3>Does a 14% interest rate increase mean my payment goes up 14%?</h3>
+<p>No. On a $300,000 30-year mortgage, moving from 5.25% to 6.00% is a 14.29% rate increase, but the monthly payment goes from $1,656.61 to $1,798.65, an 8.57% increase. Principal repayment does not change with the rate, so the payment rises less than the rate does.</p>
+
+<h2>More Percentage Calculators</h2>
+<div class="rel">
+<a href="/">Percentage Increase Calculator</a>
+<a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
+<a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
+<a href="/price-increase-calculator/">Price Increase Calculator</a>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="fb">Percentage Increase Calculator</div>
+  Free tool — not financial advice. Results are for informational purposes only.
+  <div class="f-links">
+    <a href="/">Home</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="f-links" style="margin-top:6px;">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/cookie-policy.html">Cookie Policy</a>
+  </div>
+  <div style="margin-top:8px;font-size:11px;">Open source on <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">Percentage Increase Calculator</a></div>
+</footer>
+
+<script>window.PAGE_TERMS={"inc":"increase","dec":"decrease","incLabel":"Rate Increase","decLabel":"Rate Decrease"};</script>
+<script>
+// ===== STATE =====
+let lastEdited = ['orig','new'];
+let lastSolved = null;
+
+const $=id=>document.getElementById(id);
+const T=Object.assign({inc:'increase',dec:'decrease',incLabel:'Percentage Increase',decLabel:'Percentage Decrease'},window.PAGE_TERMS||{});
+function pn(s){
+  let c=String(s).replace(/,/g,'').replace(/\s/g,'');
+  if(c===''||c==='-'||c==='.')return NaN;
+  if(!/^-?\d+(\.\d+)?$/.test(c)&&!/^-?\.\d+$/.test(c))return NaN;
+  return parseFloat(c);
+}
+function isNum(s){const v=s.trim().replace(/,/g,'').replace(/\s/g,'');return v!==''&&!isNaN(pn(s));}
+function fm(n){
+  if(n===0)return '0';
+  const a=Math.abs(n);
+  if(a>=1e6) return n.toLocaleString('en-US',{maximumFractionDigits:0});
+  if(a<0.0001&&a>0) return n.toPrecision(4);
+  if(Number.isInteger(n)) return n.toLocaleString('en-US');
+  if(a<1) return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:6});
+  return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+function clearWarnings(){['warnOrig','warnNew','warnPct'].forEach(id=>{const el=$(id);el.style.display='none';el.textContent='';el.removeAttribute('data-active');});}
+function showWarn(id,msg){const el=$(id);el.textContent='⚠ '+msg;el.style.display='block';el.setAttribute('data-active','1');}
+
+function calc(){
+  clearWarnings();
+  const oRaw=$('origVal').value.trim();
+  const nRaw=$('newVal').value.trim();
+  const pRaw=$('pctVal').value.trim();
+
+  let hasError=false;
+  if(oRaw!==''&&!isNum(oRaw)){showWarn('warnOrig','Please enter a valid number');hasError=true;}
+  if(nRaw!==''&&!isNum(nRaw)){showWarn('warnNew','Please enter a valid number');hasError=true;}
+  if(pRaw!==''&&!isNum(pRaw)){showWarn('warnPct','Please enter a valid number');hasError=true;}
+  if(hasError){clearResult();updateReverse();return;}
+
+  const hasO=oRaw!==''&&isNum(oRaw);
+  const hasN=nRaw!==''&&isNum(nRaw);
+  const hasP=pRaw!==''&&isNum(pRaw);
+  const filled=[hasO?'orig':null,hasN?'new':null,hasP?'pct':null].filter(Boolean);
+
+  let orig,newv,pct,mode='none';
+  if(filled.length>=2){
+    const solve=filled.length===3?
+      (['orig','new','pct'].find(x=>!lastEdited.includes(x))||'pct'):
+      ['orig','new','pct'].find(x=>!filled.includes(x));
+
+    if(solve==='pct'){
+      orig=pn(oRaw);newv=pn(nRaw);
+      if(orig===0){showWarn('warnOrig','Cannot calculate: original value is 0 (division by zero)');clearResult();updateReverse();return;}
+      pct=((newv-orig)/Math.abs(orig))*100;mode='pct';
+    }
+    else if(solve==='new'){orig=pn(oRaw);pct=pn(pRaw);newv=orig*(1+pct/100);mode='new';}
+    else{newv=pn(nRaw);pct=pn(pRaw);
+      if(pct===-100){showWarn('warnPct','Cannot calculate: -100% means original would be infinite');clearResult();updateReverse();return;}
+      orig=newv/(1+pct/100);mode='orig';
+    }
+
+    lastSolved=mode;
+    if(mode==='pct')$('pctVal').value=pct%1===0?pct:pct.toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
+    if(mode==='new')$('newVal').value=fm(Math.round(newv*100)/100);
+    if(mode==='orig')$('origVal').value=fm(Math.round(orig*100)/100);
+
+    updateResult(orig,newv,pct);
+  }else{
+    clearResult();
+  }
+  updateReverse();
+}
+
+function updateResult(orig,newv,pct){
+  const isInc=pct>=0;
+  const diff=newv-orig;
+  const box=$('resultBox');
+  box.className='rbox '+(isInc?'increase':'decrease');
+  $('resultLabel').textContent=isInc?T.incLabel:T.decLabel;
+  $('resultValue').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
+  $('resultDiff').textContent='Difference: '+(diff>=0?'+':'')+fm(Math.round(diff*100)/100);
+  $('resultArrow').textContent=isInc?'↑':'↓';
+  $('stV').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
+
+  const nlStr=`${fm(Math.round(newv*100)/100)} is a ${fm(Math.abs(Math.round(pct*100)/100))}% ${isInc?T.inc:T.dec} from ${fm(Math.round(orig*100)/100)}.`;
+  $('nlText').textContent=nlStr;$('nlText').style.fontWeight='700';
+  $('copyBtn').style.display='';
+  $('copyBtn').dataset.text=nlStr;
+
+  $('chartArea').style.display='';
+  const mx=Math.max(Math.abs(orig),Math.abs(newv),1);
+  $('barOrig').style.width=(Math.abs(orig)/mx*100).toFixed(1)+'%';
+  $('barNew').style.width=(Math.abs(newv)/mx*100).toFixed(1)+'%';
+  $('barNew').className='bar-fill '+(isInc?'newv':'decr');
+  $('barOrigV').textContent=fm(Math.round(orig*100)/100);
+  $('barNewV').textContent=fm(Math.round(newv*100)/100);
+
+  const cn=$('chartNote');
+  if(orig<0||newv<0){cn.textContent='Note: bars show absolute values. With negative numbers, a shorter bar may represent a larger value on the number line.';cn.style.display='block';}
+  else{cn.style.display='none';}
+
+  $('stepsText').innerHTML=
+    `<span class="hl">Formula:</span> ((New − Original) / |Original|) × 100%\n\n`+
+    `<span class="hl">Step 1:</span> Difference = ${fm(Math.round(newv*100)/100)} − ${fm(Math.round(orig*100)/100)} = ${fm(Math.round(diff*100)/100)}\n\n`+
+    `<span class="hl">Step 2:</span> Divide by original = ${fm(Math.round(diff*100)/100)} / ${fm(Math.round(Math.abs(orig)*100)/100)} = ${(diff/Math.abs(orig||1)).toFixed(6).replace(/0+$/,'').replace(/\.$/,'')}\n\n`+
+    `<span class="hl">Step 3:</span> Multiply by 100 = ${fm(Math.round(pct*100)/100)}%\n\n`+
+    `<span class="hl">Result:</span> ${Math.abs(Math.round(pct*100)/100)}% ${isInc?T.inc:T.dec}`;
+}
+
+function clearResult(){
+  $('resultBox').className='rbox increase';
+  $('resultLabel').textContent='Percentage Change';
+  $('resultValue').textContent='—';
+  $('resultDiff').textContent='';
+  $('resultArrow').textContent='↑';
+  $('stV').textContent='—';
+  $('nlText').textContent='Fill in two values to see your result in plain English.';
+  $('copyBtn').style.display='none';
+  $('chartArea').style.display='none';
+  $('chartNote').style.display='none';
+  $('stepsText').textContent='Enter two values above to see the step-by-step calculation.';
+}
+
+function updateReverse(){
+  const bRaw=$('revBase').value.trim();const pRaw=$('revPct').value.trim();
+  if(bRaw&&pRaw&&isNum(bRaw)&&isNum(pRaw)){
+    const b=pn(bRaw);const p=pn(pRaw);
+    const r=b*(1+p/100);
+    $('revResult').textContent=fm(Math.round(r*100)/100);
+    $('revResult').style.color=p>=0?'#0d6b3e':'#c0392b';
+  }else{$('revResult').textContent='—';$('revResult').style.color='#0d6b3e';}
+}
+
+// Debounce
+let _dt=null;
+function calcD(){clearTimeout(_dt);_dt=setTimeout(calc,50);}
+
+// Wire inputs
+const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
+['origVal','newVal','pctVal'].forEach(id=>{
+  $(id).addEventListener('input',()=>{
+    const role=$(id).dataset.role;
+    if($(id).value.trim()===''&&lastSolved&&lastSolved!==role){
+      const solvedId=roleToId[lastSolved];
+      if(solvedId)$(solvedId).value='';
+      lastSolved=null;
+    }
+    if(!lastEdited.includes(role)){lastEdited=[lastEdited[1],role];}
+    else if(lastEdited[1]!==role){lastEdited=[lastEdited[1],role];}
+    calcD();
+  });
+});
+$('revBase').addEventListener('input',()=>{clearTimeout(_dt);_dt=setTimeout(updateReverse,50);});
+$('revPct').addEventListener('input',()=>{clearTimeout(_dt);_dt=setTimeout(updateReverse,50);});
+
+// Scenarios
+document.querySelectorAll('#scenes button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    $('origVal').value=btn.dataset.o;
+    $('newVal').value=btn.dataset.n;
+    $('pctVal').value='';
+    lastEdited=['orig','new'];
+    lastSolved=null;
+    calc();
+  });
+});
+
+// Copy
+$('copyBtn').addEventListener('click',()=>{
+  const text=$('copyBtn').dataset.text;
+  const btn=$('copyBtn');
+  const ok=()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},1500);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok).catch(()=>{fbCopy(text);ok();});
+  }else{fbCopy(text);ok();}
+});
+function fbCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+// Accordion
+$('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$('stepsB').classList.toggle('open');});
+
+// Sticky
+new IntersectionObserver(([e])=>{$('sticky').classList.toggle('show',!e.isIntersecting);},{threshold:0}).observe(document.querySelector('.hero'));
+
+calc();
+</script>
+</body>
+</html>
