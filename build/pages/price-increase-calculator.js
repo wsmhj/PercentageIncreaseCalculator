@@ -38,7 +38,7 @@ module.exports = {
 
 <p><code>((New − Old) / Old) × 100</code></p>
 
-<p>The old price is the base. It is the number the change is measured against, and it is the number people most often get wrong, so the steps panel prints it out on its own line.</p>
+<p>The old price is the base. It is the number the change is measured against, and it is the number people most often get wrong, so Step 2 of the steps panel shows exactly which number you divided by.</p>
 
 <h3>Example</h3>
 

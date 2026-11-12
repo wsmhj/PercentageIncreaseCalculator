@@ -37,6 +37,8 @@
   <div class="links">
     <a href="#calculator">Calculator</a>
     <a href="#how-it-works">How It Works</a>
+    <a href="#batch">Batch</a>
+    <a href="#chained">Chained</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -64,7 +66,7 @@
 
 <!-- CALCULATOR CARD -->
 <div class="nb fi fi1">
-  <div class="nb-title tr">{{CALC_TITLE}} <button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></div>
+  <div class="nb-title tr">{{CALC_TITLE}} <span class="tr-acts"><button type="button" class="reset-btn" id="swapBtn" title="Swap original and new values">⇄ Swap</button><button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></span></div>
 
   <div class="examples" id="scenes">
     {{PRESETS}}
@@ -72,19 +74,25 @@
 
   <div class="field">
     <label for="origVal">{{LABEL_ORIG}}</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="{{PH_ORIG}}" data-role="orig"></div>
+    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="{{PH_ORIG}}" data-role="orig"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
     <div class="field-warn" id="warnOrig"></div>
   </div>
   <div class="field">
     <label for="newVal">{{LABEL_NEW}}</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="{{PH_NEW}}" data-role="new"></div>
+    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="{{PH_NEW}}" data-role="new"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
     <div class="field-warn" id="warnNew"></div>
   </div>
   <div class="field">
     <label for="pctVal">{{LABEL_PCT}}</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span></div>
+    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
     <div class="field-sub">Fill any two — the third auto-calculates</div>
     <div class="field-warn" id="warnPct"></div>
+  </div>
+  <div class="dp-row">
+    <span>Decimal places</span>
+    <div class="seg" id="dpSeg" role="group" aria-label="Decimal places">
+      <button type="button" data-dp="0">0</button><button type="button" data-dp="1">1</button><button type="button" data-dp="2">2</button><button type="button" data-dp="3">3</button><button type="button" data-dp="4">4</button>
+    </div>
   </div>
 </div>
 
@@ -93,8 +101,8 @@
   <div class="nb-title tr">{{QUICK_TITLE}} <button type="button" class="reset-btn" id="revReset" title="Clear quick calculator">↺ Reset</button></div>
   <p style="font-size:12px;color:#888;margin-bottom:10px;">{{QUICK_DESC}}</p>
   <div class="rev-row">
-    <div class="field"><label for="revBase">{{QUICK_LABEL_BASE}}</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="{{QUICK_PH_BASE}}"></div></div>
-    <div class="field"><label for="revPct">{{QUICK_LABEL_PCT}}</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="{{QUICK_PH_PCT}}" class="has-suf"><span class="suf">%</span></div></div>
+    <div class="field"><label for="revBase">{{QUICK_LABEL_BASE}}</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="{{QUICK_PH_BASE}}"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
+    <div class="field"><label for="revPct">{{QUICK_LABEL_PCT}}</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="{{QUICK_PH_PCT}}" class="has-suf"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
     <div class="rev-result" id="revResult">—</div>
   </div>
 </div>
@@ -109,6 +117,11 @@
     <div class="steps-box">
       <div class="st">Formula & Steps</div>
       <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
+    </div>
+    <div class="steps-box xl" id="xlBox" style="display:none;">
+      <div class="st">In Excel or Google Sheets</div>
+      <div class="xl-row"><code id="xlF">=(B2-A2)/ABS(A2)</code><button class="cbtn" id="xlCopy">Copy formula</button></div>
+      <div class="xl-note" id="xlNote"></div>
     </div>
   </div>
 </div>
@@ -136,7 +149,8 @@
   <div class="nl" id="nlBox">
     <span id="nlText">Fill in two values to see your result in plain English.</span>
     <div class="acts">
-      <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+      <button class="cbtn" id="copyBtn" style="display:none;">Copy sentence</button>
+      <button class="cbtn" id="copyPct" style="display:none;">Copy %</button>
       <button class="cbtn" id="shareBtn" style="display:none;">Share link</button>
     </div>
   </div>
@@ -167,6 +181,37 @@
   <div class="hist-note">Saved only in this browser. Tap one to load it again.</div>
 </div>
 </div>
+</div>
+
+<!-- MORE TOOLS -->
+<div class="tools">
+
+<!-- BATCH -->
+<div class="nb" id="batch">
+  <div class="nb-title tr">Batch: Many Changes at Once <span class="tr-acts"><button type="button" class="reset-btn" id="bEx">Example</button><button type="button" class="reset-btn" id="bReset" title="Clear the list">↺ Reset</button></span></div>
+  <p class="tool-desc">Paste one pair per line: original value, then new value. Rows copied from Excel or Google Sheets work as they are, and you can put a name in front of each pair.</p>
+  <textarea id="bIn" rows="6" spellcheck="false" aria-label="Values to compare, one pair per line" placeholder="Rent  1500  1650&#10;Coffee  3.49  4.19&#10;Salary  55000  62000"></textarea>
+  <div id="bOut" style="display:none;">
+    <div class="b-sum" id="bSum"></div>
+    <div class="b-wrap"><table class="b-tbl" id="bTbl"><thead><tr><th>#</th><th class="b-lab">Item</th><th>Original</th><th>New</th><th class="b-chg">Change</th><th>% Change</th></tr></thead><tbody id="bBody"></tbody></table></div>
+    <div class="acts"><button class="cbtn" id="bCopy">Copy table</button><button class="cbtn" id="bCsv">Download CSV</button></div>
+  </div>
+</div>
+
+<!-- CHAINED -->
+<div class="nb" id="chained">
+  <div class="nb-title tr">Chained Changes <span class="tr-acts"><button type="button" class="reset-btn" id="cReset" title="Clear all steps">↺ Reset</button></span></div>
+  <p class="tool-desc">Apply several percentage changes one after another, like +20% and then −10%. The total is not the sum of the steps, because each step starts from the new amount. This shows the real result.</p>
+  <div class="c-grid">
+    <div>
+      <div class="field"><label for="cStart">Starting value</label><div class="iw"><input type="text" inputmode="decimal" id="cStart" placeholder="100"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
+      <div id="cSteps"></div>
+      <button type="button" class="reset-btn" id="cAdd">+ Add step</button>
+    </div>
+    <div class="c-res" id="cRes"></div>
+  </div>
+</div>
+
 </div>
 
 <!-- SEO -->

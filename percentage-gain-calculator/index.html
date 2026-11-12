@@ -294,6 +294,76 @@ body{
 .acc-b{max-height:0;overflow:hidden;transition:max-height .3s ease;}
 .acc-b.open{max-height:4000px;}
 
+/* ± toggle (touch screens have no minus key on the number pad) */
+.pm{
+  display:none;position:absolute;top:50%;right:6px;transform:translateY(-50%);
+  width:32px;height:30px;align-items:center;justify-content:center;padding:0;
+  background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
+  font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#555;cursor:pointer;
+}
+.has-suf~.pm{right:28px;}
+@media (pointer:coarse){
+  .pm{display:flex;}
+  .field input{padding-right:46px;}
+  .field input.has-suf{padding-right:66px;}
+}
+.tr-acts{display:flex;gap:6px;flex-shrink:0;}
+
+/* Decimal places */
+.dp-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed #d4cfc6;font-size:12px;font-weight:700;color:#555;}
+.seg{display:inline-flex;border:1px solid #d4cfc6;border-radius:4px;overflow:hidden;}
+.seg button{padding:5px 11px;background:#f0ede6;border:none;border-left:1px solid #d4cfc6;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#666;cursor:pointer;}
+.seg button:first-child{border-left:none;}
+.seg button:hover{color:#1a3a35;}
+.seg button.on{background:#1a3a35;color:#7dffc4;}
+
+/* Excel formula */
+.xl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.xl-row code{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:#1a3a35;background:#fff;border:1px solid #d4cfc6;border-radius:4px;padding:4px 8px;}
+.xl-row .cbtn{margin-top:0;}
+.xl-note{font-size:11px;color:#888;margin-top:6px;line-height:1.5;}
+
+/* Batch + chained tools */
+.tools{max-width:960px;margin:0 auto;padding:0 20px 8px;}
+@media(max-width:800px){.tools{max-width:560px;}}
+.tool-desc{font-size:13px;color:#666;line-height:1.55;margin-bottom:10px;}
+.tools textarea{
+  width:100%;min-height:120px;padding:10px;resize:vertical;
+  border:2px solid #d4cfc6;border-radius:5px;background:#fff;outline:none;
+  font-family:'Courier New',monospace;font-size:14px;line-height:1.6;color:#1a3a35;
+}
+.tools textarea:focus{border-color:#1a3a35;box-shadow:0 0 0 3px rgba(26,58,53,0.12);}
+.b-sum{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 10px;}
+.b-sum span{background:#f5f3ee;border:1px solid #d4cfc6;border-radius:4px;padding:5px 9px;font-size:12px;color:#555;}
+.b-sum b{color:#1a3a35;}
+.b-wrap{overflow-x:auto;border:1px solid #d4cfc6;border-radius:5px;background:#fff;margin-bottom:4px;}
+.b-tbl{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;}
+.b-tbl th{background:#f0ede6;color:#555;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:7px 10px;white-space:nowrap;}
+.b-tbl td{padding:6px 10px;border-top:1px solid #eae7e0;text-align:right;white-space:nowrap;color:#333;}
+.b-tbl th:nth-child(-n+2),.b-tbl td:nth-child(-n+2){text-align:left;}
+.b-tbl td:first-child{color:#aaa;}
+.b-tbl.nolabel .b-lab{display:none;}
+.b-tbl .up{color:#0d6b3e;font-weight:800;}
+.b-tbl .down{color:#b91c1c;font-weight:800;}
+.b-tbl tr.bad td{color:#c0392b;font-style:italic;text-align:left;}
+@media(max-width:480px){
+  #bTbl th:first-child,#bTbl td:first-child,#bTbl .b-chg{display:none;}
+  .b-tbl th,.b-tbl td{padding:6px;}
+  #bTbl tr.bad td{white-space:normal;}
+}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+@media(max-width:640px){.c-grid{grid-template-columns:1fr;}}
+.c-step{display:flex;align-items:flex-end;gap:6px;}
+.c-step>div{flex:1;}
+.c-del{flex-shrink:0;width:34px;height:40px;background:none;border:1px solid #d4cfc6;border-radius:5px;font-size:18px;color:#999;cursor:pointer;}
+.c-del:hover{color:#c0392b;border-color:#c0392b;}
+.c-res .rbox{margin-bottom:10px;}
+.c-res .rbox .rv{font-size:34px;}
+.c-note{font-size:12px;color:#555;background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:9px 11px;line-height:1.55;margin-bottom:10px;}
+.c-res .b-tbl td:first-child{color:#555;}
+.c-empty{font-size:13px;color:#999;padding:12px 0;}
+.c-res .b-tbl th:nth-child(2),.c-res .b-tbl td:nth-child(2){text-align:right;}
+
 /* Disclaimer */
 .disc{font-size:10px;color:#aaa;padding:8px;background:#f5f3ee;border-radius:4px;line-height:1.5;}
 
@@ -305,6 +375,7 @@ body{
 .seo h4{font-size:14px;font-weight:700;color:#9bbfb3;margin-top:14px;margin-bottom:5px;}
 .seo p{font-size:14px;color:#9bbfb3;line-height:1.7;margin-bottom:10px;}
 .seo strong{color:#e8e0d4;}
+.seo p a{color:#7dffc4;text-decoration:underline;text-underline-offset:2px;}
 .seo code{font-family:'Courier New',monospace;background:rgba(125,255,196,0.1);padding:1px 5px;border-radius:3px;font-size:12px;color:#7dffc4;}
 
 /* === FOOTER === */
@@ -344,6 +415,8 @@ body{
   <div class="links">
     <a href="#calculator">Calculator</a>
     <a href="#how-it-works">How It Works</a>
+    <a href="#batch">Batch</a>
+    <a href="#chained">Chained</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -371,7 +444,7 @@ body{
 
 <!-- CALCULATOR CARD -->
 <div class="nb fi fi1">
-  <div class="nb-title tr">Gain or Loss <button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></div>
+  <div class="nb-title tr">Gain or Loss <span class="tr-acts"><button type="button" class="reset-btn" id="swapBtn" title="Swap original and new values">⇄ Swap</button><button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></span></div>
 
   <div class="examples" id="scenes">
     <button data-o="142" data-n="185">Stock $142 → $185</button>
@@ -382,19 +455,25 @@ body{
 
   <div class="field">
     <label for="origVal">Buy Price (Cost Basis)</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="e.g. 142.00" data-role="orig"></div>
+    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="e.g. 142.00" data-role="orig"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
     <div class="field-warn" id="warnOrig"></div>
   </div>
   <div class="field">
     <label for="newVal">Sell or Current Price</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="e.g. 185.00" data-role="new"></div>
+    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="e.g. 185.00" data-role="new"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
     <div class="field-warn" id="warnNew"></div>
   </div>
   <div class="field">
     <label for="pctVal">Gain</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span></div>
+    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
     <div class="field-sub">Fill any two — the third auto-calculates</div>
     <div class="field-warn" id="warnPct"></div>
+  </div>
+  <div class="dp-row">
+    <span>Decimal places</span>
+    <div class="seg" id="dpSeg" role="group" aria-label="Decimal places">
+      <button type="button" data-dp="0">0</button><button type="button" data-dp="1">1</button><button type="button" data-dp="2">2</button><button type="button" data-dp="3">3</button><button type="button" data-dp="4">4</button>
+    </div>
   </div>
 </div>
 
@@ -403,8 +482,8 @@ body{
   <div class="nb-title tr">Target Price from a Gain % <button type="button" class="reset-btn" id="revReset" title="Clear quick calculator">↺ Reset</button></div>
   <p style="font-size:12px;color:#888;margin-bottom:10px;">What price gives you a <strong>Y%</strong> gain on your buy price?</p>
   <div class="rev-row">
-    <div class="field"><label for="revBase">Buy Price</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="e.g. 50"></div></div>
-    <div class="field"><label for="revPct">Target gain</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="20" class="has-suf"><span class="suf">%</span></div></div>
+    <div class="field"><label for="revBase">Buy Price</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="e.g. 50"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
+    <div class="field"><label for="revPct">Target gain</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="20" class="has-suf"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
     <div class="rev-result" id="revResult">—</div>
   </div>
 </div>
@@ -419,6 +498,11 @@ body{
     <div class="steps-box">
       <div class="st">Formula & Steps</div>
       <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
+    </div>
+    <div class="steps-box xl" id="xlBox" style="display:none;">
+      <div class="st">In Excel or Google Sheets</div>
+      <div class="xl-row"><code id="xlF">=(B2-A2)/ABS(A2)</code><button class="cbtn" id="xlCopy">Copy formula</button></div>
+      <div class="xl-note" id="xlNote"></div>
     </div>
   </div>
 </div>
@@ -449,7 +533,8 @@ body{
   <div class="nl" id="nlBox">
     <span id="nlText">Fill in two values to see your result in plain English.</span>
     <div class="acts">
-      <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+      <button class="cbtn" id="copyBtn" style="display:none;">Copy sentence</button>
+      <button class="cbtn" id="copyPct" style="display:none;">Copy %</button>
       <button class="cbtn" id="shareBtn" style="display:none;">Share link</button>
     </div>
   </div>
@@ -480,6 +565,37 @@ body{
   <div class="hist-note">Saved only in this browser. Tap one to load it again.</div>
 </div>
 </div>
+</div>
+
+<!-- MORE TOOLS -->
+<div class="tools">
+
+<!-- BATCH -->
+<div class="nb" id="batch">
+  <div class="nb-title tr">Batch: Many Changes at Once <span class="tr-acts"><button type="button" class="reset-btn" id="bEx">Example</button><button type="button" class="reset-btn" id="bReset" title="Clear the list">↺ Reset</button></span></div>
+  <p class="tool-desc">Paste one pair per line: original value, then new value. Rows copied from Excel or Google Sheets work as they are, and you can put a name in front of each pair.</p>
+  <textarea id="bIn" rows="6" spellcheck="false" aria-label="Values to compare, one pair per line" placeholder="Rent  1500  1650&#10;Coffee  3.49  4.19&#10;Salary  55000  62000"></textarea>
+  <div id="bOut" style="display:none;">
+    <div class="b-sum" id="bSum"></div>
+    <div class="b-wrap"><table class="b-tbl" id="bTbl"><thead><tr><th>#</th><th class="b-lab">Item</th><th>Original</th><th>New</th><th class="b-chg">Change</th><th>% Change</th></tr></thead><tbody id="bBody"></tbody></table></div>
+    <div class="acts"><button class="cbtn" id="bCopy">Copy table</button><button class="cbtn" id="bCsv">Download CSV</button></div>
+  </div>
+</div>
+
+<!-- CHAINED -->
+<div class="nb" id="chained">
+  <div class="nb-title tr">Chained Changes <span class="tr-acts"><button type="button" class="reset-btn" id="cReset" title="Clear all steps">↺ Reset</button></span></div>
+  <p class="tool-desc">Apply several percentage changes one after another, like +20% and then −10%. The total is not the sum of the steps, because each step starts from the new amount. This shows the real result.</p>
+  <div class="c-grid">
+    <div>
+      <div class="field"><label for="cStart">Starting value</label><div class="iw"><input type="text" inputmode="decimal" id="cStart" placeholder="100"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
+      <div id="cSteps"></div>
+      <button type="button" class="reset-btn" id="cAdd">+ Add step</button>
+    </div>
+    <div class="c-res" id="cRes"></div>
+  </div>
+</div>
+
 </div>
 
 <!-- SEO -->
@@ -607,21 +723,25 @@ let _ht = null;
 const $=id=>document.getElementById(id);
 function track(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}}
 const T=Object.assign({inc:'increase',dec:'decrease',incLabel:'Percentage Increase',decLabel:'Percentage Decrease'},window.PAGE_TERMS||{});
+// Accepts what people paste: $1,200 / 15% / −3.5 / 12. (while typing)
+function clean(s){return String(s).replace(/[\s,$€£¥₹%]/g,'').replace(/[−–]/g,'-');}
 function pn(s){
-  let c=String(s).replace(/,/g,'').replace(/\s/g,'');
-  if(c===''||c==='-'||c==='.')return NaN;
-  if(!/^-?\d+(\.\d+)?$/.test(c)&&!/^-?\.\d+$/.test(c))return NaN;
+  const c=clean(s);
+  if(c===''||c==='-'||c==='.'||c==='-.')return NaN;
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(c))return NaN;
   return parseFloat(c);
 }
-function isNum(s){const v=s.trim().replace(/,/g,'').replace(/\s/g,'');return v!==''&&!isNaN(pn(s));}
+function isNum(s){return !isNaN(pn(s));}
+let DP=2;
+try{const d=parseInt(localStorage.getItem('pic_dp'),10);if(d>=0&&d<=4)DP=d;}catch(e){}
+function rd(n){const f=Math.pow(10,DP);return Math.round(n*f)/f;}
 function fm(n){
-  if(n===0)return '0';
-  const a=Math.abs(n);
-  if(a>=1e6) return n.toLocaleString('en-US',{maximumFractionDigits:0});
-  if(a<0.0001&&a>0) return n.toPrecision(4);
-  if(Number.isInteger(n)) return n.toLocaleString('en-US');
-  if(a<1) return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:6});
-  return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  if(!isFinite(n))return '—';
+  if(n!==0&&Math.abs(n)<1e-4&&DP>=2)return n.toPrecision(3);
+  const r=rd(n);
+  if(r===0)return '0';
+  if(Number.isInteger(r))return r.toLocaleString('en-US');
+  return r.toLocaleString('en-US',{minimumFractionDigits:DP,maximumFractionDigits:DP});
 }
 
 function clearWarnings(){['warnOrig','warnNew','warnPct'].forEach(id=>{const el=$(id);el.style.display='none';el.textContent='';el.removeAttribute('data-active');});}
@@ -646,8 +766,9 @@ function calc(){
 
   let orig,newv,pct,mode='none';
   if(filled.length>=2){
+    // All three filled: recompute the field the calculator filled itself, never one the user typed
     const solve=filled.length===3?
-      (['orig','new','pct'].find(x=>!lastEdited.includes(x))||'pct'):
+      (lastSolved&&filled.includes(lastSolved)?lastSolved:(['orig','new','pct'].find(x=>!lastEdited.includes(x))||'pct')):
       ['orig','new','pct'].find(x=>!filled.includes(x));
 
     if(solve==='pct'){
@@ -662,9 +783,9 @@ function calc(){
     }
 
     lastSolved=mode;
-    if(mode==='pct')$('pctVal').value=pct%1===0?pct:pct.toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
-    if(mode==='new')$('newVal').value=fm(Math.round(newv*100)/100);
-    if(mode==='orig')$('origVal').value=fm(Math.round(orig*100)/100);
+    if(mode==='pct')$('pctVal').value=String(rd(pct));
+    if(mode==='new')$('newVal').value=fm(newv);
+    if(mode==='orig')$('origVal').value=fm(orig);
 
     updateResult(orig,newv,pct);
   }else{
@@ -679,16 +800,18 @@ function updateResult(orig,newv,pct){
   const box=$('resultBox');
   box.className='rbox '+(isInc?'increase':'decrease');
   $('resultLabel').textContent=isInc?T.incLabel:T.decLabel;
-  $('resultValue').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
-  $('resultDiff').textContent='Difference: '+(diff>=0?'+':'')+fm(Math.round(diff*100)/100);
+  $('resultValue').textContent=(isInc?'+':'')+fm(pct)+'%';
+  $('resultDiff').textContent='Difference: '+(diff>=0?'+':'')+fm(diff);
   $('resultArrow').textContent=isInc?'↑':'↓';
-  $('stV').textContent=(isInc?'+':'')+fm(Math.round(pct*100)/100)+'%';
+  $('stV').textContent=(isInc?'+':'')+fm(pct)+'%';
 
-  const nlStr=`${fm(Math.round(newv*100)/100)} is a ${fm(Math.abs(Math.round(pct*100)/100))}% ${isInc?T.inc:T.dec} from ${fm(Math.round(orig*100)/100)}.`;
+  const nlStr=`${fm(newv)} is a ${fm(Math.abs(pct))}% ${isInc?T.inc:T.dec} from ${fm(orig)}.`;
   $('nlText').textContent=nlStr;$('nlText').style.fontWeight='700';
   $('copyBtn').style.display='';
   $('copyBtn').dataset.text=nlStr;
   $('shareBtn').style.display='';
+  $('copyPct').style.display='';
+  showFormula();
   cur={o:orig,n:newv,p:pct};
   scheduleSave();
 
@@ -697,8 +820,8 @@ function updateResult(orig,newv,pct){
   $('barOrig').style.width=(Math.abs(orig)/mx*100).toFixed(1)+'%';
   $('barNew').style.width=(Math.abs(newv)/mx*100).toFixed(1)+'%';
   $('barNew').className='bar-fill '+(isInc?'newv':'decr');
-  $('barOrigV').textContent=fm(Math.round(orig*100)/100);
-  $('barNewV').textContent=fm(Math.round(newv*100)/100);
+  $('barOrigV').textContent=fm(orig);
+  $('barNewV').textContent=fm(newv);
 
   const cn=$('chartNote');
   if(orig<0||newv<0){cn.textContent='Note: bars show absolute values. With negative numbers, a shorter bar may represent a larger value on the number line.';cn.style.display='block';}
@@ -706,10 +829,20 @@ function updateResult(orig,newv,pct){
 
   $('stepsText').innerHTML=
     `<span class="hl">Formula:</span> ((New − Original) / |Original|) × 100%\n\n`+
-    `<span class="hl">Step 1:</span> Difference = ${fm(Math.round(newv*100)/100)} − ${fm(Math.round(orig*100)/100)} = ${fm(Math.round(diff*100)/100)}\n\n`+
-    `<span class="hl">Step 2:</span> Divide by original = ${fm(Math.round(diff*100)/100)} / ${fm(Math.round(Math.abs(orig)*100)/100)} = ${(diff/Math.abs(orig||1)).toFixed(6).replace(/0+$/,'').replace(/\.$/,'')}\n\n`+
-    `<span class="hl">Step 3:</span> Multiply by 100 = ${fm(Math.round(pct*100)/100)}%\n\n`+
-    `<span class="hl">Result:</span> ${Math.abs(Math.round(pct*100)/100)}% ${isInc?T.inc:T.dec}`;
+    `<span class="hl">Step 1:</span> Difference = ${fm(newv)} − ${fm(orig)} = ${fm(diff)}\n\n`+
+    `<span class="hl">Step 2:</span> Divide by original = ${fm(diff)} / ${fm(Math.abs(orig))} = ${(diff/Math.abs(orig||1)).toFixed(6).replace(/0+$/,'').replace(/\.$/,'')}\n\n`+
+    `<span class="hl">Step 3:</span> Multiply by 100 = ${fm(pct)}%\n\n`+
+    `<span class="hl">Result:</span> ${fm(Math.abs(pct))}% ${isInc?T.inc:T.dec}`;
+}
+
+function showFormula(){
+  const f={
+    pct:['=(B2-A2)/ABS(A2)','Original in A2, new value in B2. Format the result cell as Percentage. ABS keeps the sign right when the original is negative.'],
+    new:['=A2*(1+C2)','Original in A2, percentage in C2 (type it as 15%). Gives the new value.'],
+    orig:['=B2/(1+C2)','New value in B2, percentage in C2 (type it as 15%). Gives the original value.']
+  }[lastSolved||'pct'];
+  $('xlF').textContent=f[0];$('xlNote').textContent=f[1];
+  $('xlBox').style.display='';
 }
 
 function clearResult(){
@@ -722,6 +855,8 @@ function clearResult(){
   $('nlText').textContent='Fill in two values to see your result in plain English.';
   $('copyBtn').style.display='none';
   $('shareBtn').style.display='none';
+  $('copyPct').style.display='none';
+  $('xlBox').style.display='none';
   cur=null;clearTimeout(_ht);
   $('chartArea').style.display='none';
   $('chartNote').style.display='none';
@@ -733,7 +868,7 @@ function updateReverse(){
   if(bRaw&&pRaw&&isNum(bRaw)&&isNum(pRaw)){
     const b=pn(bRaw);const p=pn(pRaw);
     const r=b*(1+p/100);
-    $('revResult').textContent=fm(Math.round(r*100)/100);
+    $('revResult').textContent=fm(r);
     $('revResult').style.color=p>=0?'#0d6b3e':'#c0392b';
   }else{$('revResult').textContent='—';$('revResult').style.color='#0d6b3e';}
 }
@@ -748,6 +883,7 @@ const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
   $(id).addEventListener('input',()=>{
     const role=$(id).dataset.role;
     skipSave=false;
+    if(role===lastSolved)lastSolved=null; // the user is overwriting the calculated value
     if($(id).value.trim()===''&&lastSolved&&lastSolved!==role){
       const solvedId=roleToId[lastSolved];
       if(solvedId)$(solvedId).value='';
@@ -790,7 +926,7 @@ function copyText(text,btn,label,done){
 }
 $('copyBtn').addEventListener('click',()=>{
   commitCur();
-  copyText($('copyBtn').dataset.text,$('copyBtn'),'Copy','Copied ✓');
+  copyText($('copyBtn').dataset.text,$('copyBtn'),'Copy sentence','Copied ✓');
   track('copy_result');
 });
 function fbCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
@@ -839,7 +975,7 @@ function renderHist(){
   a.forEach(x=>{
     const up=x.p>=0,li=document.createElement('li'),b=document.createElement('button');
     b.type='button';
-    b.innerHTML=`<span class="hv">${fm(Math.round(x.o*100)/100)} → ${fm(Math.round(x.n*100)/100)}</span><span class="hp ${up?'up':'down'}">${up?'+':''}${fm(Math.round(x.p*100)/100)}%</span>`;
+    b.innerHTML=`<span class="hv">${fm(x.o)} → ${fm(x.n)}</span><span class="hp ${up?'up':'down'}">${up?'+':''}${fm(x.p)}%</span>`;
     b.addEventListener('click',()=>{setPair(x.o,x.n,true);track('history_restore');});
     li.appendChild(b);list.appendChild(li);
   });
@@ -867,6 +1003,174 @@ $('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$
 
 // Sticky
 new IntersectionObserver(([e])=>{$('sticky').classList.toggle('show',!e.isIntersecting);},{threshold:0}).observe(document.querySelector('.hero'));
+
+// ===== DECIMAL PLACES =====
+function setDP(d,save){
+  DP=d;
+  if(save){try{localStorage.setItem('pic_dp',String(d));}catch(e){}}
+  document.querySelectorAll('#dpSeg button').forEach(b=>b.classList.toggle('on',+b.dataset.dp===d));
+}
+document.querySelectorAll('#dpSeg button').forEach(b=>b.addEventListener('click',()=>{
+  setDP(+b.dataset.dp,true);
+  calc();renderHist();runBatch();runChain();
+  track('decimals',{dp:DP});
+}));
+setDP(DP);
+
+// ± toggle on touch screens
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.pm');if(!b)return;
+  const inp=b.parentElement.querySelector('input');
+  const v=inp.value.trim();
+  inp.value=v.startsWith('-')||v.startsWith('−')?v.slice(1):'-'+v;
+  inp.dispatchEvent(new Event('input',{bubbles:true}));
+  inp.focus();
+});
+
+// Swap original and new
+$('swapBtn').addEventListener('click',()=>{
+  const o=$('origVal').value;
+  $('origVal').value=$('newVal').value;$('newVal').value=o;
+  $('pctVal').value='';
+  lastEdited=['orig','new'];lastSolved=null;skipSave=false;
+  calc();
+  track('swap');
+});
+
+// Copy just the percentage, and the spreadsheet formula
+$('copyPct').addEventListener('click',()=>{
+  if(!cur)return;
+  commitCur();
+  copyText((cur.p<0?'-':'')+fm(Math.abs(cur.p))+'%',$('copyPct'),'Copy %','Copied ✓');
+  track('copy_percent');
+});
+$('xlCopy').addEventListener('click',()=>{
+  copyText($('xlF').textContent,$('xlCopy'),'Copy formula','Copied ✓');
+  track('copy_formula');
+});
+
+// ===== BATCH =====
+// A line is "[name] original new"; separators can be tabs, semicolons, spaces or commas.
+function batchLine(line){
+  const t=line.trim();if(!t)return null;
+  let parts;
+  if(t.includes('\t'))parts=t.split('\t');
+  else if(t.includes(';'))parts=t.split(';');
+  else{
+    parts=t.split(/\s+/);
+    if(parts.filter(isNum).length<2)parts=t.split(/,\s+/);
+    if(parts.filter(isNum).length<2)parts=t.split(',');
+  }
+  parts=parts.map(x=>x.trim()).filter(x=>x!=='');
+  const nums=[];let i=parts.length-1;
+  while(i>=0&&nums.length<2&&isNum(parts[i])){nums.unshift(pn(parts[i]));i--;}
+  if(nums.length<2)return {line:t,bad:'Needs two numbers'};
+  const label=parts.slice(0,i+1).join(' ').replace(/[\s,;:]+$/,'');
+  if(nums[0]===0)return {line:t,label,o:nums[0],n:nums[1],bad:'Original is 0'};
+  return {label,o:nums[0],n:nums[1],p:(nums[1]-nums[0])/Math.abs(nums[0])*100};
+}
+let bRows=[],_bt=null,_bc=null;
+function runBatch(){
+  const lines=$('bIn').value.split(/\r?\n/).slice(0,500);
+  bRows=lines.map(batchLine).filter(Boolean);
+  const ok=bRows.filter(r=>!r.bad);
+  if(!bRows.length){$('bOut').style.display='none';return;}
+  $('bOut').style.display='';
+  const hasLabel=bRows.some(r=>r.label);
+  $('bTbl').classList.toggle('nolabel',!hasLabel);
+  const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const sg=x=>(x>0?'+':'')+fm(x);
+  $('bBody').innerHTML=bRows.map((r,k)=>r.bad
+    ?`<tr class="bad"><td>${k+1}</td><td class="b-lab">${esc(r.label||'')}</td><td colspan="4">${esc(r.bad)}: ${esc(r.line||'')}</td></tr>`
+    :`<tr><td>${k+1}</td><td class="b-lab">${esc(r.label)}</td><td>${fm(r.o)}</td><td>${fm(r.n)}</td><td class="b-chg">${sg(r.n-r.o)}</td><td class="${r.p>=0?'up':'down'}">${sg(r.p)}%</td></tr>`).join('');
+  if(!ok.length){$('bSum').innerHTML='<span>No rows with two numbers yet</span>';return;}
+  const so=ok.reduce((a,r)=>a+r.o,0),sn=ok.reduce((a,r)=>a+r.n,0);
+  const avg=ok.reduce((a,r)=>a+r.p,0)/ok.length;
+  const hi=ok.reduce((a,r)=>r.p>a.p?r:a),lo=ok.reduce((a,r)=>r.p<a.p?r:a);
+  const name=(r,k)=>r.label?esc(r.label):'row '+(bRows.indexOf(r)+1);
+  let h=`<span><b>${ok.length}</b> row${ok.length>1?'s':''}</span><span>Average change <b>${sg(avg)}%</b></span>`;
+  if(so!==0)h+=`<span>Total ${fm(so)} → ${fm(sn)} <b>${sg((sn-so)/Math.abs(so)*100)}%</b></span>`;
+  if(ok.length>1)h+=`<span>Largest: ${name(hi)} <b>${sg(hi.p)}%</b></span><span>Smallest: ${name(lo)} <b>${sg(lo.p)}%</b></span>`;
+  $('bSum').innerHTML=h;
+  clearTimeout(_bc);_bc=setTimeout(()=>track('batch_calculate',{rows:ok.length}),1500);
+}
+function batchTable(sep){
+  const hasLabel=bRows.some(r=>r.label);
+  const q=x=>sep===','&&/[",\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x;
+  const head=(hasLabel?['Item']:[]).concat(['Original','New','Change','Percent change']);
+  const rows=bRows.filter(r=>!r.bad).map(r=>(hasLabel?[q(r.label)]:[]).concat([rd(r.o),rd(r.n),rd(r.n-r.o),rd(r.p)+'%']));
+  return [head].concat(rows).map(r=>r.join(sep)).join('\n');
+}
+$('bIn').addEventListener('input',()=>{clearTimeout(_bt);_bt=setTimeout(runBatch,150);});
+$('bEx').addEventListener('click',()=>{
+  $('bIn').value='Rent\t1500\t1650\nElectricity\t96.40\t112.80\nCoffee\t3.49\t4.19\nInternet\t65\t59.99\nSalary\t55000\t62000';
+  runBatch();track('batch_example');
+});
+$('bReset').addEventListener('click',()=>{$('bIn').value='';runBatch();$('bIn').focus();});
+$('bCopy').addEventListener('click',()=>{copyText(batchTable('\t'),$('bCopy'),'Copy table','Copied ✓');track('batch_copy');});
+$('bCsv').addEventListener('click',()=>{
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([batchTable(',')+'\n'],{type:'text/csv'}));
+  a.download='percentage-changes.csv';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  track('batch_csv');
+});
+
+// ===== CHAINED CHANGES =====
+let _cc=null;
+function addStep(val){
+  if($('cSteps').children.length>=20)return;
+  const row=document.createElement('div');
+  row.className='field c-step';
+  row.innerHTML=`<div><label></label><div class="iw"><input type="text" inputmode="decimal" class="has-suf"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div><button type="button" class="c-del">×</button>`;
+  row.querySelector('input').value=val||'';
+  row.querySelector('input').addEventListener('input',runChain);
+  row.querySelector('.c-del').addEventListener('click',()=>{
+    if($('cSteps').children.length>1)row.remove();else row.querySelector('input').value='';
+    runChain();
+  });
+  $('cSteps').appendChild(row);
+  numberSteps();
+}
+function numberSteps(){
+  [...$('cSteps').children].forEach((row,k)=>{
+    const id='cStep'+(k+1),inp=row.querySelector('input');
+    inp.id=id;inp.placeholder=k===0?'e.g. 20':k===1?'e.g. -10':'e.g. 5';
+    row.querySelector('label').htmlFor=id;
+    row.querySelector('label').textContent='Step '+(k+1);
+    row.querySelector('.c-del').setAttribute('aria-label','Remove step '+(k+1));
+  });
+}
+function runChain(){
+  const sRaw=$('cStart').value.trim();
+  const start=sRaw===''?100:pn(sRaw);
+  const steps=[...$('cSteps').querySelectorAll('input')].map(i=>i.value.trim()).filter(v=>v!=='');
+  const res=$('cRes');
+  if(sRaw!==''&&isNaN(start)){res.innerHTML='<div class="c-empty">⚠ Starting value is not a number.</div>';return;}
+  if(steps.some(v=>!isNum(v))){res.innerHTML='<div class="c-empty">⚠ One of the steps is not a number.</div>';return;}
+  if(!steps.length){res.innerHTML='<div class="c-empty">Enter at least one percentage change to see the total.</div>';return;}
+  let v=start;const rows=[];
+  steps.forEach((x,k)=>{const p=pn(x);v=v*(1+p/100);rows.push([k+1,p,v]);});
+  const sum=steps.reduce((a,x)=>a+pn(x),0);
+  const sg=x=>(x>0?'+':'')+fm(x);
+  if(start===0){res.innerHTML='<div class="c-empty">⚠ A starting value of 0 stays 0 after any percentage change.</div>';return;}
+  const total=(v-start)/Math.abs(start)*100;
+  const ratio=v/start;
+  const avg=ratio>0?(Math.pow(ratio,1/steps.length)-1)*100:NaN;
+  res.innerHTML=
+    `<div class="rbox ${total>=0?'increase':'decrease'}"><div class="rl">Total change</div><div class="rv">${sg(total)}%</div><div class="rd">${fm(start)} → <b>${fm(v)}</b>${sRaw===''?' (starting from 100)':''}</div></div>`+
+    (steps.length>1?`<div class="c-note">Adding the steps gives ${sg(sum)}%, but the real total is <b>${sg(total)}%</b>.${isFinite(avg)?` That equals an average of <b>${sg(avg)}%</b> per step, compounded.`:''}</div>`:'')+
+    `<div class="b-wrap"><table class="b-tbl"><thead><tr><th>Step</th><th>Change</th><th>Value after</th></tr></thead><tbody>`+
+    `<tr><td>Start</td><td></td><td>${fm(start)}</td></tr>`+
+    rows.map(r=>`<tr><td>${r[0]}</td><td class="${r[1]>=0?'up':'down'}">${sg(r[1])}%</td><td>${fm(r[2])}</td></tr>`).join('')+
+    `</tbody></table></div>`;
+  clearTimeout(_cc);_cc=setTimeout(()=>track('chain_calculate',{steps:steps.length}),1500);
+}
+$('cStart').addEventListener('input',runChain);
+$('cAdd').addEventListener('click',()=>{addStep();runChain();$('cSteps').lastElementChild.querySelector('input').focus();track('chain_add_step');});
+$('cReset').addEventListener('click',()=>{$('cStart').value='';$('cSteps').innerHTML='';addStep();addStep();runChain();$('cStart').focus();});
+addStep();addStep();runChain();
 
 renderHist();
 const q=window.SHARED||new URLSearchParams(location.search);
