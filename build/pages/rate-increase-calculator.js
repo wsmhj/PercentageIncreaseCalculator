@@ -4,9 +4,9 @@
 module.exports = {
   slug: 'rate-increase-calculator',
   name: 'Rate Increase Calculator',
-  title: 'Rate Increase Calculator — Premiums, Rent & Interest Rates',
+  title: 'Rate Increase Calculator - Premiums, Rent & Interest Rates',
   description: 'Free rate increase calculator. Enter the old and new rate to get the increase in percent and dollars. Insurance premiums, rent, hourly rates, interest rates.',
-  lastmod: '2026-09-08',
+  lastmod: '2026-11-11',
   stickyLabel: 'Rate change',
   terms: { inc: 'increase', dec: 'decrease', incLabel: 'Rate Increase', decLabel: 'Rate Decrease' },
   h1: 'Rate Increase <span>Calculator</span>',
@@ -18,7 +18,7 @@ module.exports = {
     { label: 'Hourly rate $45 → $52', o: 45, n: 52 },
     { label: 'Interest 5.25% → 6.00%', o: 5.25, n: 6 },
   ],
-  labels: { orig: 'Current Rate or Premium', new: 'New Rate or Premium', pct: 'Increase' },
+  labels: { orig: 'Current Rate or Premium', new: 'New Rate or Premium', pct: 'Change' },
   placeholders: { orig: 'e.g. 1240', new: 'e.g. 1395' },
   quick: {
     title: 'Apply a Rate Increase',

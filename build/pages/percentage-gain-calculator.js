@@ -4,9 +4,9 @@
 module.exports = {
   slug: 'percentage-gain-calculator',
   name: 'Percentage Gain Calculator',
-  title: 'Percentage Gain Calculator — Stocks, Crypto & Investments',
+  title: 'Percentage Gain Calculator - Stocks, Crypto & Investments',
   description: 'Free percentage gain calculator for stocks and investments. Enter your buy price and sell price to see the gain or loss in percent and dollars, with steps.',
-  lastmod: '2026-09-08',
+  lastmod: '2026-11-11',
   stickyLabel: 'Gain',
   terms: { inc: 'gain', dec: 'loss', incLabel: 'Percentage Gain', decLabel: 'Percentage Loss' },
   h1: 'Percentage Gain <span>Calculator</span>',
@@ -18,7 +18,7 @@ module.exports = {
     { label: 'Crypto $2,400 → $3,600', o: 2400, n: 3600 },
     { label: 'Home $320,000 → $385,000', o: 320000, n: 385000 },
   ],
-  labels: { orig: 'Buy Price (Cost Basis)', new: 'Sell or Current Price', pct: 'Gain' },
+  labels: { orig: 'Buy Price (Cost Basis)', new: 'Sell or Current Price', pct: 'Gain or Loss' },
   placeholders: { orig: 'e.g. 142.00', new: 'e.g. 185.00' },
   quick: {
     title: 'Target Price from a Gain %',

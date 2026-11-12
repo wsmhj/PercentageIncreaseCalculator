@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Price Increase Calculator — Percentage &amp; New Price Instantly</title>
+<title>Price Increase Calculator - Percentage &amp; New Price Instantly</title>
 <meta name="description" content="Free price increase calculator. Find the percentage a price went up, or apply a percentage increase to any price. Formula, steps, and real pricing examples.">
 <link rel="canonical" href="https://percentageincreasecalculator.app/price-increase-calculator/">
 <meta property="og:site_name" content="Percentage Increase Calculator">
-<meta property="og:title" content="Price Increase Calculator — Percentage &amp; New Price Instantly">
+<meta property="og:title" content="Price Increase Calculator - Percentage &amp; New Price Instantly">
 <meta property="og:description" content="Free price increase calculator. Find the percentage a price went up, or apply a percentage increase to any price. Formula, steps, and real pricing examples.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://percentageincreasecalculator.app/price-increase-calculator/">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://percentageincreasecalculator.app/og-image.jpg">
+<meta property="og:image" content="https://percentageincreasecalculator.app/og/price-increase-calculator.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://percentageincreasecalculator.app/og-image.jpg">
+<meta name="twitter:image" content="https://percentageincreasecalculator.app/og/price-increase-calculator.jpg">
 <meta name="twitter:title" content="Price Increase Calculator">
 <meta name="twitter:description" content="Free price increase calculator. Find the percentage a price went up, or apply a percentage increase to any price. Formula, steps, and real pricing examples.">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -38,7 +38,7 @@ gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user
 gtag('consent','default',{analytics_storage:(navigator.globalPrivacyControl||navigator.doNotTrack==='1')?'denied':'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
 // Shared ?from=&to= numbers are read here and removed from the address bar before GA loads, so they never reach analytics
 window.SHARED=new URLSearchParams(location.search);
-if(SHARED.has('from')||SHARED.has('to')){var gaQ=new URLSearchParams(location.search);gaQ.delete('from');gaQ.delete('to');gaQ=gaQ.toString();history.replaceState(null,'',location.pathname+(gaQ?'?'+gaQ:'')+location.hash);}
+if(SHARED.has('from')||SHARED.has('to')){var gaQ=new URLSearchParams(location.search);gaQ.delete('from');gaQ.delete('to');gaQ.delete('cur');gaQ=gaQ.toString();history.replaceState(null,'',location.pathname+(gaQ?'?'+gaQ:'')+location.hash);}
 gtag('js',new Date());gtag('config','G-S6T4V70FRF');
 if(location.hostname==='percentageincreasecalculator.app'){var gaS=document.createElement('script');gaS.async=true;gaS.src='https://www.googletagmanager.com/gtag/js?id=G-S6T4V70FRF';document.head.appendChild(gaS);}
 </script>
@@ -64,12 +64,11 @@ body{
 
 /* === TOPNAV: chalk shelf === */
 .topnav{
-  background:rgba(0,0,0,0.2);
+  background:#163330;
   border-bottom:3px solid #2a5a50;
   padding:12px 24px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:50;
-  backdrop-filter:blur(8px);
 }
 .topnav .logo{
   font-family:'Sriracha',cursive;
@@ -88,19 +87,18 @@ body{
 .topnav .links{display:flex;gap:18px;}
 .topnav .links a{color:#7ab8a6;text-decoration:none;font-size:13px;font-weight:600;transition:color .15s;}
 .topnav .links a:hover{color:#7dffc4;}
-@media(max-width:600px){.topnav .links{display:none;}}
 
 /* === STICKY RESULT === */
 .sticky-r{
-  position:sticky;top:52px;z-index:40;
-  background:rgba(26,58,53,0.92);backdrop-filter:blur(8px);
+  position:sticky;top:var(--navh,58px);z-index:40;
+  background:#1a3a35;
   border-bottom:1px solid #2a5a50;
   padding:6px 24px;text-align:right;
   transform:translateY(-100%);opacity:0;transition:transform .25s,opacity .25s;
 }
 .sticky-r.show{transform:translateY(0);opacity:1;}
 .sticky-r .sv{font-family:'Sriracha',cursive;font-size:22px;color:#7dffc4;}
-.sticky-r .sl{font-size:10px;color:#7ab8a6;text-transform:uppercase;letter-spacing:1px;margin-right:8px;}
+.sticky-r .sl{font-size:12px;color:#7ab8a6;text-transform:uppercase;letter-spacing:1px;margin-right:8px;}
 
 /* === HERO === */
 .hero{
@@ -192,9 +190,9 @@ body{
 .field input:focus{border-color:#1a3a35;box-shadow:0 0 0 3px rgba(26,58,53,0.12);}
 .field input.has-suf{padding-right:28px;}
 .field .iw{position:relative;}
-.field .suf{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:15px;color:#999;font-weight:700;pointer-events:none;}
-.field input::placeholder{color:#c4c0b8;}
-.field-sub{font-size:10px;color:#aaa;margin-top:3px;}
+.field .suf{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:15px;color:#6b6b6b;font-weight:700;pointer-events:none;}
+.field input::placeholder{color:#767676;}
+.field-sub{font-size:12px;color:#6b6b6b;margin-top:3px;}
 .field-warn{font-size:12px;color:#c0392b;margin-top:3px;display:none;font-weight:700;}
 
 /* === EXAMPLE TAGS === */
@@ -202,7 +200,7 @@ body{
 .examples button{
   padding:4px 10px;
   background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
-  font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;color:#666;
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;color:#666;
   cursor:pointer;transition:all .12s;
 }
 .examples button:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
@@ -215,7 +213,7 @@ body{
 }
 .rbox.increase{background:#e6f9f0;border-color:#a3e4c4;}
 .rbox.decrease{background:#fde8e8;border-color:#f5b4b4;}
-.rbox .rl{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:4px;}
+.rbox .rl{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:4px;}
 .rbox.increase .rl{color:#15804d;}
 .rbox.decrease .rl{color:#b91c1c;}
 .rbox .rv{font-family:'Sriracha',cursive;font-size:40px;line-height:1;word-break:break-all;}
@@ -231,7 +229,7 @@ body{
   display:inline-flex;align-items:center;gap:3px;
   margin-top:6px;
   background:#1a3a35;border:none;border-radius:4px;
-  padding:4px 10px;font-size:10px;font-weight:700;color:#7dffc4;
+  padding:4px 10px;font-size:12px;font-weight:700;color:#7dffc4;
   cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .12s;
 }
 .cbtn:hover{opacity:.8;}
@@ -247,7 +245,7 @@ body{
   cursor:pointer;transition:all .12s;
 }
 .reset-btn:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
-.hist-clear{background:none;border:none;font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;color:#999;cursor:pointer;text-decoration:underline;}
+.hist-clear{background:none;border:none;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;color:#6b6b6b;cursor:pointer;text-decoration:underline;}
 .hist-clear:hover{color:#1a3a35;}
 .hist{list-style:none;display:flex;flex-direction:column;gap:4px;}
 .hist button{
@@ -261,23 +259,23 @@ body{
 .hist .hp{font-weight:800;flex-shrink:0;}
 .hist .hp.up{color:#0d6b3e;}
 .hist .hp.down{color:#b91c1c;}
-.hist-note{font-size:10px;color:#aaa;margin-top:8px;}
+.hist-note{font-size:12px;color:#6b6b6b;margin-top:8px;}
 
 /* Chart */
 .chart-area{margin-bottom:12px;}
-.chart-area .ch-title{font-size:11px;font-weight:700;color:#999;margin-bottom:6px;}
+.chart-area .ch-title{font-size:12px;font-weight:700;color:#6b6b6b;margin-bottom:6px;}
 .bar-row{display:flex;align-items:center;gap:5px;margin-bottom:4px;}
-.bar-label{width:40px;font-size:10px;font-weight:700;color:#888;text-align:right;flex-shrink:0;}
+.bar-label{width:40px;font-size:12px;font-weight:700;color:#6b6b6b;text-align:right;flex-shrink:0;}
 .bar-track{flex:1;height:18px;background:#eae7e0;border-radius:3px;overflow:hidden;min-width:0;}
 .bar-fill{height:100%;border-radius:3px;transition:width .35s;}
 .bar-fill.orig{background:#bbb;}
 .bar-fill.newv{background:#1a3a35;}
 .bar-fill.decr{background:#c0392b;}
-.bar-val{font-size:11px;font-weight:700;color:#333;min-width:36px;flex-shrink:0;text-align:right;}
+.bar-val{font-size:12px;font-weight:700;color:#333;min-width:36px;flex-shrink:0;text-align:right;}
 
 /* Steps */
 .steps-box{background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:12px 14px;margin-bottom:12px;}
-.steps-box .st{font-size:11px;font-weight:800;color:#1a3a35;margin-bottom:6px;}
+.steps-box .st{font-size:12px;font-weight:800;color:#1a3a35;margin-bottom:6px;}
 .steps-box pre{font-family:'Courier New',monospace;font-size:12px;color:#555;line-height:1.8;white-space:pre-wrap;word-break:break-word;}
 .steps-box pre .hl{color:#0d6b3e;font-weight:700;}
 
@@ -289,7 +287,7 @@ body{
 /* Accordion */
 .acc-h{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;user-select:none;}
 .acc-h .nb-title{margin:0;border:0;padding:0;flex:1;}
-.acc-h .chevron{font-size:18px;color:#999;transition:transform .25s;display:inline-block;}
+.acc-h .chevron{font-size:18px;color:#6b6b6b;transition:transform .25s;display:inline-block;}
 .acc-h.open .chevron{transform:rotate(180deg);}
 .acc-b{max-height:0;overflow:hidden;transition:max-height .3s ease;}
 .acc-b.open{max-height:4000px;}
@@ -301,16 +299,10 @@ body{
   background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
   font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#555;cursor:pointer;
 }
-.has-suf~.pm{right:28px;}
-@media (pointer:coarse){
-  .pm{display:flex;}
-  .field input{padding-right:46px;}
-  .field input.has-suf{padding-right:66px;}
-}
 .tr-acts{display:flex;gap:6px;flex-shrink:0;}
 
 /* Decimal places */
-.dp-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed #d4cfc6;font-size:12px;font-weight:700;color:#555;}
+.dp-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed #d4cfc6;font-size:12px;font-weight:700;color:#555;}
 .seg{display:inline-flex;border:1px solid #d4cfc6;border-radius:4px;overflow:hidden;}
 .seg button{padding:5px 11px;background:#f0ede6;border:none;border-left:1px solid #d4cfc6;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#666;cursor:pointer;}
 .seg button:first-child{border-left:none;}
@@ -321,7 +313,7 @@ body{
 .xl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .xl-row code{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:#1a3a35;background:#fff;border:1px solid #d4cfc6;border-radius:4px;padding:4px 8px;}
 .xl-row .cbtn{margin-top:0;}
-.xl-note{font-size:11px;color:#888;margin-top:6px;line-height:1.5;}
+.xl-note{font-size:12px;color:#6b6b6b;margin-top:6px;line-height:1.5;}
 
 /* Batch + chained tools */
 .tools{max-width:960px;margin:0 auto;padding:0 20px 8px;}
@@ -338,10 +330,10 @@ body{
 .b-sum b{color:#1a3a35;}
 .b-wrap{overflow-x:auto;border:1px solid #d4cfc6;border-radius:5px;background:#fff;margin-bottom:4px;}
 .b-tbl{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;}
-.b-tbl th{background:#f0ede6;color:#555;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:7px 10px;white-space:nowrap;}
+.b-tbl th{background:#f0ede6;color:#555;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:7px 10px;white-space:nowrap;}
 .b-tbl td{padding:6px 10px;border-top:1px solid #eae7e0;text-align:right;white-space:nowrap;color:#333;}
 .b-tbl th:nth-child(-n+2),.b-tbl td:nth-child(-n+2){text-align:left;}
-.b-tbl td:first-child{color:#aaa;}
+.b-tbl td:first-child{color:#6b6b6b;}
 .b-tbl.nolabel .b-lab{display:none;}
 .b-tbl .up{color:#0d6b3e;font-weight:800;}
 .b-tbl .down{color:#b91c1c;font-weight:800;}
@@ -355,17 +347,94 @@ body{
 @media(max-width:640px){.c-grid{grid-template-columns:1fr;}}
 .c-step{display:flex;align-items:flex-end;gap:6px;}
 .c-step>div{flex:1;}
-.c-del{flex-shrink:0;width:34px;height:40px;background:none;border:1px solid #d4cfc6;border-radius:5px;font-size:18px;color:#999;cursor:pointer;}
+.c-del{flex-shrink:0;width:34px;height:40px;background:none;border:1px solid #d4cfc6;border-radius:5px;font-size:18px;color:#6b6b6b;cursor:pointer;}
 .c-del:hover{color:#c0392b;border-color:#c0392b;}
 .c-res .rbox{margin-bottom:10px;}
 .c-res .rbox .rv{font-size:34px;}
 .c-note{font-size:12px;color:#555;background:#f5f3ee;border:1px solid #d4cfc6;border-radius:5px;padding:9px 11px;line-height:1.55;margin-bottom:10px;}
 .c-res .b-tbl td:first-child{color:#555;}
-.c-empty{font-size:13px;color:#999;padding:12px 0;}
+.c-empty{font-size:13px;color:#6b6b6b;padding:12px 0;}
 .c-res .b-tbl th:nth-child(2),.c-res .b-tbl td:nth-child(2){text-align:right;}
 
+/* === LAYOUT: calculator, then result, then the rest (phones get the result right under the inputs) === */
+.main{grid-template-areas:"calc res" "rest res";row-gap:0;}
+.main>.o-calc{grid-area:calc;}
+.right-col{grid-area:res;}
+.left-col{grid-area:rest;}
+@media(max-width:800px){.main{grid-template-areas:"calc" "res" "rest";}}
+
+/* Accessibility helpers */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:#7dffc4;color:#1a3a35;font-weight:800;padding:10px 14px;border-radius:6px;text-decoration:none;}
+.skip:focus{top:10px;}
+[id]{scroll-margin-top:calc(var(--navh,58px) + 48px);}
+button.acc-h{width:100%;background:none;border:0;font:inherit;color:inherit;text-align:left;}
+button.acc-h:focus-visible{outline:2px solid #1a3a35;outline-offset:2px;border-radius:4px;}
+.quick-desc{font-size:13px;color:#6b6b6b;margin-bottom:10px;}
+.chart-note{font-size:12px;color:#6b6b6b;margin-top:4px;font-style:italic;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  .fi1,.fi2,.fi3{opacity:1!important;}
+}
+
+/* Phones: solid header with its links in a scrolling row, shorter hero, one row of presets */
+@media(max-width:600px){
+  .topnav{flex-wrap:wrap;row-gap:6px;padding:10px 16px 8px;}
+  .topnav .links{display:flex;width:100%;overflow-x:auto;gap:18px;scrollbar-width:none;}
+  .topnav .links::-webkit-scrollbar{display:none;}
+  .topnav .links a{font-size:14px;white-space:nowrap;padding:4px 0;}
+  .hero{padding:22px 16px 18px;}
+  .hero p{font-size:14px;}
+  .examples{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-4px;padding:2px 4px;}
+  .examples::-webkit-scrollbar{display:none;}
+  .examples button{flex-shrink:0;}
+  .rev-row .field{flex-basis:100%;}
+  .rev-result{text-align:left;padding:4px 0 0;}
+}
+
+/* Touch screens: ± outside the typing area, and 44px tap targets */
+@media (pointer:coarse){
+  .iw{display:flex;gap:6px;}
+  .iw input{flex:1;min-width:0;}
+  .pm{display:flex;position:static;transform:none;width:44px;height:auto;min-height:44px;flex-shrink:0;}
+  .reset-btn,.examples button,.cbtn,.hist-clear,.c-del,.seg button{min-height:44px;}
+  .seg button{min-width:44px;}
+  .hist button{min-height:44px;}
+  .examples button{padding:8px 12px;}
+  .c-del{width:44px;height:44px;}
+}
+
+/* Batch rows to check, and notes */
+.b-tbl tr.warn td{background:#fff6e0;}
+.b-tbl tr.warn-note td{background:#fff6e0;color:#7a5200;font-size:12px;white-space:normal;text-align:left;border-top:0;padding-top:0;}
+.b-sum span.b-note{background:#fff6e0;border-color:#e8c98a;color:#7a5200;}
+.reset-btn:disabled{opacity:.55;cursor:default;}
+.reset-btn:disabled:hover{background:#f0ede6;color:#555;border-color:#d4cfc6;}
+
+/* Re-check fixes */
+.f-src{margin-top:8px;font-size:12px;}
+#cAdd{margin-top:8px;}
+.right-col .rel{margin-top:0;}
+@media(max-width:600px){.topnav .links{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent);padding-right:24px;}}
+@media (pointer:coarse){
+  .topnav .links a,.rel a,.site-footer a{display:inline-flex;align-items:center;min-height:44px;}
+  .hist-clear{padding:0 12px;}
+  .site-footer .f-links{flex-wrap:wrap;row-gap:0;}
+}
+
+/* Feedback entry: outlined, one step quieter than the dark action buttons */
+.nl .cbtn{min-height:34px;padding:6px 12px;}
+.fb-btn{background:transparent;color:#1a3a35;border:1.5px solid #1a3a35;gap:5px;}
+.fb-btn:hover{background:#1a3a35;color:#7dffc4;opacity:1;}
+.fb-hint{font-size:12px;color:#6b6b6b;margin-top:6px;line-height:1.5;}
+.fb-hint a{color:#1a3a35;}
+.nl .fb-hint{margin-bottom:0;}
+.f-fbbtn{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid #2a5a50;border-radius:4px;color:#7dffc4;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;padding:6px 12px;min-height:34px;cursor:pointer;}
+.f-fbbtn:hover{background:#7dffc4;color:#1a3a35;}
+@media (pointer:coarse){.f-fbbtn{min-height:44px;}}
+
 /* Disclaimer */
-.disc{font-size:10px;color:#aaa;padding:8px;background:#f5f3ee;border-radius:4px;line-height:1.5;}
+.disc{font-size:12px;color:#6b6b6b;padding:8px;background:#f5f3ee;border-radius:4px;line-height:1.5;}
 
 /* === SEO (on the chalkboard, chalk-colored text) === */
 .seo{max-width:680px;margin:0 auto;padding:40px 20px 16px;color:#c5d8d0;}
@@ -376,20 +445,24 @@ body{
 .seo p{font-size:14px;color:#9bbfb3;line-height:1.7;margin-bottom:10px;}
 .seo strong{color:#e8e0d4;}
 .seo p a{color:#7dffc4;text-decoration:underline;text-underline-offset:2px;}
+.seo table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:14px;font-variant-numeric:tabular-nums;}
+.seo th,.seo td{padding:7px 10px;border-bottom:1px solid #2a5a50;text-align:right;color:#c5d8d0;}
+.seo th{color:#e8e0d4;font-weight:700;border-bottom-width:2px;}
+.seo th:first-child,.seo td:first-child{text-align:left;}
 .seo code{font-family:'Courier New',monospace;background:rgba(125,255,196,0.1);padding:1px 5px;border-radius:3px;font-size:12px;color:#7dffc4;}
 
 /* === FOOTER === */
 .site-footer{
   background:#122a26;
   border-top:3px solid #2a5a50;
-  color:#7ab8a6;padding:24px;text-align:center;font-size:11px;
+  color:#7ab8a6;padding:24px;text-align:center;font-size:12px;
 }
 .site-footer .fb{
   font-family:'Sriracha',cursive;font-size:16px;color:#7dffc4;margin-bottom:6px;
 }
 .site-footer a{color:#7ab8a6;text-decoration:none;}
 .site-footer a:hover{color:#7dffc4;}
-.site-footer .f-links{margin-top:8px;display:flex;gap:16px;justify-content:center;font-size:11px;}
+.site-footer .f-links{margin-top:8px;display:flex;gap:16px;justify-content:center;font-size:12px;}
 
 /* Anim */
 @keyframes fU{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -408,11 +481,14 @@ body{
 </style>
 </head>
 <body>
+<a class="skip" href="#calculator">Skip to calculator</a>
+<div class="sr-only" id="srStatus" role="status" aria-live="polite"></div>
 
 <!-- NAV -->
 <nav class="topnav">
   <a class="logo" href="/"><span class="pct">%</span> Percentage Increase Calculator</a>
   <div class="links">
+    <a href="/">Home</a>
     <a href="#calculator">Calculator</a>
     <a href="#how-it-works">How It Works</a>
     <a href="#batch">Batch</a>
@@ -427,6 +503,7 @@ body{
   <span class="sv" id="stV">—</span>
 </div>
 
+<main id="main">
 <!-- HERO -->
 <div class="hero fi" id="calculator" style="position:relative;overflow:hidden;">
   <span class="hero-deco" style="top:10%;left:5%;transform:rotate(-12deg);">Δ</span>
@@ -440,10 +517,8 @@ body{
 
 <!-- MAIN -->
 <div class="main">
-<div class="left-col">
-
 <!-- CALCULATOR CARD -->
-<div class="nb fi fi1">
+<div class="nb fi fi1 o-calc">
   <div class="nb-title tr">Price Change <span class="tr-acts"><button type="button" class="reset-btn" id="swapBtn" title="Swap original and new values">⇄ Swap</button><button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></span></div>
 
   <div class="examples" id="scenes">
@@ -455,69 +530,26 @@ body{
 
   <div class="field">
     <label for="origVal">Original Price</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="origVal" placeholder="e.g. 49.99" data-role="orig"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
+    <div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" id="origVal" aria-describedby="warnOrig" placeholder="e.g. 49.99" data-role="orig"></div>
     <div class="field-warn" id="warnOrig"></div>
   </div>
   <div class="field">
     <label for="newVal">New Price</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="newVal" placeholder="e.g. 54.99" data-role="new"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
+    <div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" id="newVal" aria-describedby="warnNew" placeholder="e.g. 54.99" data-role="new"></div>
     <div class="field-warn" id="warnNew"></div>
   </div>
   <div class="field">
-    <label for="pctVal">Price Increase</label>
-    <div class="iw"><input type="text" inputmode="decimal" id="pctVal" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div>
-    <div class="field-sub">Fill any two — the third auto-calculates</div>
+    <label for="pctVal">Price Change</label>
+    <div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" id="pctVal" aria-describedby="warnPct" placeholder="auto" class="has-suf" data-role="pct"><span class="suf">%</span></div>
+    <div class="field-sub">Fill in any two and the third is worked out for you</div>
     <div class="field-warn" id="warnPct"></div>
   </div>
   <div class="dp-row">
     <span>Decimal places</span>
     <div class="seg" id="dpSeg" role="group" aria-label="Decimal places">
-      <button type="button" data-dp="0">0</button><button type="button" data-dp="1">1</button><button type="button" data-dp="2">2</button><button type="button" data-dp="3">3</button><button type="button" data-dp="4">4</button>
+      <button type="button" data-dp="0" aria-pressed="false">0</button><button type="button" data-dp="1" aria-pressed="false">1</button><button type="button" data-dp="2" aria-pressed="false">2</button><button type="button" data-dp="3" aria-pressed="false">3</button><button type="button" data-dp="4" aria-pressed="false">4</button>
     </div>
   </div>
-</div>
-
-<!-- QUICK CALC -->
-<div class="nb fi fi2">
-  <div class="nb-title tr">Apply a Price Increase <button type="button" class="reset-btn" id="revReset" title="Clear quick calculator">↺ Reset</button></div>
-  <p style="font-size:12px;color:#888;margin-bottom:10px;">What does a price become after a <strong>Y%</strong> increase?</p>
-  <div class="rev-row">
-    <div class="field"><label for="revBase">Current Price</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="e.g. 80"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
-    <div class="field"><label for="revPct">Raise by</label><div class="iw"><input type="text" inputmode="decimal" id="revPct" placeholder="12" class="has-suf"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
-    <div class="rev-result" id="revResult">—</div>
-  </div>
-</div>
-
-<!-- STEPS -->
-<div class="nb fi fi3" id="how-it-works">
-  <div class="acc-h" id="stepsH">
-    <div class="nb-title">Calculation Steps</div>
-    <span class="chevron">▾</span>
-  </div>
-  <div class="acc-b open" id="stepsB">
-    <div class="steps-box">
-      <div class="st">Formula & Steps</div>
-      <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
-    </div>
-    <div class="steps-box xl" id="xlBox" style="display:none;">
-      <div class="st">In Excel or Google Sheets</div>
-      <div class="xl-row"><code id="xlF">=(B2-A2)/ABS(A2)</code><button class="cbtn" id="xlCopy">Copy formula</button></div>
-      <div class="xl-note" id="xlNote"></div>
-    </div>
-  </div>
-</div>
-
-<!-- RELATED -->
-<div class="nb fi fi3">
-  <div class="nb-title">Related Calculators</div>
-  <div class="rel">
-    <a href="/">Percentage Increase Calculator</a>
-<a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
-<a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
-<a href="/rate-increase-calculator/">Rate Increase Calculator</a>
-  </div>
-</div>
-
 </div>
 
 <!-- RIGHT: RESULT -->
@@ -536,7 +568,9 @@ body{
       <button class="cbtn" id="copyBtn" style="display:none;">Copy sentence</button>
       <button class="cbtn" id="copyPct" style="display:none;">Copy %</button>
       <button class="cbtn" id="shareBtn" style="display:none;">Share link</button>
+      <button type="button" class="cbtn fb-btn" data-feedback-open aria-haspopup="dialog"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/></svg> Give feedback</button>
     </div>
+  <p class="fb-hint">Report a problem or suggest an improvement. We read every message but can't reply. <a href="/privacy.html#feedback">How feedback is handled</a></p>
   </div>
 
   <div class="chart-area" id="chartArea" style="display:none;">
@@ -551,11 +585,11 @@ body{
       <div class="bar-track"><div class="bar-fill newv" id="barNew"></div></div>
       <span class="bar-val" id="barNewV">—</span>
     </div>
-    <div id="chartNote" style="display:none;font-size:10px;color:#aaa;margin-top:4px;font-style:italic;"></div>
+    <div id="chartNote" class="chart-note" style="display:none;"></div>
   </div>
 
   <div class="disc">Results update as you type. This tool provides estimates only.</div>
-  <div class="disc" style="margin-top:6px;" data-nosnippet>Need to show someone? Tap Share link — it opens with your numbers already filled in.</div>
+  <div class="disc" style="margin-top:6px;" data-nosnippet>Need to show someone? Tap Share link. It opens with your numbers already filled in.</div>
 </div>
 
 <!-- HISTORY -->
@@ -564,6 +598,51 @@ body{
   <ul class="hist" id="histList"></ul>
   <div class="hist-note">Saved only in this browser. Tap one to load it again.</div>
 </div>
+
+<!-- RELATED -->
+<div class="nb fi fi3">
+  <div class="nb-title">Related Calculators</div>
+  <div class="rel">
+    <a href="/">Percentage Increase Calculator</a>
+<a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
+<a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
+<a href="/rate-increase-calculator/">Rate Increase Calculator</a>
+  </div>
+</div>
+</div>
+
+<div class="left-col">
+<!-- QUICK CALC -->
+<div class="nb fi fi2">
+  <div class="nb-title tr">Apply a Price Increase <button type="button" class="reset-btn" id="revReset" title="Clear quick calculator">↺ Reset</button></div>
+  <p class="quick-desc">What does a price become after a <strong>Y%</strong> increase?</p>
+  <div class="rev-row">
+    <div class="field"><label for="revBase">Current Price</label><div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" id="revBase" placeholder="e.g. 80"></div></div>
+    <div class="field"><label for="revPct">Raise by</label><div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" id="revPct" placeholder="12" class="has-suf"><span class="suf">%</span></div></div>
+    <div class="rev-result" id="revResult" aria-live="polite">—</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="nb fi fi3" id="how-it-works">
+  <button type="button" class="acc-h open" id="stepsH" aria-expanded="true" aria-controls="stepsB">
+    <span class="nb-title">Calculation Steps</span>
+    <span class="chevron" aria-hidden="true">▾</span>
+  </button>
+  <div class="acc-b open" id="stepsB">
+    <div class="steps-box">
+      <div class="st">Formula & Steps</div>
+      <pre id="stepsText">Enter two values above to see the step-by-step calculation.</pre>
+    </div>
+    <div class="steps-box xl" id="xlBox" style="display:none;">
+      <div class="st">In Excel or Google Sheets</div>
+      <div class="xl-row"><code id="xlF">=(B2-A2)/ABS(A2)</code><button class="cbtn" id="xlCopy">Copy formula</button></div>
+      <div class="xl-note" id="xlNote"></div>
+    </div>
+  </div>
+</div>
+
+
 </div>
 </div>
 
@@ -576,7 +655,7 @@ body{
   <p class="tool-desc">Paste one pair per line: original value, then new value. Rows copied from Excel or Google Sheets work as they are, and you can put a name in front of each pair.</p>
   <textarea id="bIn" rows="6" spellcheck="false" aria-label="Values to compare, one pair per line" placeholder="Rent  1500  1650&#10;Coffee  3.49  4.19&#10;Salary  55000  62000"></textarea>
   <div id="bOut" style="display:none;">
-    <div class="b-sum" id="bSum"></div>
+    <div class="b-sum" id="bSum" aria-live="polite"></div>
     <div class="b-wrap"><table class="b-tbl" id="bTbl"><thead><tr><th>#</th><th class="b-lab">Item</th><th>Original</th><th>New</th><th class="b-chg">Change</th><th>% Change</th></tr></thead><tbody id="bBody"></tbody></table></div>
     <div class="acts"><button class="cbtn" id="bCopy">Copy table</button><button class="cbtn" id="bCsv">Download CSV</button></div>
   </div>
@@ -588,7 +667,7 @@ body{
   <p class="tool-desc">Apply several percentage changes one after another, like +20% and then −10%. The total is not the sum of the steps, because each step starts from the new amount. This shows the real result.</p>
   <div class="c-grid">
     <div>
-      <div class="field"><label for="cStart">Starting value</label><div class="iw"><input type="text" inputmode="decimal" id="cStart" placeholder="100"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div>
+      <div class="field"><label for="cStart">Starting value</label><div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" id="cStart" placeholder="100"></div></div>
       <div id="cSteps"></div>
       <button type="button" class="reset-btn" id="cAdd">+ Add step</button>
     </div>
@@ -665,6 +744,7 @@ body{
 <h3>Mixing up percentage points and percent</h3>
 
 <p>A fee going from 2% to 3% went up one percentage point and 50%. Both are true. Whoever is announcing the change will pick the one that sounds smaller.</p>
+<p>Working with plain numbers instead? The <a href="/">main calculator</a> on our homepage takes any two values, and adds batch lists and chained changes.</p>
 
 <h2>Frequently Asked Questions</h2>
 <h3>How do I work out the percentage increase of a price?</h3>
@@ -691,10 +771,12 @@ body{
 </div>
 </div>
 
+</main>
+
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="fb">Percentage Increase Calculator</div>
-  Free tool — not financial advice. Results are for informational purposes only.
+  Free tool, not financial advice. Results are for informational purposes only.
   <div class="f-links">
     <a href="/">Home</a>
     <a href="#calculator">Calculator</a>
@@ -706,138 +788,186 @@ body{
     <a href="/terms.html">Terms of Service</a>
     <a href="/cookie-policy.html">Cookie Policy</a>
   </div>
-  <div style="margin-top:8px;font-size:11px;">Open source on <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">Percentage Increase Calculator</a></div>
+  <div class="f-links f-fb"><button type="button" class="f-fbbtn" data-feedback-open aria-haspopup="dialog"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/></svg> Give feedback</button></div>
+  <div class="f-src">Open source on <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">GitHub</a></div>
 </footer>
 
+<script src="/feedback-widget.js" data-feedback-manual data-feedback-lang="en" defer></script>
+<script src="/feedback-skin.js" defer></script>
 <script>window.PAGE_TERMS={};</script>
 <script>
 // ===== STATE =====
-let lastEdited = ['orig','new'];
-let lastSolved = null;
-let cur = null;        // current result {o,n,p}
+let lastSolved = null; // the field the calculator filled in itself ('orig' | 'new' | 'pct')
+let snap = null;       // values before the user started overwriting a calculated field
+let cur = null;        // current result {o,n,p,s}
 let skipSave = false;  // presets, shared links and history restores don't go into history
 let _ht = null;
 
 const $=id=>document.getElementById(id);
 function track(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}}
 const T=Object.assign({inc:'increase',dec:'decrease',incLabel:'Percentage Increase',decLabel:'Percentage Decrease'},window.PAGE_TERMS||{});
-// Accepts what people paste: $1,200 / 15% / −3.5 / 12. (while typing)
-function clean(s){return String(s).replace(/[\s,$€£¥₹%]/g,'').replace(/[−–]/g,'-');}
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ===== NUMBERS =====
+// Accepts what people paste: $1,200 / 15% / −3.5 / +5 / (1,200) / 1.234,56 / 3,50 / 74.99 USD / 1e3
+function clean(s){
+  let c=String(s).trim().replace(/[−–]/g,'-').replace(/\b(usd|eur|gbp|cad|aud|nzd|inr|jpy|cny|rmb|chf)\b/gi,'').replace(/[\s$€£¥₹%']/g,'');
+  let neg=false;
+  if(/^\(.*\)$/.test(c)){neg=true;c=c.slice(1,-1);}
+  if(/^[+-]?\d{1,3}(\.\d{3})+,\d+$/.test(c))c=c.replace(/\./g,'').replace(',','.'); // 1.234,56
+  else if(/^[+-]?\d+,\d{1,2}$/.test(c))c=c.replace(',','.');                        // 3,50
+  else c=c.replace(/,/g,'');
+  if(c[0]==='+')c=c.slice(1);
+  return neg&&c[0]!=='-'?'-'+c:c;
+}
 function pn(s){
   const c=clean(s);
-  if(c===''||c==='-'||c==='.'||c==='-.')return NaN;
-  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(c))return NaN;
-  return parseFloat(c);
+  if(!/^-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(c))return NaN;
+  const v=parseFloat(c);
+  return isFinite(v)?v:NaN;
 }
 function isNum(s){return !isNaN(pn(s));}
+function symOf(){for(const r of arguments){const m=String(r).match(/[$€£¥₹]/);if(m)return m[0];}return '';}
+
 let DP=2;
 try{const d=parseInt(localStorage.getItem('pic_dp'),10);if(d>=0&&d<=4)DP=d;}catch(e){}
-function rd(n){const f=Math.pow(10,DP);return Math.round(n*f)/f;}
-function fm(n){
+function rdTo(n,d){const f=Math.pow(10,d);return Math.round(n*f)/f;}
+function rd(n){return rdTo(n,DP);}
+// Rounded to the chosen decimal places, but a non-zero value is never shown as 0
+function fmD(n,d){
   if(!isFinite(n))return '—';
-  if(n!==0&&Math.abs(n)<1e-4&&DP>=2)return n.toPrecision(3);
-  const r=rd(n);
+  const r=rdTo(n,d);
+  if(r===0&&n!==0)return n.toLocaleString('en-US',{maximumSignificantDigits:3});
   if(r===0)return '0';
   if(Number.isInteger(r))return r.toLocaleString('en-US');
-  return r.toLocaleString('en-US',{minimumFractionDigits:DP,maximumFractionDigits:DP});
+  return r.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+}
+function fm(n){return fmD(n,DP);}
+const plain=n=>n!==0&&Math.abs(n)<1e-15?n.toExponential():n.toLocaleString('en-US',{useGrouping:false,maximumFractionDigits:20}); // exponent only for extremely small values
+const sig=n=>Number(n.toPrecision(12));
+const money=(n,s)=>s?(n<0?'-':'')+s+fm(Math.abs(n)):fm(n);
+const signed=(n,s)=>(n>0?'+':n<0?'-':'')+(s||'')+fm(Math.abs(n));
+// Two numbers formatted with just enough decimals to tell them apart
+function fmPair(a,b){for(let d=DP;d<=8;d++){const x=fmD(a,d),y=fmD(b,d);if(x!==y)return [x,y];}return [fmD(a,DP),fmD(b,DP)];}
+
+// Percentage math always measures against |original|, so negative bases move the right way
+const applyPct=(o,p)=>o+Math.abs(o)*p/100;
+function origFrom(n,p){
+  const a=n/(1+p/100);if(isFinite(a)&&a>0)return a;   // positive original
+  const b=n/(1-p/100);if(isFinite(b)&&b<0)return b;   // negative original
+  return NaN;
 }
 
-function clearWarnings(){['warnOrig','warnNew','warnPct'].forEach(id=>{const el=$(id);el.style.display='none';el.textContent='';el.removeAttribute('data-active');});}
-function showWarn(id,msg){const el=$(id);el.textContent='⚠ '+msg;el.style.display='block';el.setAttribute('data-active','1');}
+const warnFor={warnOrig:'origVal',warnNew:'newVal',warnPct:'pctVal'};
+let _sw=null; // warnings have their own announcement timer (clearing the result must not cancel it)
+function clearWarnings(){clearTimeout(_sw);Object.keys(warnFor).forEach(id=>{const el=$(id);el.style.display='none';el.textContent='';el.removeAttribute('data-active');$(warnFor[id]).removeAttribute('aria-invalid');});}
+function showWarn(id,msg){const el=$(id);el.textContent='⚠ '+msg;el.style.display='block';el.setAttribute('data-active','1');$(warnFor[id]).setAttribute('aria-invalid','true');clearTimeout(_sw);_sw=setTimeout(()=>{$('srStatus').textContent=msg;},900);}
 
-function calc(){
+// ===== MAIN CALCULATOR =====
+const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
+function calc(role){
   clearWarnings();
   const oRaw=$('origVal').value.trim();
   const nRaw=$('newVal').value.trim();
   const pRaw=$('pctVal').value.trim();
 
+  const typing=v=>/^([-+.]|-\.)$/.test(v); // a sign or dot on its own: still typing
   let hasError=false;
-  if(oRaw!==''&&!isNum(oRaw)){showWarn('warnOrig','Please enter a valid number');hasError=true;}
-  if(nRaw!==''&&!isNum(nRaw)){showWarn('warnNew','Please enter a valid number');hasError=true;}
-  if(pRaw!==''&&!isNum(pRaw)){showWarn('warnPct','Please enter a valid number');hasError=true;}
+  if(oRaw!==''&&!typing(oRaw)&&!isNum(oRaw)){showWarn('warnOrig','Please enter a valid number');hasError=true;}
+  if(nRaw!==''&&!typing(nRaw)&&!isNum(nRaw)){showWarn('warnNew','Please enter a valid number');hasError=true;}
+  if(pRaw!==''&&!typing(pRaw)&&!isNum(pRaw)){showWarn('warnPct','Please enter a valid number');hasError=true;}
   if(hasError){clearResult();updateReverse();return;}
 
-  const hasO=oRaw!==''&&isNum(oRaw);
-  const hasN=nRaw!==''&&isNum(nRaw);
-  const hasP=pRaw!==''&&isNum(pRaw);
-  const filled=[hasO?'orig':null,hasN?'new':null,hasP?'pct':null].filter(Boolean);
+  const filled=['orig','new','pct'].filter(r=>{const v=$(roleToId[r]).value.trim();return v!==''&&!typing(v);});
+  if(filled.length<2){clearResult();updateReverse();return;}
 
-  let orig,newv,pct,mode='none';
-  if(filled.length>=2){
-    // All three filled: recompute the field the calculator filled itself, never one the user typed
-    const solve=filled.length===3?
-      (lastSolved&&filled.includes(lastSolved)?lastSolved:(['orig','new','pct'].find(x=>!lastEdited.includes(x))||'pct')):
-      ['orig','new','pct'].find(x=>!filled.includes(x));
+  // Which field to work out:
+  // - two filled: the empty one
+  // - three filled: the one the calculator filled before, unless that is the one being typed in;
+  //   then its partner (typing a % recalculates the new value, typing a new value recalculates the %)
+  let solve;
+  if(filled.length===2)solve=['orig','new','pct'].find(r=>!filled.includes(r));
+  else if(lastSolved&&lastSolved!==role)solve=lastSolved;
+  else solve=role==='pct'?'new':'pct';
 
-    if(solve==='pct'){
-      orig=pn(oRaw);newv=pn(nRaw);
-      if(orig===0){showWarn('warnOrig','Cannot calculate: original value is 0 (division by zero)');clearResult();updateReverse();return;}
-      pct=((newv-orig)/Math.abs(orig))*100;mode='pct';
-    }
-    else if(solve==='new'){orig=pn(oRaw);pct=pn(pRaw);newv=orig*(1+pct/100);mode='new';}
-    else{newv=pn(nRaw);pct=pn(pRaw);
-      if(pct===-100){showWarn('warnPct','Cannot calculate: -100% means original would be infinite');clearResult();updateReverse();return;}
-      orig=newv/(1+pct/100);mode='orig';
-    }
-
-    lastSolved=mode;
-    if(mode==='pct')$('pctVal').value=String(rd(pct));
-    if(mode==='new')$('newVal').value=fm(newv);
-    if(mode==='orig')$('origVal').value=fm(orig);
-
-    updateResult(orig,newv,pct);
+  const s=symOf(oRaw,nRaw);
+  let orig,newv,pct;
+  if(solve==='pct'){
+    orig=pn(oRaw);newv=pn(nRaw);
+    if(orig===0){showWarn('warnOrig','Cannot calculate: the original value is 0, and a change from 0 has no percentage');clearResult();updateReverse();return;}
+    pct=(newv-orig)/Math.abs(orig)*100;
+  }else if(solve==='new'){
+    orig=pn(oRaw);pct=pn(pRaw);newv=applyPct(orig,pct);
   }else{
-    clearResult();
+    newv=pn(nRaw);pct=pn(pRaw);orig=origFrom(newv,pct);
+    if(isNaN(orig)){showWarn('warnPct','No original value gives this new value with this percentage');clearResult();updateReverse();return;}
   }
+
+  lastSolved=solve;
+  const box=$(roleToId[solve]);
+  if(!(solve===role&&document.activeElement===box)){
+    // written without thousands commas, so backspacing "1,150" can't turn into the decimal "1,15"
+    if(solve==='pct')box.value=fm(pct).replace(/,/g,'');
+    if(solve==='new')box.value=money(newv,s).replace(/,/g,'');
+    if(solve==='orig')box.value=money(orig,s).replace(/,/g,'');
+  }
+
+  updateResult(orig,newv,pct,s);
   updateReverse();
 }
 
-function updateResult(orig,newv,pct){
-  const isInc=pct>=0;
-  const diff=newv-orig;
-  const box=$('resultBox');
-  box.className='rbox '+(isInc?'increase':'decrease');
-  $('resultLabel').textContent=isInc?T.incLabel:T.decLabel;
-  $('resultValue').textContent=(isInc?'+':'')+fm(pct)+'%';
-  $('resultDiff').textContent='Difference: '+(diff>=0?'+':'')+fm(diff);
-  $('resultArrow').textContent=isInc?'↑':'↓';
-  $('stV').textContent=(isInc?'+':'')+fm(pct)+'%';
+const stDefault=$('stL').textContent;
+let _sr=null;
+function announce(msg,now){clearTimeout(_sr);_sr=setTimeout(()=>{$('srStatus').textContent=msg;},now?0:900);}
 
-  const nlStr=`${fm(newv)} is a ${fm(Math.abs(pct))}% ${isInc?T.inc:T.dec} from ${fm(orig)}.`;
+function updateResult(orig,newv,pct,s){
+  const shown=fm(pct);
+  const isInc=pct>=0,same=newv===orig;
+  const diff=newv-orig;
+  $('resultBox').className='rbox '+(isInc?'increase':'decrease');
+  $('resultLabel').textContent=same?'No Change':isInc?T.incLabel:T.decLabel;
+  $('resultValue').textContent=same?'0%':(isInc?'+':'')+shown+'%';
+  $('resultDiff').textContent='Difference: '+signed(diff,s);
+  $('resultArrow').textContent=isInc?'↑':'↓';
+  if(lastSolved==='new'){$('stL').textContent='New value';$('stV').textContent=money(newv,s);}
+  else if(lastSolved==='orig'){$('stL').textContent='Original';$('stV').textContent=money(orig,s);}
+  else{$('stL').textContent=stDefault;$('stV').textContent=(isInc?'+':'')+shown+'%';}
+
+  const nlStr=same?`${money(newv,s)} is the same as ${money(orig,s)}: no change.`:`${money(newv,s)} is a ${fm(Math.abs(pct))}% ${isInc?T.inc:T.dec} from ${money(orig,s)}.`;
   $('nlText').textContent=nlStr;$('nlText').style.fontWeight='700';
-  $('copyBtn').style.display='';
   $('copyBtn').dataset.text=nlStr;
-  $('shareBtn').style.display='';
-  $('copyPct').style.display='';
+  ['copyBtn','copyPct','shareBtn'].forEach(id=>{$(id).style.display='';});
   showFormula();
-  cur={o:orig,n:newv,p:pct};
+  announce(nlStr);
+  cur={o:orig,n:newv,p:pct,s};
   scheduleSave();
 
   $('chartArea').style.display='';
-  const mx=Math.max(Math.abs(orig),Math.abs(newv),1);
+  const mx=Math.max(Math.abs(orig),Math.abs(newv))||1;
   $('barOrig').style.width=(Math.abs(orig)/mx*100).toFixed(1)+'%';
   $('barNew').style.width=(Math.abs(newv)/mx*100).toFixed(1)+'%';
   $('barNew').className='bar-fill '+(isInc?'newv':'decr');
-  $('barOrigV').textContent=fm(orig);
-  $('barNewV').textContent=fm(newv);
+  $('barOrigV').textContent=money(orig,s);
+  $('barNewV').textContent=money(newv,s);
 
   const cn=$('chartNote');
   if(orig<0||newv<0){cn.textContent='Note: bars show absolute values. With negative numbers, a shorter bar may represent a larger value on the number line.';cn.style.display='block';}
   else{cn.style.display='none';}
 
+  const ratio=diff/Math.abs(orig);
   $('stepsText').innerHTML=
     `<span class="hl">Formula:</span> ((New − Original) / |Original|) × 100%\n\n`+
     `<span class="hl">Step 1:</span> Difference = ${fm(newv)} − ${fm(orig)} = ${fm(diff)}\n\n`+
-    `<span class="hl">Step 2:</span> Divide by original = ${fm(diff)} / ${fm(Math.abs(orig))} = ${(diff/Math.abs(orig||1)).toFixed(6).replace(/0+$/,'').replace(/\.$/,'')}\n\n`+
-    `<span class="hl">Step 3:</span> Multiply by 100 = ${fm(pct)}%\n\n`+
+    `<span class="hl">Step 2:</span> Divide by original = ${fm(diff)} / ${fm(Math.abs(orig))} = ${fmD(ratio,Math.max(DP+2,4)).replace(/,/g,'')}\n\n`+
+    `<span class="hl">Step 3:</span> Multiply by 100 = ${shown}%\n\n`+
     `<span class="hl">Result:</span> ${fm(Math.abs(pct))}% ${isInc?T.inc:T.dec}`;
 }
 
 function showFormula(){
   const f={
     pct:['=(B2-A2)/ABS(A2)','Original in A2, new value in B2. Format the result cell as Percentage. ABS keeps the sign right when the original is negative.'],
-    new:['=A2*(1+C2)','Original in A2, percentage in C2 (type it as 15%). Gives the new value.'],
-    orig:['=B2/(1+C2)','New value in B2, percentage in C2 (type it as 15%). Gives the original value.']
+    new:['=A2+ABS(A2)*C2','Original in A2, percentage in C2 (type it as 15%). Gives the new value, also for negative originals.'],
+    orig:['=B2/(1+C2)','New value in B2, percentage in C2 (type it as 15%). Gives the original value when it is positive.']
   }[lastSolved||'pct'];
   $('xlF').textContent=f[0];$('xlNote').textContent=f[1];
   $('xlBox').style.display='';
@@ -849,61 +979,61 @@ function clearResult(){
   $('resultValue').textContent='—';
   $('resultDiff').textContent='';
   $('resultArrow').textContent='↑';
-  $('stV').textContent='—';
+  $('stL').textContent=stDefault;$('stV').textContent='—';
   $('nlText').textContent='Fill in two values to see your result in plain English.';
-  $('copyBtn').style.display='none';
-  $('shareBtn').style.display='none';
-  $('copyPct').style.display='none';
-  $('xlBox').style.display='none';
-  cur=null;clearTimeout(_ht);
-  $('chartArea').style.display='none';
-  $('chartNote').style.display='none';
+  $('nlText').style.fontWeight='';
+  ['copyBtn','copyPct','shareBtn','xlBox','chartArea','chartNote'].forEach(id=>{$(id).style.display='none';});
+  cur=null;clearTimeout(_ht);clearTimeout(_sr);
   $('stepsText').textContent='Enter two values above to see the step-by-step calculation.';
 }
 
 function updateReverse(){
   const bRaw=$('revBase').value.trim();const pRaw=$('revPct').value.trim();
   if(bRaw&&pRaw&&isNum(bRaw)&&isNum(pRaw)){
-    const b=pn(bRaw);const p=pn(pRaw);
-    const r=b*(1+p/100);
-    $('revResult').textContent=fm(r);
-    $('revResult').style.color=p>=0?'#0d6b3e':'#c0392b';
+    const p=pn(pRaw),s=symOf(bRaw);
+    $('revResult').textContent=money(applyPct(pn(bRaw),p),s);
+    $('revResult').style.color=p>=0?'#0d6b3e':'#b91c1c';
   }else{$('revResult').textContent='—';$('revResult').style.color='#0d6b3e';}
 }
 
 // Debounce
 let _dt=null;
-function calcD(){clearTimeout(_dt);_dt=setTimeout(calc,50);}
+function calcD(role){clearTimeout(_dt);_dt=setTimeout(()=>calc(role),50);}
 
 // Wire inputs
-const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
 ['origVal','newVal','pctVal'].forEach(id=>{
   $(id).addEventListener('input',()=>{
     const role=$(id).dataset.role;
     skipSave=false;
-    if(role===lastSolved)lastSolved=null; // the user is overwriting the calculated value
-    if($(id).value.trim()===''&&lastSolved&&lastSolved!==role){
-      const solvedId=roleToId[lastSolved];
-      if(solvedId)$(solvedId).value='';
+    if(role===lastSolved){
+      // the user is overwriting a calculated value: remember the numbers they had typed
+      if(!snap||snap.role!==role)snap={role,o:$('origVal').value,n:$('newVal').value,p:$('pctVal').value};
       lastSolved=null;
+    }else if(snap&&snap.role!==role)snap=null;
+    if($(id).value.trim()===''){
+      if(snap&&snap.role===role){
+        // emptied the calculated field again: put their own numbers back and recalculate it
+        $('origVal').value=snap.o;$('newVal').value=snap.n;$('pctVal').value=snap.p;$(id).value='';
+        snap=null;lastSolved=null;
+      }else if(lastSolved){
+        $(roleToId[lastSolved]).value='';lastSolved=null;
+      }
     }
-    if(!lastEdited.includes(role)){lastEdited=[lastEdited[1],role];}
-    else if(lastEdited[1]!==role){lastEdited=[lastEdited[1],role];}
-    calcD();
+    calcD(role);
   });
+  $(id).addEventListener('blur',()=>{if($(id).value.trim()==='')calc();});
 });
 let _rt=null;
-$('revBase').addEventListener('input',()=>{clearTimeout(_rt);_rt=setTimeout(updateReverse,50);});
-$('revPct').addEventListener('input',()=>{clearTimeout(_rt);_rt=setTimeout(updateReverse,50);});
+['revBase','revPct'].forEach(id=>$(id).addEventListener('input',()=>{clearTimeout(_rt);_rt=setTimeout(updateReverse,50);}));
 
 // Fill original + new and solve the percentage
+const str=x=>typeof x==='number'?plain(x):String(x);
 function setPair(o,n,skip){
   skipSave=!!skip;
-  $('origVal').value=String(o);
-  $('newVal').value=String(n);
+  $('origVal').value=str(o);
+  $('newVal').value=str(n);
   $('pctVal').value='';
-  lastEdited=['orig','new'];
-  lastSolved=null;
+  lastSolved=null;snap=null;
   calc();
 }
 
@@ -917,7 +1047,7 @@ document.querySelectorAll('#scenes button').forEach(btn=>{
 
 // Copy
 function copyText(text,btn,label,done){
-  const ok=()=>{btn.textContent=done;btn.classList.add('copied');setTimeout(()=>{btn.textContent=label;btn.classList.remove('copied');},1500);};
+  const ok=()=>{btn.textContent=done;btn.classList.add('copied');announce(done.replace(' ✓',''),true);setTimeout(()=>{btn.textContent=label;btn.classList.remove('copied');},1500);};
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(ok).catch(()=>{fbCopy(text);ok();});
   }else{fbCopy(text);ok();}
@@ -930,11 +1060,11 @@ $('copyBtn').addEventListener('click',()=>{
 function fbCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
 
 // Share link: ?from=<original>&to=<new> reopens the same calculation
-const r6=x=>Math.round(x*1e6)/1e6;
 function shareUrl(){
   const u=new URL(location.pathname,location.origin);
-  u.searchParams.set('from',r6(cur.o));
-  u.searchParams.set('to',r6(cur.n));
+  u.searchParams.set('from',plain(sig(cur.o)));
+  u.searchParams.set('to',plain(sig(cur.n)));
+  if(cur.s)u.searchParams.set('cur',cur.s);
   return u.toString();
 }
 $('shareBtn').addEventListener('click',()=>{
@@ -951,16 +1081,16 @@ $('shareBtn').addEventListener('click',()=>{
 
 // History: last 10 results, kept in this browser only
 const HKEY='pic_history';
-function hLoad(){try{const a=JSON.parse(localStorage.getItem(HKEY)||'[]');return Array.isArray(a)?a.filter(x=>x&&isFinite(x.o)&&isFinite(x.n)&&isFinite(x.p)):[];}catch(e){return [];}}
+function hLoad(){try{const a=JSON.parse(localStorage.getItem(HKEY)||'[]');return Array.isArray(a)?a.filter(x=>x&&isFinite(x.o)&&isFinite(x.n)&&isFinite(x.p)&&x.o!==0):[];}catch(e){return [];}}
 function hSave(a){try{localStorage.setItem(HKEY,JSON.stringify(a));}catch(e){}}
 function commitCur(){
   clearTimeout(_ht);
   if(!cur||skipSave)return;
-  const o=r6(cur.o),n=r6(cur.n);
+  const o=sig(cur.o),n=sig(cur.n);
   let a=hLoad();
   if(a[0]&&a[0].o===o&&a[0].n===n)return;
   a=a.filter(x=>!(x.o===o&&x.n===n));
-  a.unshift({o,n,p:r6(cur.p),t:Date.now()});
+  a.unshift({o,n,p:sig(cur.p),s:cur.s||'',t:Date.now()});
   hSave(a.slice(0,10));
   renderHist();
   track('calculate',{mode:lastSolved||'pct'});
@@ -972,9 +1102,15 @@ function renderHist(){
   list.innerHTML='';
   a.forEach(x=>{
     const up=x.p>=0,li=document.createElement('li'),b=document.createElement('button');
+    const s=['$','€','£','¥','₹'].includes(x.s)?x.s:'';
     b.type='button';
-    b.innerHTML=`<span class="hv">${fm(x.o)} → ${fm(x.n)}</span><span class="hp ${up?'up':'down'}">${up?'+':''}${fm(x.p)}%</span>`;
-    b.addEventListener('click',()=>{setPair(x.o,x.n,true);track('history_restore');});
+    b.innerHTML=`<span class="hv">${money(x.o,s)} → ${money(x.n,s)}</span><span class="hp ${up?'up':'down'}">${up?'+':''}${fm(x.p)}%</span>`;
+    b.addEventListener('click',()=>{
+      setPair(s?s+plain(x.o):x.o,s?s+plain(x.n):x.n,true);
+      const box=$('resultBox').getBoundingClientRect();
+      if(box.top<90||box.bottom>innerHeight)$('resultBox').scrollIntoView({block:'center',behavior:reduceMotion?'auto':'smooth'});
+      track('history_restore');
+    });
     li.appendChild(b);list.appendChild(li);
   });
 }
@@ -982,7 +1118,7 @@ function renderHist(){
 $('resetBtn').addEventListener('click',()=>{
   commitCur();
   ['origVal','newVal','pctVal'].forEach(id=>{$(id).value='';});
-  lastEdited=['orig','new'];lastSolved=null;skipSave=false;
+  lastSolved=null;snap=null;skipSave=false;
   calc();
   $('origVal').focus();
   track('reset',{card:'main'});
@@ -993,20 +1129,27 @@ $('revReset').addEventListener('click',()=>{
   $('revBase').focus();
   track('reset',{card:'quick'});
 });
-$('histClear').addEventListener('click',()=>{hSave([]);renderHist();track('history_clear');});
+$('histClear').addEventListener('click',()=>{hSave([]);renderHist();announce('History cleared',true);track('history_clear');});
 window.addEventListener('pagehide',commitCur);
 
 // Accordion
-$('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$('stepsB').classList.toggle('open');});
+$('stepsH').addEventListener('click',()=>{
+  const open=$('stepsB').classList.toggle('open');
+  $('stepsB').inert=!open; // keep the hidden formula button out of the Tab order
+  $('stepsH').classList.toggle('open',open);
+  $('stepsH').setAttribute('aria-expanded',String(open));
+});
 
-// Sticky
+// Sticky result bar, sitting right under the header (the header is taller on phones)
+function setNavH(){document.documentElement.style.setProperty('--navh',document.querySelector('.topnav').offsetHeight+'px');}
+setNavH();addEventListener('resize',setNavH);
 new IntersectionObserver(([e])=>{$('sticky').classList.toggle('show',!e.isIntersecting);},{threshold:0}).observe(document.querySelector('.hero'));
 
 // ===== DECIMAL PLACES =====
 function setDP(d,save){
   DP=d;
   if(save){try{localStorage.setItem('pic_dp',String(d));}catch(e){}}
-  document.querySelectorAll('#dpSeg button').forEach(b=>b.classList.toggle('on',+b.dataset.dp===d));
+  document.querySelectorAll('#dpSeg button').forEach(b=>{const on=+b.dataset.dp===d;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});
 }
 document.querySelectorAll('#dpSeg button').forEach(b=>b.addEventListener('click',()=>{
   setDP(+b.dataset.dp,true);
@@ -1019,8 +1162,8 @@ setDP(DP);
 document.addEventListener('click',e=>{
   const b=e.target.closest('.pm');if(!b)return;
   const inp=b.parentElement.querySelector('input');
-  const v=inp.value.trim();
-  inp.value=v.startsWith('-')||v.startsWith('−')?v.slice(1):'-'+v;
+  const v=inp.value.trim().replace(/^[+−–]/,m=>m==='+'?'':'-');
+  inp.value=v.startsWith('-')?v.slice(1):'-'+v;
   inp.dispatchEvent(new Event('input',{bubbles:true}));
   inp.focus();
 });
@@ -1030,7 +1173,7 @@ $('swapBtn').addEventListener('click',()=>{
   const o=$('origVal').value;
   $('origVal').value=$('newVal').value;$('newVal').value=o;
   $('pctVal').value='';
-  lastEdited=['orig','new'];lastSolved=null;skipSave=false;
+  lastSolved=null;snap=null;skipSave=false;
   calc();
   track('swap');
 });
@@ -1039,7 +1182,7 @@ $('swapBtn').addEventListener('click',()=>{
 $('copyPct').addEventListener('click',()=>{
   if(!cur)return;
   commitCur();
-  copyText((cur.p<0?'-':'')+fm(Math.abs(cur.p))+'%',$('copyPct'),'Copy %','Copied ✓');
+  copyText((cur.p<0?'-':'')+fm(Math.abs(cur.p)).replace(/,/g,'')+'%',$('copyPct'),'Copy %','Copied ✓');
   track('copy_percent');
 });
 $('xlCopy').addEventListener('click',()=>{
@@ -1048,132 +1191,172 @@ $('xlCopy').addEventListener('click',()=>{
 });
 
 // ===== BATCH =====
-// A line is "[name] original new"; separators can be tabs, semicolons, spaces or commas.
-function batchLine(line){
-  const t=line.trim();if(!t)return null;
-  let parts;
-  if(t.includes('\t'))parts=t.split('\t');
-  else if(t.includes(';'))parts=t.split(';');
+const BMAX=500;
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// A line is "[name] original new". Separators: tabs, semicolons, spaces, or commas.
+function batchLine(t){
+  let parts,mode='ws';
+  if(t.includes('\t')){parts=t.split('\t');mode='tab';}
+  else if(t.includes(';')){parts=t.split(';');mode='semi';}
   else{
     parts=t.split(/\s+/);
-    if(parts.filter(isNum).length<2)parts=t.split(/,\s+/);
-    if(parts.filter(isNum).length<2)parts=t.split(',');
+    if(parts.filter(isNum).length<2){parts=t.split(/,\s+/);mode='comma';}
+    if(parts.filter(isNum).length<2){
+      parts=t.split(',');mode='comma';
+      if(parts.filter(isNum).length>2)return {label:'',line:t,bad:'Unclear separators. Put a tab, space or semicolon between the two values'};
+    }
   }
   parts=parts.map(x=>x.trim()).filter(x=>x!=='');
-  const nums=[];let i=parts.length-1;
-  while(i>=0&&nums.length<2&&isNum(parts[i])){nums.unshift(pn(parts[i]));i--;}
-  if(nums.length<2)return {line:t,bad:'Needs two numbers'};
+  if(mode==='ws')parts=parts.map(x=>x.replace(/[,;]+$/,''));
+  const nums=[],raw=[];let i=parts.length-1;
+  while(i>=0&&nums.length<2&&isNum(parts[i])){nums.unshift(pn(parts[i]));raw.unshift(parts[i]);i--;}
   const label=parts.slice(0,i+1).join(' ').replace(/[\s,;:]+$/,'');
-  if(nums[0]===0)return {line:t,label,o:nums[0],n:nums[1],bad:'Original is 0'};
-  return {label,o:nums[0],n:nums[1],p:(nums[1]-nums[0])/Math.abs(nums[0])*100};
+  if(nums.length<2)return {label:parts.filter(x=>!isNum(x)).join(' '),line:t,bad:'Needs two numbers'};
+  if(nums[0]===0)return {label,line:t,bad:'Original is 0'};
+  const r={label,o:nums[0],n:nums[1],p:(nums[1]-nums[0])/Math.abs(nums[0])*100,s:symOf(raw[0],raw[1])};
+  // "Model 3 35000": a short whole number right after a name is probably part of the name
+  if(mode==='ws'&&label&&/^\d{1,2}$/.test(raw[0])&&Math.abs(r.p)>500)
+    r.warn=`Check this row: is "${raw[0]}" part of the name? If so, a value is missing`;
+  return r;
 }
-let bRows=[],_bt=null,_bc=null;
+let bRows=[],bHeader='',bCut=0,_bt=null,_bc=null;
+const median=a=>{const b=a.slice().sort((x,y)=>x-y),m=b.length>>1;return b.length%2?b[m]:(b[m-1]+b[m])/2;};
 function runBatch(){
-  const lines=$('bIn').value.split(/\r?\n/).slice(0,500);
-  bRows=lines.map(batchLine).filter(Boolean);
-  const ok=bRows.filter(r=>!r.bad);
-  if(!bRows.length){$('bOut').style.display='none';return;}
+  const all=$('bIn').value.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  bHeader='';
+  if(all.length&&batchLine(all[0]).bad==='Needs two numbers')bHeader=all.shift(); // first line without two values is a header
+  bCut=Math.max(0,all.length-BMAX);
+  bRows=all.slice(0,BMAX).map(batchLine);
+  if(!bRows.length&&!bHeader){$('bOut').style.display='none';return;}
   $('bOut').style.display='';
   const hasLabel=bRows.some(r=>r.label);
   $('bTbl').classList.toggle('nolabel',!hasLabel);
-  const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const sg=x=>(x>0?'+':'')+fm(x);
   $('bBody').innerHTML=bRows.map((r,k)=>r.bad
-    ?`<tr class="bad"><td>${k+1}</td><td class="b-lab">${esc(r.label||'')}</td><td colspan="4">${esc(r.bad)}: ${esc(r.line||'')}</td></tr>`
-    :`<tr><td>${k+1}</td><td class="b-lab">${esc(r.label)}</td><td>${fm(r.o)}</td><td>${fm(r.n)}</td><td class="b-chg">${sg(r.n-r.o)}</td><td class="${r.p>=0?'up':'down'}">${sg(r.p)}%</td></tr>`).join('');
-  if(!ok.length){$('bSum').innerHTML='<span>No rows with two numbers yet</span>';return;}
-  const so=ok.reduce((a,r)=>a+r.o,0),sn=ok.reduce((a,r)=>a+r.n,0);
-  const avg=ok.reduce((a,r)=>a+r.p,0)/ok.length;
-  const hi=ok.reduce((a,r)=>r.p>a.p?r:a),lo=ok.reduce((a,r)=>r.p<a.p?r:a);
-  const name=(r,k)=>r.label?esc(r.label):'row '+(bRows.indexOf(r)+1);
-  let h=`<span><b>${ok.length}</b> row${ok.length>1?'s':''}</span><span>Average change <b>${sg(avg)}%</b></span>`;
-  if(so!==0)h+=`<span>Total ${fm(so)} → ${fm(sn)} <b>${sg((sn-so)/Math.abs(so)*100)}%</b></span>`;
-  if(ok.length>1)h+=`<span>Largest: ${name(hi)} <b>${sg(hi.p)}%</b></span><span>Smallest: ${name(lo)} <b>${sg(lo.p)}%</b></span>`;
+    ?`<tr class="bad"><td>${k+1}</td><td class="b-lab">${esc(r.label)}</td><td colspan="4">${esc(r.bad)}: ${esc(r.line)}</td></tr>`
+    :`<tr${r.warn?' class="warn"':''}><td>${k+1}</td><td class="b-lab">${esc(r.label)}</td><td>${money(r.o,r.s)}</td><td>${money(r.n,r.s)}</td><td class="b-chg">${signed(r.n-r.o,r.s)}</td><td class="${r.p>=0?'up':'down'}">${r.p>=0?'+':''}${fm(r.p)}%</td></tr>`+
+     (r.warn?`<tr class="warn-note"><td></td><td colspan="5">${esc(r.warn)}</td></tr>`:'')).join('');
+  const ok=bRows.filter(r=>!r.bad&&!r.warn);
+  const notes=[];
+  if(bHeader)notes.push(`Header row skipped: ${esc(bHeader.replace(/\t/g,' | ').slice(0,60))}`);
+  const nBad=bRows.filter(r=>r.bad).length,nWarn=bRows.filter(r=>r.warn).length;
+  if(nBad)notes.push(`${nBad} row${nBad>1?'s':''} could not be read`);
+  if(nWarn)notes.push(`${nWarn} row${nWarn>1?'s':''} to check, left out of the totals`);
+  if(bCut)notes.push(`Only the first ${BMAX} rows are calculated (${bCut} more not shown)`);
+  let h='';
+  if(ok.length){
+    const so=ok.reduce((a,r)=>a+r.o,0),sn=ok.reduce((a,r)=>a+r.n,0);
+    const hi=ok.reduce((a,r)=>r.p>a.p?r:a),lo=ok.reduce((a,r)=>r.p<a.p?r:a);
+    const name=r=>r.label?esc(r.label):'row '+(bRows.indexOf(r)+1);
+    const sg=x=>(x>0?'+':'')+fm(x);
+    h+=`<span><b>${ok.length}</b> row${ok.length>1?'s':''}</span>`;
+    if(so!==0)h+=`<span>Total ${fm(so)} → ${fm(sn)} <b>${sg((sn-so)/Math.abs(so)*100)}%</b></span>`;
+    if(ok.length>1)h+=`<span>Median change <b>${sg(median(ok.map(r=>r.p)))}%</b></span><span>Largest: ${name(hi)} <b>${sg(hi.p)}%</b></span><span>Smallest: ${name(lo)} <b>${sg(lo.p)}%</b></span>`;
+  }else h+='<span>No rows with two numbers yet</span>';
+  notes.forEach(n=>{h+=`<span class="b-note">${n}</span>`;});
   $('bSum').innerHTML=h;
-  clearTimeout(_bc);_bc=setTimeout(()=>track('batch_calculate',{rows:ok.length}),1500);
+  if(ok.length){clearTimeout(_bc);_bc=setTimeout(()=>track('batch_calculate',{rows:ok.length}),1500);}
 }
+// Exports keep full precision (the decimal-places setting only changes what is shown)
 function batchTable(sep){
-  const hasLabel=bRows.some(r=>r.label);
+  const hasLabel=bRows.some(r=>r.label),hasNote=bRows.some(r=>r.bad||r.warn);
+  const safe=x=>/^[=+\-@\t\r]/.test(x)?"'"+x:x; // stop spreadsheets running a name as a formula
   const q=x=>sep===','&&/[",\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x;
-  const head=(hasLabel?['Item']:[]).concat(['Original','New','Change','Percent change']);
-  const rows=bRows.filter(r=>!r.bad).map(r=>(hasLabel?[q(r.label)]:[]).concat([rd(r.o),rd(r.n),rd(r.n-r.o),rd(r.p)+'%']));
-  return [head].concat(rows).map(r=>r.join(sep)).join('\n');
+  const cell=x=>q(safe(String(x)));
+  const head=(hasLabel?['Item']:[]).concat(['Original','New','Change','Percent change'],hasNote?['Note']:[]);
+  const rows=bRows.map(r=>(hasLabel?[cell(r.label)]:[]).concat(
+    r.bad?['','','','']:[plain(sig(r.o)),plain(sig(r.n)),plain(sig(r.n-r.o)),plain(rdTo(r.p,6))+'%'],
+    hasNote?[cell(r.bad||r.warn||'')]:[]));
+  return [head.map(cell)].concat(rows).map(r=>r.join(sep)).join('\n');
 }
 $('bIn').addEventListener('input',()=>{clearTimeout(_bt);_bt=setTimeout(runBatch,150);});
 $('bEx').addEventListener('click',()=>{
-  $('bIn').value='Rent\t1500\t1650\nElectricity\t96.40\t112.80\nCoffee\t3.49\t4.19\nInternet\t65\t59.99\nSalary\t55000\t62000';
+  $('bIn').value='Item\tOld\tNew\nRent\t1500\t1650\nElectricity\t96.40\t112.80\nCoffee\t3.49\t4.19\nInternet\t65\t59.99\nSalary\t55000\t62000';
   runBatch();track('batch_example');
 });
 $('bReset').addEventListener('click',()=>{$('bIn').value='';runBatch();$('bIn').focus();});
 $('bCopy').addEventListener('click',()=>{copyText(batchTable('\t'),$('bCopy'),'Copy table','Copied ✓');track('batch_copy');});
 $('bCsv').addEventListener('click',()=>{
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([batchTable(',')+'\n'],{type:'text/csv'}));
+  a.href=URL.createObjectURL(new Blob(['﻿'+batchTable(',')+'\n'],{type:'text/csv;charset=utf-8'}));
   a.download='percentage-changes.csv';
   document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  announce('CSV file downloaded',true);
   track('batch_csv');
 });
 
 // ===== CHAINED CHANGES =====
+const CMAX=20;
 let _cc=null;
 function addStep(val){
-  if($('cSteps').children.length>=20)return;
+  if($('cSteps').children.length>=CMAX)return;
   const row=document.createElement('div');
   row.className='field c-step';
-  row.innerHTML=`<div><label></label><div class="iw"><input type="text" inputmode="decimal" class="has-suf"><span class="suf">%</span><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button></div></div><button type="button" class="c-del">×</button>`;
+  row.innerHTML=`<div><label></label><div class="iw"><button type="button" class="pm" tabindex="-1" aria-label="Toggle minus sign">±</button><input type="text" inputmode="decimal" class="has-suf"><span class="suf">%</span></div></div><button type="button" class="c-del">×</button>`;
   row.querySelector('input').value=val||'';
   row.querySelector('input').addEventListener('input',runChain);
   row.querySelector('.c-del').addEventListener('click',()=>{
     if($('cSteps').children.length>1)row.remove();else row.querySelector('input').value='';
-    runChain();
+    numberSteps();runChain();
   });
   $('cSteps').appendChild(row);
   numberSteps();
 }
 function numberSteps(){
-  [...$('cSteps').children].forEach((row,k)=>{
+  const rows=[...$('cSteps').children];
+  rows.forEach((row,k)=>{
     const id='cStep'+(k+1),inp=row.querySelector('input');
     inp.id=id;inp.placeholder=k===0?'e.g. 20':k===1?'e.g. -10':'e.g. 5';
     row.querySelector('label').htmlFor=id;
     row.querySelector('label').textContent='Step '+(k+1);
     row.querySelector('.c-del').setAttribute('aria-label','Remove step '+(k+1));
   });
+  $('cAdd').disabled=rows.length>=CMAX;
+  $('cAdd').textContent=rows.length>=CMAX?`Up to ${CMAX} steps`:'+ Add step';
 }
 function runChain(){
   const sRaw=$('cStart').value.trim();
-  const start=sRaw===''?100:pn(sRaw);
+  const start=sRaw===''?100:pn(sRaw),s=symOf(sRaw);
   const steps=[...$('cSteps').querySelectorAll('input')].map(i=>i.value.trim()).filter(v=>v!=='');
   const res=$('cRes');
-  if(sRaw!==''&&isNaN(start)){res.innerHTML='<div class="c-empty">⚠ Starting value is not a number.</div>';return;}
-  if(steps.some(v=>!isNum(v))){res.innerHTML='<div class="c-empty">⚠ One of the steps is not a number.</div>';return;}
-  if(!steps.length){res.innerHTML='<div class="c-empty">Enter at least one percentage change to see the total.</div>';return;}
+  const empty=msg=>{res.innerHTML=`<div class="c-empty">${msg}</div>`;};
+  if(sRaw!==''&&isNaN(start))return empty('⚠ The starting value is not a number.');
+  if(steps.some(v=>!isNum(v)))return empty('⚠ One of the steps is not a number.');
+  if(!steps.length)return empty('Enter at least one percentage change to see the total.');
+  if(start===0)return empty('⚠ A starting value of 0 stays 0 after any percentage change.');
   let v=start;const rows=[];
-  steps.forEach((x,k)=>{const p=pn(x);v=v*(1+p/100);rows.push([k+1,p,v]);});
+  steps.forEach((x,k)=>{const p=pn(x);v=applyPct(v,p);rows.push([k+1,p,v]);});
   const sum=steps.reduce((a,x)=>a+pn(x),0);
-  const sg=x=>(x>0?'+':'')+fm(x);
-  if(start===0){res.innerHTML='<div class="c-empty">⚠ A starting value of 0 stays 0 after any percentage change.</div>';return;}
   const total=(v-start)/Math.abs(start)*100;
-  const ratio=v/start;
+  const sg=(n,t)=>(n>0?'+':'')+(t===undefined?fm(n):t);
+  const ratio=1+total/100;
   const avg=ratio>0?(Math.pow(ratio,1/steps.length)-1)*100:NaN;
+  let note='';
+  if(steps.length>1){
+    if(Math.abs(sum-total)<1e-9)note=`Here the total equals the sum of the steps: ${sg(total)}%.`;
+    else{const [a,b]=fmPair(sum,total);note=`Adding the steps gives ${sg(sum,a)}%, but the real total is <b>${sg(total,b)}%</b>.`;}
+    if(isFinite(avg))note+=` That equals an average of <b>${sg(avg)}%</b> per step, compounded.`;
+  }
   res.innerHTML=
-    `<div class="rbox ${total>=0?'increase':'decrease'}"><div class="rl">Total change</div><div class="rv">${sg(total)}%</div><div class="rd">${fm(start)} → <b>${fm(v)}</b>${sRaw===''?' (starting from 100)':''}</div></div>`+
-    (steps.length>1?`<div class="c-note">Adding the steps gives ${sg(sum)}%, but the real total is <b>${sg(total)}%</b>.${isFinite(avg)?` That equals an average of <b>${sg(avg)}%</b> per step, compounded.`:''}</div>`:'')+
+    `<div class="rbox ${total>=0?'increase':'decrease'}"><div class="rl">Total change</div><div class="rv">${sg(total)}%</div><div class="rd">${money(start,s)} → <b>${money(v,s)}</b>${sRaw===''?' (starting from 100)':''}</div></div>`+
+    (note?`<div class="c-note">${note}</div>`:'')+
     `<div class="b-wrap"><table class="b-tbl"><thead><tr><th>Step</th><th>Change</th><th>Value after</th></tr></thead><tbody>`+
-    `<tr><td>Start</td><td></td><td>${fm(start)}</td></tr>`+
-    rows.map(r=>`<tr><td>${r[0]}</td><td class="${r[1]>=0?'up':'down'}">${sg(r[1])}%</td><td>${fm(r[2])}</td></tr>`).join('')+
+    `<tr><td>Start</td><td></td><td>${money(start,s)}</td></tr>`+
+    rows.map(r=>`<tr><td>${r[0]}</td><td class="${r[1]>=0?'up':'down'}">${sg(r[1])}%</td><td>${money(r[2],s)}</td></tr>`).join('')+
     `</tbody></table></div>`;
+  announce(`Total change ${sg(total)}%`);
   clearTimeout(_cc);_cc=setTimeout(()=>track('chain_calculate',{steps:steps.length}),1500);
 }
 $('cStart').addEventListener('input',runChain);
-$('cAdd').addEventListener('click',()=>{addStep();runChain();$('cSteps').lastElementChild.querySelector('input').focus();track('chain_add_step');});
+$('cAdd').addEventListener('click',()=>{if($('cSteps').children.length>=CMAX)return;addStep();runChain();$('cSteps').lastElementChild.querySelector('input').focus();track('chain_add_step');});
 $('cReset').addEventListener('click',()=>{$('cStart').value='';$('cSteps').innerHTML='';addStep();addStep();runChain();$('cStart').focus();});
 addStep();addStep();runChain();
 
 renderHist();
 const q=window.SHARED||new URLSearchParams(location.search);
-if(q.has('from')&&q.has('to')&&isNum(q.get('from'))&&isNum(q.get('to'))){
-  setPair(pn(q.get('from')),pn(q.get('to')),true);
+if(q.has('from')&&q.has('to')&&isNum(q.get('from'))&&isNum(q.get('to'))&&pn(q.get('from'))!==0){
+  const qs=['$','€','£','¥','₹'].includes(q.get('cur'))?q.get('cur'):'';
+  setPair(qs+plain(pn(q.get('from'))),qs+plain(pn(q.get('to'))),true);
   track('open_shared_link');
 }else{
   calc();

@@ -4,9 +4,9 @@
 module.exports = {
   slug: 'price-increase-calculator',
   name: 'Price Increase Calculator',
-  title: 'Price Increase Calculator — Percentage & New Price Instantly',
+  title: 'Price Increase Calculator - Percentage & New Price Instantly',
   description: 'Free price increase calculator. Find the percentage a price went up, or apply a percentage increase to any price. Formula, steps, and real pricing examples.',
-  lastmod: '2026-09-08',
+  lastmod: '2026-11-11',
   stickyLabel: 'Price change',
   h1: 'Price Increase <span>Calculator</span>',
   heroP: 'Enter the old price and the new price to get the percentage increase, or apply a percentage to any price.',
@@ -17,7 +17,7 @@ module.exports = {
     { label: 'Rent $1,500 → $1,650', o: 1500, n: 1650 },
     { label: 'Supplier cost $4.20 → $4.75', o: 4.2, n: 4.75 },
   ],
-  labels: { orig: 'Original Price', new: 'New Price', pct: 'Price Increase' },
+  labels: { orig: 'Original Price', new: 'New Price', pct: 'Price Change' },
   placeholders: { orig: 'e.g. 49.99', new: 'e.g. 54.99' },
   quick: {
     title: 'Apply a Price Increase',

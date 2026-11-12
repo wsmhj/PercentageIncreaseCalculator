@@ -4,9 +4,9 @@
 module.exports = {
   slug: 'percentage-growth-calculator',
   name: 'Percentage Growth Calculator',
-  title: 'Percentage Growth Calculator — Sales, Revenue & Users',
+  title: 'Percentage Growth Calculator - Sales, Revenue & Users',
   description: 'Free percentage growth calculator. Compare this period to last and get the growth rate in percent, with steps. Works for sales, revenue, users, any metric.',
-  lastmod: '2026-09-08',
+  lastmod: '2026-11-11',
   stickyLabel: 'Growth',
   terms: { inc: 'increase', dec: 'decrease', incLabel: 'Percentage Growth', decLabel: 'Percentage Decline' },
   h1: 'Percentage Growth <span>Calculator</span>',
@@ -18,7 +18,7 @@ module.exports = {
     { label: 'Traffic 8,400 → 7,900', o: 8400, n: 7900 },
     { label: 'Population 330,000 → 340,000', o: 330000, n: 340000 },
   ],
-  labels: { orig: 'Starting Value (Last Period)', new: 'Ending Value (This Period)', pct: 'Growth' },
+  labels: { orig: 'Starting Value (Last Period)', new: 'Ending Value (This Period)', pct: 'Growth or Decline' },
   placeholders: { orig: 'e.g. 48000', new: 'e.g. 61000' },
   quick: {
     title: 'Project the Next Period',

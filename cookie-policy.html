@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cookie Policy — Percentage Increase Calculator</title>
+<title>Cookie Policy - Percentage Increase Calculator</title>
 <link rel="canonical" href="https://percentageincreasecalculator.app/cookie-policy.html">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1a3a35">
@@ -37,6 +37,9 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 .site-footer a{color:#7ab8a6;text-decoration:none;}
 .site-footer a:hover{color:#7dffc4;}
 .site-footer .f-links{margin-top:8px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:11px;}
+.f-fbbtn{display:inline-flex;align-items:center;gap:5px;margin-top:12px;background:none;border:1px solid #2a5a50;border-radius:4px;color:#7dffc4;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;padding:6px 12px;min-height:34px;cursor:pointer;}
+.f-fbbtn:hover{background:#7dffc4;color:#1a3a35;}
+@media (pointer:coarse){.f-fbbtn{min-height:44px;}}
 </style>
 </head>
 <body>
@@ -132,7 +135,7 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 </ul>
 
 <h2>10. Contact Us</h2>
-<p>If you have questions about this Cookie Policy, please contact us through our <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">GitHub repository</a> by opening an issue.</p>
+<p>If you have questions about this Cookie Policy, please use the Give feedback button at the bottom of any page, or open an issue on our <a href="https://github.com/wsmhj/PercentageIncreaseCalculator" target="_blank" rel="noopener">GitHub repository</a> if you need a reply.</p>
 </div>
 
 <footer class="site-footer">
@@ -142,7 +145,10 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
     <a href="./terms.html">Terms of Service</a>
     <a href="./cookie-policy.html">Cookie Policy</a>
   </div>
+  <button type="button" class="f-fbbtn" data-feedback-open aria-haspopup="dialog"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/></svg> Give feedback</button>
 </footer>
+<script src="/feedback-widget.js" data-feedback-manual data-feedback-lang="en" defer></script>
+<script src="/feedback-skin.js" defer></script>
 
 </body>
 </html>

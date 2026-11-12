@@ -9,7 +9,8 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const SITE = 'https://percentageincreasecalculator.app';
-const TODAY = new Date().toISOString().slice(0, 10);
+const now = new Date();
+const TODAY = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10); // local date
 
 const indexPath = path.join(ROOT, 'index.html');
 let index = fs.readFileSync(indexPath, 'utf8');
@@ -69,6 +70,7 @@ function render(p) {
     FAQ: p.faq.map(q => `<h3>${esc(q.q)}</h3>\n<p>${q.a}</p>`).join('\n\n'),
     RELATED: relatedLinks(p.slug),
     TERMS: JSON.stringify(p.terms || {}),
+    OG_IMAGE: `${SITE}/og/${p.slug}.jpg`,
   };
   return tpl.replace(/\{\{(\w+)\}\}/g, (m, k) => {
     if (!(k in vars)) throw new Error(`Template placeholder {{${k}}} not provided by page ${p.slug}`);
@@ -84,22 +86,34 @@ for (const p of pages) {
   console.log('built', `/${p.slug}/index.html`);
 }
 
-// 2. Related-links block in index.html (between markers)
-const START = '<!-- related:start -->', END = '<!-- related:end -->';
-if (index.includes(START) && index.includes(END)) {
-  const block = `${START}\n${relatedLinks('')}\n${END}`;
-  index = index.replace(new RegExp(START + '[\\s\\S]*?' + END), () => block);
-  fs.writeFileSync(indexPath, index);
-  console.log('updated related links in index.html');
-} else {
-  console.warn('WARN: related markers not found in index.html, skipped');
+// 2. Related-links blocks in index.html (between markers)
+for (const name of ['related', 'related2']) {
+  const START = `<!-- ${name}:start -->`, END = `<!-- ${name}:end -->`;
+  if (index.includes(START) && index.includes(END)) {
+    index = index.replace(new RegExp(START + '[\\s\\S]*?' + END), () => `${START}\n${relatedLinks('')}\n${END}`);
+  } else {
+    console.warn(`WARN: ${name} markers not found in index.html, skipped`);
+  }
 }
 
-// 3. Sitemap
+// 3. Homepage FAQPage JSON-LD, generated from the visible FAQ so the two always match
+const faqHtml = (index.match(/<h2>Frequently Asked Questions<\/h2>([\s\S]*?)<h2>/) || [])[1];
+if (faqHtml) {
+  const qa = [...faqHtml.matchAll(/<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>/g)].map(m => ({ q: strip(m[1]), a: strip(m[2]) }));
+  const ld = `<script type="application/ld+json">\n${JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: qa.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) })}\n</script>`;
+  index = index.replace(/<script type="application\/ld\+json">\n\{"@context":"https:\/\/schema.org","@type":"FAQPage"[\s\S]*?<\/script>/, () => ld);
+  console.log('homepage FAQ JSON-LD:', qa.length, 'questions');
+} else {
+  console.warn('WARN: homepage FAQ section not found, JSON-LD not updated');
+}
+fs.writeFileSync(indexPath, index);
+console.log('updated related links and FAQ JSON-LD in index.html');
+
+// 4. Sitemap
 const urls = [
   { loc: SITE + '/', lastmod: TODAY, freq: 'monthly', pri: '1.0' },
   ...pages.map(p => ({ loc: `${SITE}/${p.slug}/`, lastmod: p.lastmod || TODAY, freq: 'monthly', pri: '0.8' })),
-  ...['privacy', 'terms', 'cookie-policy'].map(s => ({ loc: `${SITE}/${s}.html`, lastmod: '2026-04-04', freq: 'yearly', pri: '0.2' })),
+  ...['privacy', 'terms', 'cookie-policy'].map(s => ({ loc: `${SITE}/${s}.html`, lastmod: '2026-11-11', freq: 'yearly', pri: '0.2' })),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.freq}</changefreq>\n    <priority>${u.pri}</priority>\n  </url>`).join('\n') +
