@@ -36,8 +36,10 @@
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});
 gtag('consent','default',{analytics_storage:(navigator.globalPrivacyControl||navigator.doNotTrack==='1')?'denied':'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-// page_location without the query string, so shared ?from=&to= numbers never reach analytics
-gtag('js',new Date());gtag('config','G-S6T4V70FRF',{page_location:location.origin+location.pathname});
+// Shared ?from=&to= numbers are read here and removed from the address bar before GA loads, so they never reach analytics
+window.SHARED=new URLSearchParams(location.search);
+if(SHARED.has('from')||SHARED.has('to')){var gaQ=new URLSearchParams(location.search);gaQ.delete('from');gaQ.delete('to');gaQ=gaQ.toString();history.replaceState(null,'',location.pathname+(gaQ?'?'+gaQ:'')+location.hash);}
+gtag('js',new Date());gtag('config','G-S6T4V70FRF');
 if(location.hostname==='percentageincreasecalculator.app'){var gaS=document.createElement('script');gaS.async=true;gaS.src='https://www.googletagmanager.com/gtag/js?id=G-S6T4V70FRF';document.head.appendChild(gaS);}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -845,7 +847,7 @@ $('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$
 new IntersectionObserver(([e])=>{$('sticky').classList.toggle('show',!e.isIntersecting);},{threshold:0}).observe(document.querySelector('.hero'));
 
 renderHist();
-const q=new URLSearchParams(location.search);
+const q=window.SHARED||new URLSearchParams(location.search);
 if(q.has('from')&&q.has('to')&&isNum(q.get('from'))&&isNum(q.get('to'))){
   setPair(pn(q.get('from')),pn(q.get('to')),true);
   track('open_shared_link');
