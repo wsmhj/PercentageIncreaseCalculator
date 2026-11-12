@@ -1,6 +1,6 @@
 // Static page generator for inner calculator pages.
 // Usage: node build/build.js
-// - Pulls CSS and JS from index.html (single source of truth)
+// - Pulls CSS, JS and the GA snippet from index.html (single source of truth)
 // - Renders every build/pages/*.js into /<slug>/index.html
 // - Rewrites sitemap.xml and the related-links block in index.html
 'use strict';
@@ -15,7 +15,8 @@ const indexPath = path.join(ROOT, 'index.html');
 let index = fs.readFileSync(indexPath, 'utf8');
 const css = (index.match(/<style>([\s\S]*?)<\/style>/) || [])[1];
 const js = (index.match(/<script>([\s\S]*?)<\/script>/) || [])[1];
-if (!css || !js) throw new Error('Could not extract <style> or <script> from index.html');
+const ga = (index.match(/<script data-ga>[\s\S]*?<\/script>/) || [])[0];
+if (!css || !js || !ga) throw new Error('Could not extract <style>, <script> or <script data-ga> from index.html');
 
 const tpl = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
 const pagesDir = path.join(__dirname, 'pages');
@@ -51,6 +52,7 @@ function render(p) {
     DESCRIPTION: esc(p.description),
     URL: url,
     JSONLD: jsonld,
+    GA: ga,
     CSS: css,
     JS: js,
     STICKY_LABEL: esc(p.stickyLabel || 'Result'),

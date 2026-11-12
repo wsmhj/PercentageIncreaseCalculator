@@ -31,6 +31,15 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Subtract the original value from the new value, divide the result by the original value, then multiply by 100. Formula: ((New - Original) / Original) × 100%."}},{"@type":"Question","name":"What is the formula for percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Percentage Increase = ((New Value - Original Value) / Original Value) × 100%. For example, going from 80 to 100 is a 25% increase."}},{"@type":"Question","name":"What if my percentage result is negative?","acceptedAnswer":{"@type":"Answer","text":"A negative result means the value decreased rather than increased. For example, going from 100 to 80 gives -20%, indicating a 20% decrease."}},{"@type":"Question","name":"How do I calculate the new value after a percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Multiply the original value by (1 + percentage/100). For example, 200 increased by 15% = 200 × 1.15 = 230."}}]}
 </script>
 <meta name="theme-color" content="#1a3a35">
+<script data-ga>
+// GA4: analytics cookies off in EEA/UK/CH and with GPC/DNT, ads signals off everywhere; only loads on the live domain
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});
+gtag('consent','default',{analytics_storage:(navigator.globalPrivacyControl||navigator.doNotTrack==='1')?'denied':'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+// page_location without the query string, so shared ?from=&to= numbers never reach analytics
+gtag('js',new Date());gtag('config','G-S6T4V70FRF',{page_location:location.origin+location.pathname});
+if(location.hostname==='percentageincreasecalculator.app'){var gaS=document.createElement('script');gaS.async=true;gaS.src='https://www.googletagmanager.com/gtag/js?id=G-S6T4V70FRF';document.head.appendChild(gaS);}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Sriracha&display=swap" rel="stylesheet">
@@ -197,7 +206,7 @@ body{
 .examples button:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
 
 /* === RESULT === */
-.result-panel{position:sticky;top:96px;}
+.result-panel{position:relative;}
 .rbox{
   padding:24px;border-radius:6px;text-align:center;margin-bottom:14px;
   border:2px solid;position:relative;
@@ -225,6 +234,32 @@ body{
 }
 .cbtn:hover{opacity:.8;}
 .cbtn.copied{background:#0d6b3e;}
+.nl .acts{display:flex;gap:6px;flex-wrap:wrap;}
+
+/* History */
+.nb-title.tr{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.reset-btn{
+  flex-shrink:0;padding:3px 10px;
+  background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#555;
+  cursor:pointer;transition:all .12s;
+}
+.reset-btn:hover{background:#1a3a35;color:#7dffc4;border-color:#1a3a35;}
+.hist-clear{background:none;border:none;font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;color:#999;cursor:pointer;text-decoration:underline;}
+.hist-clear:hover{color:#1a3a35;}
+.hist{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.hist button{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:6px 10px;background:#f0ede6;border:1px solid #d4cfc6;border-radius:4px;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:#555;
+  cursor:pointer;text-align:left;transition:border-color .12s;
+}
+.hist button:hover{border-color:#1a3a35;}
+.hist .hv{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hist .hp{font-weight:800;flex-shrink:0;}
+.hist .hp.up{color:#0d6b3e;}
+.hist .hp.down{color:#b91c1c;}
+.hist-note{font-size:10px;color:#aaa;margin-top:8px;}
 
 /* Chart */
 .chart-area{margin-bottom:12px;}
@@ -333,7 +368,7 @@ body{
 
 <!-- CALCULATOR CARD -->
 <div class="nb fi fi1">
-  <div class="nb-title">Calculate</div>
+  <div class="nb-title tr">Calculate <button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></div>
 
   <div class="examples" id="scenes">
     <button data-o="50" data-n="75">Price Increase</button>
@@ -362,7 +397,7 @@ body{
 
 <!-- QUICK CALC -->
 <div class="nb fi fi2">
-  <div class="nb-title">Quick: Value + Percent</div>
+  <div class="nb-title tr">Quick: Value + Percent <button type="button" class="reset-btn" id="revReset" title="Clear quick calculator">↺ Reset</button></div>
   <p style="font-size:12px;color:#888;margin-bottom:10px;">What is <strong>X</strong> increased by <strong>Y%</strong>?</p>
   <div class="rev-row">
     <div class="field"><label for="revBase">Value</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="e.g. 200"></div></div>
@@ -399,7 +434,10 @@ body{
 
   <div class="nl" id="nlBox">
     <span id="nlText">Fill in two values to see your result in plain English.</span>
-    <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+    <div class="acts">
+      <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+      <button class="cbtn" id="shareBtn" style="display:none;">Share link</button>
+    </div>
   </div>
 
   <div class="chart-area" id="chartArea" style="display:none;">
@@ -418,7 +456,14 @@ body{
   </div>
 
   <div class="disc">Results update as you type. This tool provides estimates only.</div>
-  <div class="disc" style="margin-top:6px;" data-nosnippet>Enjoy this tool? Send it to a friend — they'll thank you later.</div>
+  <div class="disc" style="margin-top:6px;" data-nosnippet>Need to show someone? Tap Share link — it opens with your numbers already filled in.</div>
+</div>
+
+<!-- HISTORY -->
+<div class="nb fi fi2 hidden" id="histCard">
+  <div class="nb-title tr">Recent Calculations <button type="button" class="hist-clear" id="histClear">Clear</button></div>
+  <ul class="hist" id="histList"></ul>
+  <div class="hist-note">Saved only in this browser. Tap one to load it again.</div>
 </div>
 </div>
 </div>
@@ -524,8 +569,12 @@ body{
 // ===== STATE =====
 let lastEdited = ['orig','new'];
 let lastSolved = null;
+let cur = null;        // current result {o,n,p}
+let skipSave = false;  // presets, shared links and history restores don't go into history
+let _ht = null;
 
 const $=id=>document.getElementById(id);
+function track(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}}
 const T=Object.assign({inc:'increase',dec:'decrease',incLabel:'Percentage Increase',decLabel:'Percentage Decrease'},window.PAGE_TERMS||{});
 function pn(s){
   let c=String(s).replace(/,/g,'').replace(/\s/g,'');
@@ -608,6 +657,9 @@ function updateResult(orig,newv,pct){
   $('nlText').textContent=nlStr;$('nlText').style.fontWeight='700';
   $('copyBtn').style.display='';
   $('copyBtn').dataset.text=nlStr;
+  $('shareBtn').style.display='';
+  cur={o:orig,n:newv,p:pct};
+  scheduleSave();
 
   $('chartArea').style.display='';
   const mx=Math.max(Math.abs(orig),Math.abs(newv),1);
@@ -638,6 +690,8 @@ function clearResult(){
   $('stV').textContent='—';
   $('nlText').textContent='Fill in two values to see your result in plain English.';
   $('copyBtn').style.display='none';
+  $('shareBtn').style.display='none';
+  cur=null;clearTimeout(_ht);
   $('chartArea').style.display='none';
   $('chartNote').style.display='none';
   $('stepsText').textContent='Enter two values above to see the step-by-step calculation.';
@@ -662,6 +716,7 @@ const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
 ['origVal','newVal','pctVal'].forEach(id=>{
   $(id).addEventListener('input',()=>{
     const role=$(id).dataset.role;
+    skipSave=false;
     if($(id).value.trim()===''&&lastSolved&&lastSolved!==role){
       const solvedId=roleToId[lastSolved];
       if(solvedId)$(solvedId).value='';
@@ -672,31 +727,109 @@ const roleToId={orig:'origVal',new:'newVal',pct:'pctVal'};
     calcD();
   });
 });
-$('revBase').addEventListener('input',()=>{clearTimeout(_dt);_dt=setTimeout(updateReverse,50);});
-$('revPct').addEventListener('input',()=>{clearTimeout(_dt);_dt=setTimeout(updateReverse,50);});
+let _rt=null;
+$('revBase').addEventListener('input',()=>{clearTimeout(_rt);_rt=setTimeout(updateReverse,50);});
+$('revPct').addEventListener('input',()=>{clearTimeout(_rt);_rt=setTimeout(updateReverse,50);});
+
+// Fill original + new and solve the percentage
+function setPair(o,n,skip){
+  skipSave=!!skip;
+  $('origVal').value=String(o);
+  $('newVal').value=String(n);
+  $('pctVal').value='';
+  lastEdited=['orig','new'];
+  lastSolved=null;
+  calc();
+}
 
 // Scenarios
 document.querySelectorAll('#scenes button').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    $('origVal').value=btn.dataset.o;
-    $('newVal').value=btn.dataset.n;
-    $('pctVal').value='';
-    lastEdited=['orig','new'];
-    lastSolved=null;
-    calc();
+    setPair(btn.dataset.o,btn.dataset.n,true);
+    track('preset_click',{preset:btn.textContent.trim()});
   });
 });
 
 // Copy
-$('copyBtn').addEventListener('click',()=>{
-  const text=$('copyBtn').dataset.text;
-  const btn=$('copyBtn');
-  const ok=()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},1500);};
+function copyText(text,btn,label,done){
+  const ok=()=>{btn.textContent=done;btn.classList.add('copied');setTimeout(()=>{btn.textContent=label;btn.classList.remove('copied');},1500);};
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(ok).catch(()=>{fbCopy(text);ok();});
   }else{fbCopy(text);ok();}
+}
+$('copyBtn').addEventListener('click',()=>{
+  commitCur();
+  copyText($('copyBtn').dataset.text,$('copyBtn'),'Copy','Copied ✓');
+  track('copy_result');
 });
 function fbCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+// Share link: ?from=<original>&to=<new> reopens the same calculation
+const r6=x=>Math.round(x*1e6)/1e6;
+function shareUrl(){
+  const u=new URL(location.pathname,location.origin);
+  u.searchParams.set('from',r6(cur.o));
+  u.searchParams.set('to',r6(cur.n));
+  return u.toString();
+}
+$('shareBtn').addEventListener('click',()=>{
+  if(!cur)return;
+  commitCur();
+  const url=shareUrl();
+  if(navigator.share&&matchMedia('(pointer:coarse)').matches){
+    navigator.share({title:document.title,text:$('copyBtn').dataset.text,url}).then(()=>track('share_link',{method:'native'})).catch(()=>{});
+    return;
+  }
+  copyText(url,$('shareBtn'),'Share link','Link copied ✓');
+  track('share_link',{method:'copy'});
+});
+
+// History: last 10 results, kept in this browser only
+const HKEY='pic_history';
+function hLoad(){try{const a=JSON.parse(localStorage.getItem(HKEY)||'[]');return Array.isArray(a)?a.filter(x=>x&&isFinite(x.o)&&isFinite(x.n)&&isFinite(x.p)):[];}catch(e){return [];}}
+function hSave(a){try{localStorage.setItem(HKEY,JSON.stringify(a));}catch(e){}}
+function commitCur(){
+  clearTimeout(_ht);
+  if(!cur||skipSave)return;
+  const o=r6(cur.o),n=r6(cur.n);
+  let a=hLoad();
+  if(a[0]&&a[0].o===o&&a[0].n===n)return;
+  a=a.filter(x=>!(x.o===o&&x.n===n));
+  a.unshift({o,n,p:r6(cur.p),t:Date.now()});
+  hSave(a.slice(0,10));
+  renderHist();
+  track('calculate',{mode:lastSolved||'pct'});
+}
+function scheduleSave(){clearTimeout(_ht);_ht=setTimeout(commitCur,1500);}
+function renderHist(){
+  const a=hLoad(),list=$('histList');
+  $('histCard').classList.toggle('hidden',!a.length);
+  list.innerHTML='';
+  a.forEach(x=>{
+    const up=x.p>=0,li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';
+    b.innerHTML=`<span class="hv">${fm(Math.round(x.o*100)/100)} → ${fm(Math.round(x.n*100)/100)}</span><span class="hp ${up?'up':'down'}">${up?'+':''}${fm(Math.round(x.p*100)/100)}%</span>`;
+    b.addEventListener('click',()=>{setPair(x.o,x.n,true);track('history_restore');});
+    li.appendChild(b);list.appendChild(li);
+  });
+}
+// Reset: keep the finished result in history, then start a fresh calculation
+$('resetBtn').addEventListener('click',()=>{
+  commitCur();
+  ['origVal','newVal','pctVal'].forEach(id=>{$(id).value='';});
+  lastEdited=['orig','new'];lastSolved=null;skipSave=false;
+  calc();
+  $('origVal').focus();
+  track('reset',{card:'main'});
+});
+$('revReset').addEventListener('click',()=>{
+  $('revBase').value='';$('revPct').value='';
+  updateReverse();
+  $('revBase').focus();
+  track('reset',{card:'quick'});
+});
+$('histClear').addEventListener('click',()=>{hSave([]);renderHist();track('history_clear');});
+window.addEventListener('pagehide',commitCur);
 
 // Accordion
 $('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$('stepsB').classList.toggle('open');});
@@ -704,7 +837,14 @@ $('stepsH').addEventListener('click',()=>{$('stepsH').classList.toggle('open');$
 // Sticky
 new IntersectionObserver(([e])=>{$('sticky').classList.toggle('show',!e.isIntersecting);},{threshold:0}).observe(document.querySelector('.hero'));
 
-calc();
+renderHist();
+const q=new URLSearchParams(location.search);
+if(q.has('from')&&q.has('to')&&isNum(q.get('from'))&&isNum(q.get('to'))){
+  setPair(pn(q.get('from')),pn(q.get('to')),true);
+  track('open_shared_link');
+}else{
+  calc();
+}
 </script>
 </body>
 </html>

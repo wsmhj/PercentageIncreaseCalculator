@@ -23,6 +23,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 {{JSONLD}}
 <meta name="theme-color" content="#1a3a35">
+{{GA}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Sriracha&display=swap" rel="stylesheet">
@@ -63,7 +64,7 @@
 
 <!-- CALCULATOR CARD -->
 <div class="nb fi fi1">
-  <div class="nb-title">{{CALC_TITLE}}</div>
+  <div class="nb-title tr">{{CALC_TITLE}} <button type="button" class="reset-btn" id="resetBtn" title="Clear all fields">↺ Reset</button></div>
 
   <div class="examples" id="scenes">
     {{PRESETS}}
@@ -89,7 +90,7 @@
 
 <!-- QUICK CALC -->
 <div class="nb fi fi2">
-  <div class="nb-title">{{QUICK_TITLE}}</div>
+  <div class="nb-title tr">{{QUICK_TITLE}} <button type="button" class="reset-btn" id="revReset" title="Clear quick calculator">↺ Reset</button></div>
   <p style="font-size:12px;color:#888;margin-bottom:10px;">{{QUICK_DESC}}</p>
   <div class="rev-row">
     <div class="field"><label for="revBase">{{QUICK_LABEL_BASE}}</label><div class="iw"><input type="text" inputmode="decimal" id="revBase" placeholder="{{QUICK_PH_BASE}}"></div></div>
@@ -134,7 +135,10 @@
 
   <div class="nl" id="nlBox">
     <span id="nlText">Fill in two values to see your result in plain English.</span>
-    <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+    <div class="acts">
+      <button class="cbtn" id="copyBtn" style="display:none;">Copy</button>
+      <button class="cbtn" id="shareBtn" style="display:none;">Share link</button>
+    </div>
   </div>
 
   <div class="chart-area" id="chartArea" style="display:none;">
@@ -153,7 +157,14 @@
   </div>
 
   <div class="disc">Results update as you type. This tool provides estimates only.</div>
-  <div class="disc" style="margin-top:6px;" data-nosnippet>Enjoy this tool? Send it to a friend — they'll thank you later.</div>
+  <div class="disc" style="margin-top:6px;" data-nosnippet>Need to show someone? Tap Share link — it opens with your numbers already filled in.</div>
+</div>
+
+<!-- HISTORY -->
+<div class="nb fi fi2 hidden" id="histCard">
+  <div class="nb-title tr">Recent Calculations <button type="button" class="hist-clear" id="histClear">Clear</button></div>
+  <ul class="hist" id="histList"></ul>
+  <div class="hist-note">Saved only in this browser. Tap one to load it again.</div>
 </div>
 </div>
 </div>

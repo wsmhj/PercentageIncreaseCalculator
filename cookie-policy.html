@@ -19,6 +19,7 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 .topnav .logo{font-family:'Sriracha',cursive;font-size:16px;color:#7dffc4;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap;}
 .topnav .logo .pct{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:#7dffc4;color:#1a3a35;font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;border-radius:8px;transform:rotate(-3deg);}
 .content{max-width:680px;margin:0 auto;padding:48px 24px 60px;}
+.content code{font-family:"Courier New",monospace;background:rgba(125,255,196,0.1);padding:1px 5px;border-radius:3px;font-size:12px;color:#7dffc4;word-break:break-all;}
 .content h1{font-family:'Sriracha',cursive;font-size:clamp(24px,4vw,36px);color:#fff;margin-bottom:8px;}
 .content .updated{font-size:12px;color:#7ab8a6;margin-bottom:32px;}
 .content h2{font-family:'Sriracha',cursive;font-size:20px;color:#7dffc4;margin-top:32px;margin-bottom:10px;}
@@ -46,7 +47,7 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 
 <div class="content">
 <h1>Cookie Policy</h1>
-<p class="updated">Last updated: April 4, 2026</p>
+<p class="updated">Last updated: November 12, 2026</p>
 
 <h2>1. What Are Cookies</h2>
 <p>Cookies are small text files that websites place on your device (computer, phone, or tablet) when you visit them. They are widely used to make websites work more efficiently, provide a better user experience, and give site owners information about how their site is being used.</p>
@@ -59,9 +60,8 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 </ul>
 
 <h2>2. Cookies We Use</h2>
-<p>Percentage Increase Calculator does <strong>not</strong> set any first-party cookies. We do not use cookies for:</p>
+<p>The only cookies on this site come from Google Analytics, which we use to measure aggregated usage (see section 3). We do not use cookies for:</p>
 <ul>
-  <li>User tracking or analytics</li>
   <li>Advertising or retargeting</li>
   <li>Session management (there are no user sessions)</li>
   <li>Personalization or preference storage</li>
@@ -69,7 +69,16 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 </ul>
 
 <h2>3. Third-Party Cookies</h2>
-<p>While we do not set our own cookies, third-party services used by this site may set cookies on your device. Below is a detailed breakdown:</p>
+<p>Third-party services used by this site may set cookies on your device or receive standard request data. Below is a detailed breakdown:</p>
+
+<h3>Google Analytics</h3>
+<p>Google Analytics 4 helps us see which pages are used, how long visitors stay and which tool features are used. It may set these cookies on our domain:</p>
+<table>
+  <tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr>
+  <tr><td><code>_ga</code></td><td>Distinguishes one browser from another so visits can be counted</td><td>2 years</td></tr>
+  <tr><td><code>_ga_S6T4V70FRF</code></td><td>Keeps the current visit (session) together</td><td>2 years</td></tr>
+</table>
+<p>Visitors in the European Economic Area, the United Kingdom and Switzerland, and anyone whose browser sends a Global Privacy Control or Do Not Track signal, get <strong>no</strong> analytics cookies; Google then receives only cookieless measurement pings. Advertising features, Google signals and ad personalization are off for everyone. The numbers you enter are never sent to Google. You can opt out completely with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
 
 <h3>Google Fonts</h3>
 <p>We use Google Fonts to display the Nunito and Sriracha typefaces. When your browser loads fonts from Google's servers, Google may receive and process:</p>
@@ -88,16 +97,16 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 
 <table>
   <tr><th>Technology</th><th>Used?</th><th>Purpose</th></tr>
-  <tr><td>Cookies</td><td>No</td><td>We do not set any first-party cookies</td></tr>
-  <tr><td>Local Storage</td><td>No</td><td>No data is persisted between sessions</td></tr>
+  <tr><td>Cookies</td><td>Yes (analytics only)</td><td>Google Analytics cookies, as described in section 3</td></tr>
+  <tr><td>Local Storage</td><td>Yes</td><td>Key <code>pic_history</code>: your last 10 calculations, kept only in your browser for "Recent Calculations". Never sent to us. Remove it with the "Clear" button.</td></tr>
   <tr><td>Session Storage</td><td>No</td><td>No session data is stored</td></tr>
   <tr><td>IndexedDB</td><td>No</td><td>Not used</td></tr>
-  <tr><td>Web Beacons</td><td>No</td><td>No tracking pixels are used</td></tr>
+  <tr><td>Web Beacons</td><td>No</td><td>No tracking pixels are used (Google Analytics sends its measurements by script, as described above)</td></tr>
   <tr><td>Fingerprinting</td><td>No</td><td>We do not use browser fingerprinting techniques</td></tr>
 </table>
 
 <h2>5. How to Control Cookies</h2>
-<p>Even though we don't set cookies, third-party cookies may still appear through embedded services. You can control cookies through your browser settings:</p>
+<p>You can control or delete cookies, including the Google Analytics cookies, through your browser settings:</p>
 <ul>
   <li><strong>Chrome:</strong> Settings → Privacy and security → Cookies and other site data</li>
   <li><strong>Firefox:</strong> Settings → Privacy & Security → Cookies and Site Data</li>
@@ -107,13 +116,13 @@ body{font-family:'Nunito',sans-serif;background:#1a3a35;color:#e8e0d4;line-heigh
 <p>You can also use browser extensions such as uBlock Origin or Privacy Badger to block third-party requests entirely. Note that blocking Google Fonts requests may cause the site to display in your system's default font, but this will not affect the calculator's functionality.</p>
 
 <h2>6. Do Not Track</h2>
-<p>Some browsers send a "Do Not Track" (DNT) signal to websites. Since we do not track users in any way, our site effectively honors DNT by default — there is no tracking to disable.</p>
+<p>Some browsers send a "Do Not Track" (DNT) or Global Privacy Control (GPC) signal. When we detect either signal, Google Analytics runs without cookies, so your browser is not recognized from one visit to the next.</p>
 
 <h2>7. GDPR and Cookie Consent</h2>
-<p>Under the EU General Data Protection Regulation (GDPR) and the ePrivacy Directive, websites must obtain user consent before setting non-essential cookies. Since this site does not set any first-party cookies and does not use third-party analytics or advertising cookies, a cookie consent banner is not required. However, we provide this policy for full transparency about how your browser interacts with our site and the third-party services it connects to.</p>
+<p>Under the EU General Data Protection Regulation (GDPR) and the ePrivacy Directive, websites must obtain user consent before setting non-essential cookies. To respect this, analytics cookies are switched off by default for visitors in the European Economic Area, the United Kingdom and Switzerland, so no non-essential cookies are set there and no consent banner is shown. The local storage used for "Recent Calculations" only holds results you created and is used solely to provide that feature to you. We provide this policy for full transparency about how your browser interacts with our site and the third-party services it connects to.</p>
 
 <h2>8. Changes to This Policy</h2>
-<p>If we begin using analytics, advertising, or any other services that set cookies, we will update this Cookie Policy accordingly and, if required by law, implement a cookie consent mechanism before those cookies are set. Changes will be reflected with an updated date at the top of this page.</p>
+<p>If we add advertising or any other services that set cookies, or change how analytics is configured, we will update this Cookie Policy accordingly and, if required by law, implement a cookie consent mechanism before those cookies are set. Changes will be reflected with an updated date at the top of this page.</p>
 
 <h2>9. Related Policies</h2>
 <p>This Cookie Policy is part of our broader commitment to transparency. Please also review:</p>
