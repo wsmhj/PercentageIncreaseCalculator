@@ -28,7 +28,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"Percentage Increase Calculator","description":"Calculate percentage increase instantly between two values. Shows formula steps, visual comparison chart, and natural language result.","url":"https://percentageincreasecalculator.app/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate percentage increase from one number to another?","acceptedAnswer":{"@type":"Answer","text":"Subtract the original from the new value, divide by the original, and multiply by 100. Or type both numbers into the percentage increase calculator above and skip the arithmetic."}},{"@type":"Question","name":"What's the difference between percentage increase and percentage change?","acceptedAnswer":{"@type":"Answer","text":"\"Increase\" means the value went up. \"Change\" is neutral and covers both directions. This tool handles either one: green for an increase, red for a decrease."}},{"@type":"Question","name":"Can I use this to calculate a percentage decrease?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the new value is lower, the percentage increase calculator returns a negative result and labels it as a decrease."}},{"@type":"Question","name":"How do I find the new value after a known percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Multiply the original by (1 + percentage ÷ 100). A $200 item with a 15% increase becomes $200 × 1.15 = $230. Enter the original and the percentage above and the new value fills in, or use the \"Quick: Value + Percent\" box."}},{"@type":"Question","name":"Can I paste numbers with dollar signs, commas or percent signs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Values such as $1,200, 15% or 1.234,56 are read correctly, so you can paste straight from a spreadsheet or a web page."}},{"@type":"Question","name":"Does this work for large numbers like property values or revenue?","acceptedAnswer":{"@type":"Answer","text":"It works at any scale, from a $0.46 per-item price increase to revenue in the millions. The formula is the same either way."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate percentage increase from one number to another?","acceptedAnswer":{"@type":"Answer","text":"Subtract the original from the new value, divide by the original, and multiply by 100. Or type both numbers into the percentage increase calculator above and skip the arithmetic."}},{"@type":"Question","name":"What's the difference between percentage increase and percentage change?","acceptedAnswer":{"@type":"Answer","text":"\"Increase\" means the value went up. \"Change\" is neutral and covers both directions. This tool handles either one: green for an increase, red for a decrease."}},{"@type":"Question","name":"Can I use this to calculate a percentage decrease?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the new value is lower, the percentage increase calculator returns a negative result and labels it as a decrease."}},{"@type":"Question","name":"How do I find the new value after a known percentage increase?","acceptedAnswer":{"@type":"Answer","text":"Multiply the original by (1 + percentage ÷ 100). A $200 item with a 15% increase becomes $200 × 1.15 = $230. Enter the original and the percentage above and the new value fills in, or use the \"Quick: Value + Percent\" box."}},{"@type":"Question","name":"Can I paste numbers with dollar signs, commas or percent signs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Values such as $1,200, 15% or 1.234,56 are read correctly, so you can paste straight from a spreadsheet or a web page."}},{"@type":"Question","name":"Does this work for large numbers like property values or revenue?","acceptedAnswer":{"@type":"Answer","text":"The percentage increase calculator works at any scale, from a $0.46 per-item price increase to revenue in the millions. The formula is the same either way."}}]}
 </script>
 <meta name="theme-color" content="#1a3a35">
 <script data-ga>
@@ -433,6 +433,21 @@ button.acc-h:focus-visible{outline:2px solid #1a3a35;outline-offset:2px;border-r
 .f-fbbtn:hover{background:#7dffc4;color:#1a3a35;}
 @media (pointer:coarse){.f-fbbtn{min-height:44px;}}
 
+/* Quick-answer card on guide pages */
+.answer-wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+@media(max-width:800px){.answer-wrap{max-width:560px;}}
+.answer .nb-title{margin-bottom:10px;}
+.answer p{font-size:15px;color:#333;line-height:1.6;margin-bottom:10px;}
+.answer .formula{font-family:'Courier New',monospace;font-size:clamp(15px,2.6vw,20px);font-weight:700;color:#1a3a35;background:#fff;border:2px solid #1a3a35;border-radius:5px;padding:10px 14px;margin:4px 0 12px;overflow-wrap:anywhere;}
+.answer p:last-child{margin-bottom:0;}
+.seo details{background:rgba(125,255,196,0.05);border:1px solid #2a5a50;border-radius:5px;padding:10px 14px;margin:8px 0;}
+.seo summary{cursor:pointer;color:#e8e0d4;font-weight:700;font-size:14px;}
+.seo details p{margin:8px 0 0;}
+@media(max-width:600px){.seo .wk{display:none;}.seo th,.seo td{padding:6px;font-size:13px;}}
+.seo code{overflow-wrap:anywhere;}
+.seo ol,.seo ul{margin:0 0 12px 22px;color:#9bbfb3;font-size:14px;line-height:1.7;}
+.seo li{margin-bottom:4px;}
+
 /* Disclaimer */
 .disc{font-size:12px;color:#6b6b6b;padding:8px;background:#f5f3ee;border-radius:4px;line-height:1.5;}
 
@@ -602,6 +617,7 @@ button.acc-h:focus-visible{outline:2px solid #1a3a35;outline-offset:2px;border-r
   <div class="nb-title">Related Calculators</div>
   <div class="rel">
 <!-- related2:start -->
+<a href="/how-to-calculate-percentage-increase/">How to Calculate Percentage Increase</a>
 <a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
 <a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
 <a href="/price-increase-calculator/">Price Increase Calculator</a>
@@ -683,13 +699,11 @@ button.acc-h:focus-visible{outline:2px solid #1a3a35;outline-offset:2px;border-r
 
 <p>You have two numbers and want to know how far one moved from the other. It might be a raise you were just offered, a bill that crept up, or a price that looks higher than last month. Type the original value and the new value into the percentage increase calculator above and the percentage appears as you type. If you already know the percentage, enter it with either value and the missing number is filled in.</p>
 
-<h2>How to Calculate Percentage Increase</h2>
+<h2>The Math Behind It</h2>
 
-<p>Subtract the old number from the new one, divide the difference by the old number, and multiply by 100. Written out: <code>((New − Old) / Old) × 100</code>. The percentage increase calculator runs exactly this formula and lists each step under Calculation Steps, so you can check the working or copy it into a report.</p>
+<p>Subtract the old number from the new one, divide the difference by the old number, and multiply by 100: <code>((New − Old) / Old) × 100</code>. The percentage increase calculator runs exactly this formula and lists each step under Calculation Steps, so you can check the working or copy it into a report. Rent going from $1,200 to $1,380 rose 180 ÷ 1,200 = 15%; type those numbers into the percentage increase calculator to see the steps.</p>
 
-<h3>A Quick Example</h3>
-
-<p>Rent goes from $1,200 to $1,380 a month. The difference is $180, and 180 ÷ 1,200 = 0.15, so the rent rose 15%. Type 1200 and 1380 into the percentage increase calculator to confirm it, then try your own figures.</p>
+<p>For the full walkthrough, with every form of the formula, mistakes to avoid and practice problems with answers, read our guide on <a href="/how-to-calculate-percentage-increase/">how to calculate percentage increase</a>. If you just need the number, the percentage increase calculator above is quicker.</p>
 
 <h2>Salary and Pay Raise Calculations</h2>
 
@@ -783,11 +797,12 @@ button.acc-h:focus-visible{outline:2px solid #1a3a35;outline-offset:2px;border-r
 <p>Yes. Values such as $1,200, 15% or 1.234,56 are read correctly, so you can paste straight from a spreadsheet or a web page.</p>
 
 <h3>Does this work for large numbers like property values or revenue?</h3>
-<p>It works at any scale, from a $0.46 per-item price increase to revenue in the millions. The formula is the same either way.</p>
+<p>The percentage increase calculator works at any scale, from a $0.46 per-item price increase to revenue in the millions. The formula is the same either way.</p>
 
 <h2>More Percentage Calculators</h2>
 <div class="rel">
 <!-- related:start -->
+<a href="/how-to-calculate-percentage-increase/">How to Calculate Percentage Increase</a>
 <a href="/percentage-gain-calculator/">Percentage Gain Calculator</a>
 <a href="/percentage-growth-calculator/">Percentage Growth Calculator</a>
 <a href="/price-increase-calculator/">Price Increase Calculator</a>

@@ -39,7 +39,9 @@ function relatedLinks(currentSlug) {
 function render(p) {
   const url = `${SITE}/${p.slug}/`;
   const jsonld = [
-    { '@context': 'https://schema.org', '@type': 'WebApplication', name: p.name, description: p.description, url, applicationCategory: 'UtilityApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    p.schema === 'article'
+      ? { '@context': 'https://schema.org', '@type': 'Article', headline: p.name, description: p.description, url, image: `${SITE}/og/${p.slug}.jpg`, dateModified: p.lastmod || TODAY, author: { '@type': 'Organization', name: 'Percentage Increase Calculator', url: SITE + '/' }, publisher: { '@type': 'Organization', name: 'Percentage Increase Calculator', url: SITE + '/' } }
+      : { '@context': 'https://schema.org', '@type': 'WebApplication', name: p.name, description: p.description, url, applicationCategory: 'UtilityApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
       { '@type': 'ListItem', position: 2, name: p.name, item: url },
@@ -59,6 +61,8 @@ function render(p) {
     STICKY_LABEL: esc(p.stickyLabel || 'Result'),
     H1: p.h1,
     HERO_P: p.heroP,
+    HOME_NOTE: p.homeNote || 'Working with plain numbers instead? The <a href="/">main calculator</a> on our homepage takes any two values, and adds batch lists and chained changes.',
+    ANSWER: p.answer ? `<!-- QUICK ANSWER -->\n<div class="answer-wrap"><div class="nb answer fi fi1">${p.answer.trim()}</div></div>\n` : '',
     CALC_TITLE: esc(p.calcTitle),
     PRESETS: p.presets.map(x => `<button data-o="${x.o}" data-n="${x.n}">${esc(x.label)}</button>`).join('\n    '),
     LABEL_ORIG: esc(p.labels.orig), LABEL_NEW: esc(p.labels.new), LABEL_PCT: esc(p.labels.pct),
